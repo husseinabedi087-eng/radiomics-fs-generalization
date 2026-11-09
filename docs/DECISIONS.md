@@ -7,4 +7,4 @@
 
 ## Pre-registration status
 
-Stage 1 not frozen, stage 2 not frozen; no data downloaded; no model trained.
+Pre-registration status: stage 1 not frozen, stage 2 not frozen; data downloaded (2026-11-09); no model trained.
