@@ -1,0 +1,6 @@
+pip check output (recorded 2026-11-10 after installing mealpy==3.0.3):
+mealpy 3.0.3 has requirement numpy<=1.26.0,>=1.17.1, but you have numpy 2.5.4.
+
+mealpy 3.0.3 declares numpy<=1.26.0. It is used only by tests/test_mealpy.py to check the continuous
+cores; it runs correctly under numpy 2.5.4 (verified), so numpy, pandas and scipy were kept at the
+versions used for the download and audit (numpy 2.5.4, pandas 3.1.1, scipy 1.18.1).
