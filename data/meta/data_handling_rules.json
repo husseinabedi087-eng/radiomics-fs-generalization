@@ -1,0 +1,79 @@
+{
+  "decided_on": "2026-11-09",
+  "stage": "post-audit, pre-model: no model trained, no feature-target statistic computed",
+  "applied_by": "src/data_access.py",
+  "excluded_datasets": {
+    "Colorectal-Liver-Metastases": "criterion 2: minority class below 20",
+    "Granata2024": "criterion 2: minority class below 20",
+    "HCC-TACE-Seg": "criterion 2: minority class below 20",
+    "Li2020": "criterion 2: minority class below 20",
+    "QIN-HEADNECK": "criterion 2: minority class below 20",
+    "Zhang2023": "criterion 4: lesion-level rows without patient ID"
+  },
+  "drop_columns": {
+    "Arita2018": {
+      "columns": [
+        "IDHmt_mean",
+        "IDHmt_sd",
+        "IDHmt_max",
+        "IDHmt_med",
+        "IDHmt_mode",
+        "IDHwt_mean",
+        "IDHwt_sd",
+        "IDHwt_max",
+        "IDHwt_med",
+        "IDHwt_mode"
+      ],
+      "reason": "location maps built from outcome labels (IDH status); target leakage by construction"
+    },
+    "Granata2021": {
+      "columns": [
+        "LESION_TYPE"
+      ],
+      "reason": "clinical variable, not a radiomic feature"
+    }
+  },
+  "drop_duplicate_rows": {
+    "Song2020": {
+      "keep": "first",
+      "reason": "exact duplicate row including target"
+    }
+  },
+  "strip_id_whitespace": [
+    "Hosny2018B"
+  ],
+  "target_to_int": {
+    "datasets": [
+      "Fusco2022",
+      "Wang2024"
+    ],
+    "mapping": {
+      "True": 1,
+      "False": 0
+    }
+  },
+  "crit4_resolved": {
+    "Wang2024": {
+      "crit4": "pass",
+      "reason": "first biopsy only, one row per patient"
+    },
+    "Hosny2018B": {
+      "crit4": "pass",
+      "reason": "IDs are patient IDs of the form LUNG1-xxx; one row per patient; one missing ID kept"
+    }
+  },
+  "sensitivity_exclusion_set": {
+    "datasets": [
+      "Arita2018",
+      "Hosny2018A",
+      "Hosny2018B",
+      "Hosny2018C",
+      "Keek2020",
+      "LNDb",
+      "UCSF-PDGM",
+      "Wang2024"
+    ],
+    "reason": "metadata reports missing values but the data has none; likely imputed on the full dataset before release. A pre-registered sensitivity analysis repeats the main comparisons without these datasets."
+  },
+  "license_review": "pending"
+}
