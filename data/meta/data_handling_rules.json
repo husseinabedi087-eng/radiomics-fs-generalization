@@ -76,5 +76,22 @@
     ],
     "reason": "metadata reports missing values but the data has none; likely imputed on the full dataset before release. A pre-registered sensitivity analysis repeats the main comparisons without these datasets."
   },
-  "license_review": "pending"
+  "license_review": "pending",
+  "split_clusters": {
+    "clusters": [
+      [
+        "BraTS-2021",
+        "UPENN-GBM",
+        "UCSF-PDGM"
+      ],
+      [
+        "Arita2018",
+        "Sasaki2019"
+      ]
+    ],
+    "reason": "possible patient overlap (BraTS 2021 includes UPenn and UCSF cases; Arita2018 and Sasaki2019 both come from the KNBTG consortium); each cluster is assigned to development or confirmation as one unit"
+  },
+  "known_limitations": {
+    "Petrillo2023": "the radMLBench curator chose the endpoint with the highest AUC in the source study, so absolute AUC may be optimistic; this affects all compared methods alike"
+  }
 }

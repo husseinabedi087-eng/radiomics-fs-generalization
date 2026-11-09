@@ -21,6 +21,13 @@ Made after inspecting data properties in the audit (data/meta/audit.csv) and bef
 - License review: pending.
 - No model has been trained and no feature-target statistic has been computed.
 
+## 2026-11-10: split clusters and known limitations (pre-model)
+
+- Split cluster BraTS-2021, UPENN-GBM, UCSF-PDGM: possible patient overlap (BraTS 2021 includes UPenn and UCSF cases); the cluster is assigned to development or confirmation as one unit.
+- Split cluster Arita2018, Sasaki2019: possible patient overlap (both from the KNBTG consortium); the cluster is assigned to development or confirmation as one unit. The ID-only check (src/id_checks.py) found 0 shared normalised KNBTG IDs; the cluster is kept as a precaution.
+- Known limitation, Petrillo2023: the radMLBench curator chose the endpoint with the highest AUC in the source study, so absolute AUC may be optimistic; this affects all compared methods alike.
+- No model has been trained and no feature-target statistic has been computed.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 not frozen, stage 2 not frozen; data downloaded (2026-11-09); no model trained.
