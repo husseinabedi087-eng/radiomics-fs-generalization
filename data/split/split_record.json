@@ -1,0 +1,106 @@
+{
+  "created_utc": "2026-11-09T21:32:09+00:00",
+  "seed": 20261108,
+  "rng": "numpy.random.default_rng(seed); one generator, tertiles shuffled in order 1, 2, 3",
+  "tertile_variable": "log_p_over_n = ln(p / n) after the data-handling rules; cluster = mean of members",
+  "cut_points": {
+    "method": "numpy.quantile, default method, probabilities [1/3, 2/3]",
+    "q1": 1.2304726338446264,
+    "q2": 1.6919780599120684,
+    "rule": "tertile 1: v <= q1; tertile 2: q1 < v <= q2; tertile 3: v > q2"
+  },
+  "allocation": "within each tertile: sort units by name, shuffle, first max(1, floor(k/3)) to development",
+  "units_per_tertile": {
+    "1": {
+      "k": 14,
+      "units": [
+        "Ahn2021",
+        "Dong2022",
+        "HNSCC",
+        "Head-Neck-PET-CT",
+        "Head-Neck-Radiomics-HN1",
+        "Hosny2018A",
+        "ISPY1",
+        "LNDb",
+        "NSCLC-Radiogenomics",
+        "PI-CAI",
+        "Prostate-MRI-US-Biopsy",
+        "Ramella2018",
+        "Song2020",
+        "Veeraraghavan2020"
+      ],
+      "n_development_units": 4,
+      "n_confirmation_units": 10
+    },
+    "2": {
+      "k": 13,
+      "units": [
+        "Arita2018",
+        "C4KC-KiTS",
+        "Fusco2022",
+        "Hosny2018B",
+        "Hosny2018C",
+        "Huang2023",
+        "Hunter2023",
+        "Keek2020",
+        "Sasaki2019",
+        "WORC-Desmoid",
+        "WORC-GIST",
+        "Wang2024",
+        "Zhang2024B"
+      ],
+      "n_development_units": 4,
+      "n_confirmation_units": 9
+    },
+    "3": {
+      "k": 14,
+      "units": [
+        "BraTS-2021+UCSF-PDGM+UPENN-GBM",
+        "Brancato2023",
+        "Dai2023",
+        "Granata2021",
+        "LGG-1p19qDeletion",
+        "Lu2019",
+        "Meningioma-SEG-CLASS",
+        "OcanaTienda2023",
+        "Petrillo2023",
+        "WORC-CRLM",
+        "WORC-Lipo",
+        "WORC-Liver",
+        "WORC-Melanoma",
+        "Zhang2024A"
+      ],
+      "n_development_units": 4,
+      "n_confirmation_units": 10
+    }
+  },
+  "cluster_handling": {
+    "clusters": [
+      [
+        "BraTS-2021",
+        "UCSF-PDGM",
+        "UPENN-GBM"
+      ]
+    ],
+    "rule": "each cluster is one unit; its members are assigned to the same group"
+  },
+  "n_units": 41,
+  "dataset_counts": {
+    "included": 43,
+    "development": 12,
+    "confirmation": 31,
+    "excluded": 7
+  },
+  "inputs": {
+    "audit.csv_sha256": "0f2bb172ca93005cc1f1488d57b66e05178d95f199c136e319ce1bd7f889db5c",
+    "data_handling_rules.json_sha256": "b4b351ea617c67eed73ed4248748227632017864642a7c280e49aa655795e5f9"
+  },
+  "make_split_py": {
+    "git_commit": "29f38ac80faa142b28e1ed2f68586d6e448ff786",
+    "sha256": "10282be432b4765336f9473ca0a90491c67b244abf9daf77e42bccd5e405eb6a"
+  },
+  "lists_sha256": {
+    "development.txt": "8959954a39bdbadf6bed7c5df52fa0db31ff3daa0a6550a99ca04bef5b9c34a3",
+    "confirmation.txt": "930cf7e4ac0c315810219a7881391d6c49eb05bea961198f14af1bbb30d5842b"
+  }
+}
