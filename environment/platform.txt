@@ -1,0 +1,9 @@
+OS: Microsoft Windows 11 Pro
+OS version: 10.0.26200 (build 26200)
+platform.platform(): Windows-11-10.0.26200-SP0
+Machine architecture: AMD64
+CPU model: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+CPU sockets: 1
+Physical cores: 6
+Logical cores: 12
+RAM total: 15.82 GiB (16987406336 bytes)
