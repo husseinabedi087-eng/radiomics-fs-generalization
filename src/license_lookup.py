@@ -100,13 +100,18 @@ def get(url, accept=None):
                 "error": f"{type(e).__name__}: {e}"}
 
 
+# Only keys that name a licence exactly ("license", "licence", "data_licence", ...).
+# Keys that merely contain the word, such as "licenseKey" (a web-monitoring key), are ignored.
+LICENCE_KEY = re.compile(r"^(?:data_|dataset_)?licen[cs]e$", re.I)
+
+
 def find_licence_fields(obj, path=""):
-    """Collect (path, value) for every key containing 'licen' in a nested JSON object."""
+    """Collect (path, value) for every licence key (see LICENCE_KEY) in a nested JSON object."""
     found = []
     if isinstance(obj, dict):
         for k, v in obj.items():
             p = f"{path}.{k}" if path else k
-            if "licen" in k.lower():
+            if LICENCE_KEY.match(str(k)):
                 found.append((p, v))
             found += find_licence_fields(v, p)
     elif isinstance(obj, list):
@@ -121,7 +126,8 @@ def licence_to_text(value):
     if isinstance(value, str):
         return value.strip()
     if isinstance(value, dict):
-        for key in ("name", "full_name", "fullName", "title", "short_name", "shortName", "spdx_id", "id", "url"):
+        for key in ("name", "full_name", "fullName", "title", "short_name", "shortName", "text",
+                    "spdx_id", "id", "url"):
             v = value.get(key)
             if isinstance(v, dict):  # e.g. Zenodo title: {"en": "..."}
                 v = next(iter(v.values()), None)
@@ -144,52 +150,93 @@ def row(dataset, source_type, attempt, licence):
             "timestamp": attempt["timestamp_utc"]}
 
 
+def failed(att):
+    return f"lookup failed: {att.get('error') or att.get('http_status')}"
+
+
+# ---- parsers: attempt record(s) -> licence text (used by live lookups and by --reparse) ----
+
+def parse_github(att):
+    if att.get("http_status") == 404:
+        return "no license file"
+    if att.get("http_status") == 200:
+        lic_obj = att.get("response_json", {}).get("license") or {}
+        lic = lic_obj.get("spdx_id") or lic_obj.get("name") or "license file present, type not identified"
+        if lic_obj.get("name") and lic_obj.get("spdx_id") and lic_obj["name"] != lic_obj["spdx_id"]:
+            lic = f"{lic_obj['spdx_id']} ({lic_obj['name']})"
+        return lic
+    return failed(att)
+
+
+def parse_zenodo(att):
+    if att.get("http_status") == 200:
+        return licence_to_text(att.get("response_json", {}).get("metadata", {}).get("license")) or "no license field"
+    return failed(att)
+
+
+def parse_figshare(att):
+    if att.get("http_status") == 200:
+        return licence_to_text((att.get("response_json", {}) or {}).get("license")) or "no license field"
+    return failed(att)
+
+
+def parse_mendeley_api(att):
+    """Licence texts from a Mendeley public-API attempt ([] if none)."""
+    if att.get("http_status") == 200 and "response_json" in att:
+        fields = find_licence_fields(att["response_json"])
+        return list(dict.fromkeys(t for t in (licence_to_text(v) for _, v in fields) if t))
+    return []
+
+
+def parse_mendeley(attempts):
+    """(source_type, decisive attempt, licence) from the saved Mendeley attempts."""
+    for att in attempts:
+        if "public-api" in att["request_url"]:
+            texts = parse_mendeley_api(att)
+            if texts:
+                return "mendeley_api", att, " | ".join(texts)
+    landing = [a for a in attempts if "public-api" not in a["request_url"]]
+    if not landing:
+        return "mendeley_api", attempts[-1], "no licence field in API responses"
+    att = landing[-1]
+    if att.get("http_status") == 200:
+        html = att.get("response_text") or json.dumps(att.get("response_json", ""))
+        texts = extract_licence_from_html(html)
+        return "mendeley_landing", att, " | ".join(texts) if texts else "no licence text found in landing page"
+    return "mendeley_landing", att, failed(att)
+
+
+# ---- live lookups ----
+
 def lookup_github(dataset, repo, cache):
     url = f"https://api.github.com/repos/{repo}/license"
     if url not in cache:  # Hosny2018A/B/C share one repository: query it once
         cache[url] = get(url, accept="application/vnd.github+json")
     att = cache[url]
-    if att.get("http_status") == 404:
-        lic = "no license file"
-    elif att.get("http_status") == 200:
-        lic_obj = att.get("response_json", {}).get("license") or {}
-        lic = lic_obj.get("spdx_id") or lic_obj.get("name") or "license file present, type not identified"
-        if lic_obj.get("name") and lic_obj.get("spdx_id") and lic_obj["name"] != lic_obj["spdx_id"]:
-            lic = f"{lic_obj['spdx_id']} ({lic_obj['name']})"
-    else:
-        lic = f"lookup failed: {att.get('error') or att.get('http_status')}"
     save_evidence(dataset, "github", [att])
-    return row(dataset, "github", att, lic)
+    return row(dataset, "github", att, parse_github(att))
 
 
 def lookup_zenodo(dataset, rec_id):
     att = get(f"https://zenodo.org/api/records/{rec_id}", accept="application/json")
-    lic = ""
-    if att.get("http_status") == 200:
-        lic = licence_to_text(att.get("response_json", {}).get("metadata", {}).get("license"))
-        lic = lic or "no license field"
-    else:
-        lic = f"lookup failed: {att.get('error') or att.get('http_status')}"
     save_evidence(dataset, "zenodo", [att])
-    return row(dataset, "zenodo", att, lic)
+    return row(dataset, "zenodo", att, parse_zenodo(att))
 
 
 def lookup_figshare(dataset, art_id):
     att = get(f"https://api.figshare.com/v2/articles/{art_id}", accept="application/json")
-    if att.get("http_status") == 200:
-        lic = licence_to_text((att.get("response_json", {}) or {}).get("license")) or "no license field"
-    else:
-        lic = f"lookup failed: {att.get('error') or att.get('http_status')}"
     save_evidence(dataset, "figshare", [att])
-    return row(dataset, "figshare", att, lic)
+    return row(dataset, "figshare", att, parse_figshare(att))
 
 
+# Plain-text licence names searched in landing-page HTML. Free text such as "Creative Commons ..."
+# and key names such as "licenseKey" are not used.
 LICENCE_PATTERNS = [
-    r"CC[\s\-]?BY(?:[\s\-]NC)?(?:[\s\-]SA)?(?:[\s\-]ND)?[\s\-]?\d\.\d",
-    r"CC0(?:\s*1\.0)?",
-    r"Creative Commons[^<\"]{0,80}",
-    r"MIT License|Apache License[^<\"]{0,20}|GNU [^<\"]{0,40}",
+    r"\bCC[\s\-]?BY(?:[\s\-]NC)?(?:[\s\-]SA)?(?:[\s\-]ND)?[\s\-]?\d\.\d\b",
+    r"\bCC0(?:\s*1\.0)?\b",
 ]
+# JSON key/value pairs embedded in HTML whose key is exactly a licence key (see LICENCE_KEY).
+LICENCE_JSON_PAIR = re.compile(r'"((?:data_|dataset_)?licen[cs]e)"\s*:\s*("[^"]*"|\{[^{}]*\})', re.I)
 
 
 def extract_licence_from_html(html):
@@ -201,16 +248,14 @@ def extract_licence_from_html(html):
                 hits.append(licence_to_text(v))
         except ValueError:
             pass
-    for m in re.finditer(r'"[^"]*licen[cs]e[^"]*"\s*:\s*("(?:[^"\\]|\\.)*"|\{[^{}]*\})', html, re.I):
-        hits.append(m.group(1).strip('"'))
+    for m in LICENCE_JSON_PAIR.finditer(html):
+        try:
+            hits.append(licence_to_text(json.loads(m.group(2))))
+        except ValueError:
+            hits.append(m.group(2).strip('"'))
     for pat in LICENCE_PATTERNS:
         hits += [h.strip() for h in re.findall(pat, html, re.I)]
-    seen, out = set(), []
-    for h in hits:
-        if h and h not in seen:
-            seen.add(h)
-            out.append(h)
-    return out
+    return list(dict.fromkeys(h for h in hits if h))
 
 
 def lookup_mendeley(dataset, ds_id):
@@ -218,25 +263,43 @@ def lookup_mendeley(dataset, ds_id):
     for tmpl in MENDELEY_API_TEMPLATES:
         att = get(tmpl.format(id=ds_id), accept="application/json")
         attempts.append(att)
-        if att.get("http_status") == 200 and "response_json" in att:
-            fields = find_licence_fields(att["response_json"])
-            texts = [t for t in (licence_to_text(v) for _, v in fields) if t]
-            if texts:
-                att["licence_fields_found"] = [{"path": p, "value": v} for p, v in fields]
-                save_evidence(dataset, "mendeley_api", attempts)
-                return row(dataset, "mendeley_api", att, " | ".join(dict.fromkeys(texts)))
+        texts = parse_mendeley_api(att)
+        if texts:
+            att["licence_fields_found"] = [{"path": p, "value": v}
+                                           for p, v in find_licence_fields(att["response_json"])]
+            save_evidence(dataset, "mendeley_api", attempts)
+            return row(dataset, "mendeley_api", att, " | ".join(texts))
     # fall back to the landing page HTML
     att = get(MENDELEY_LANDING.format(id=ds_id), accept="text/html")
     attempts.append(att)
+    source_type, att, lic = parse_mendeley(attempts)
     if att.get("http_status") == 200:
-        html = att.get("response_text") or json.dumps(att.get("response_json", ""))
-        texts = extract_licence_from_html(html)
-        att["licence_text_extracted"] = texts
-        lic = " | ".join(texts) if texts else "no licence text found in landing page"
-    else:
-        lic = f"lookup failed: {att.get('error') or att.get('http_status')}"
-    save_evidence(dataset, "mendeley_landing", attempts)
-    return row(dataset, "mendeley_landing", att, lic)
+        att["licence_text_extracted"] = extract_licence_from_html(
+            att.get("response_text") or json.dumps(att.get("response_json", "")))
+    save_evidence(dataset, source_type, attempts)
+    return row(dataset, source_type, att, lic)
+
+
+def reparse_rows():
+    """Rebuild every row from the saved evidence files; no request is sent."""
+    rows = []
+    jobs = ([("github", d) for d in GITHUB] + [("zenodo", d) for d in ZENODO]
+            + [("figshare", d) for d in FIGSHARE] + [("mendeley", d) for d in MENDELEY])
+    for kind, dataset in jobs:
+        path = EVIDENCE_DIR / f"{dataset}.json"
+        if not path.exists():
+            print(f"  {dataset}: no evidence file, skipped")
+            continue
+        ev = json.loads(path.read_bytes().decode("utf-8"))
+        attempts = ev["attempts"]
+        if kind == "mendeley":
+            source_type, att, lic = parse_mendeley(attempts)
+        else:
+            att = attempts[-1]
+            source_type = kind
+            lic = {"github": parse_github, "zenodo": parse_zenodo, "figshare": parse_figshare}[kind](att)
+        rows.append(row(dataset, source_type, att, lic))
+    return rows
 
 
 FIELDS = ["dataset", "source_type", "url", "license_found", "http_status", "timestamp"]
@@ -254,10 +317,20 @@ def main():
     parser.add_argument("--only", metavar="DATASET",
                         help="query only this dataset; its evidence file and its row in "
                              "license_lookup.csv are replaced, all other rows are kept")
+    parser.add_argument("--reparse", action="store_true",
+                        help="rebuild license_lookup.csv from the saved evidence files; "
+                             "no request is sent and the evidence files are not changed")
     args = parser.parse_args()
+    if args.reparse and args.only:
+        parser.error("--reparse and --only cannot be combined")
 
     t0 = time.perf_counter()
     rows, cache = [], {}
+    if args.reparse:
+        print("Reparsing saved evidence (no network requests)")
+        rows = reparse_rows()
+        write_and_print(rows, t0)
+        return 0
     jobs = ([("github", d, x) for d, x in GITHUB.items()]
             + [("zenodo", d, x) for d, x in ZENODO.items()]
             + [("figshare", d, x) for d, x in FIGSHARE.items()]
@@ -285,6 +358,11 @@ def main():
         merged = [new.pop(r["dataset"], r) for r in old]
         rows = merged + list(new.values())
 
+    write_and_print(rows, t0)
+    return 0
+
+
+def write_and_print(rows, t0):
     fields = FIELDS
     with open(LOOKUP_CSV, "w", encoding="utf-8", newline="\n") as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
@@ -295,13 +373,12 @@ def main():
     table = [[str(r[k]) for k in fields] for r in rows]
     widths = [max(len(h), *(len(t[i]) for t in table)) for i, h in enumerate(fields)]
     widths[2] = min(widths[2], 60)
-    widths[3] = min(widths[3], 60)
+    widths[3] = min(widths[3], 90)
     fmt = "  ".join(f"{{:<{w}}}" for w in widths)
     print(fmt.format(*fields))
     for t in table:
         print(fmt.format(*[c if len(c) <= w else c[: w - 3] + "..." for c, w in zip(t, widths)]))
     print(f"\nEvidence files: {EVIDENCE_DIR.relative_to(REPO_ROOT)}  |  runtime {time.perf_counter() - t0:.1f} s")
-    return 0
 
 
 if __name__ == "__main__":
