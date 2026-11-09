@@ -50,11 +50,16 @@ def run_ours(algo, f, lb, ub, seed):
 
 @pytest.mark.parametrize("fname", list(FUNCTIONS))
 @pytest.mark.parametrize("algo", list(MEALPY_MODELS))
-def test_core_matches_mealpy(algo, fname, report):
+def test_core_matches_mealpy(algo, fname, report, save_result):
     f, lb, ub = FUNCTIONS[fname]
     ours = [run_ours(algo, f, lb, ub, s) for s in SEEDS]
     ref = [run_mealpy(algo, f, lb, ub, s) for s in SEEDS]
     p = float(mannwhitneyu(ours, ref, alternative="two-sided").pvalue)
+    save_result(f"mealpy_{algo}_{fname}", {
+        "algorithm": algo, "function": fname, "dim": DIM, "pop_size": POP,
+        "iterations_including_initial": EPOCH + 1, "mealpy_model": type(MEALPY_MODELS[algo]()).__name__,
+        "bounds": [lb, ub], "seeds": list(SEEDS), "final_best_ours": ours, "final_best_mealpy": ref,
+        "p_mannwhitney": p, "flag": p < ALPHA})
     report(f"mealpy {algo:<5} {fname:<10} median ours {np.median(ours):.4g}  mealpy {np.median(ref):.4g}  "
            f"p = {p:.4f}{'  FLAG' if p < ALPHA else ''}")
     assert p >= ALPHA, f"{algo}/{fname}: our core differs from MEALPY (p = {p:.4g})"

@@ -33,16 +33,21 @@ def planted_data(seed=DATA_SEED):
 
 @pytest.mark.slow
 @pytest.mark.parametrize("name", list(CONFIGS))
-def test_planted_recovery_report(name, report):
+def test_planted_recovery_report(name, report, save_result):
     X, y, informative = planted_data()
     fitness = make_inner_cv_auc(X, y, fixed_inner_split(y, seed=DATA_SEED))
-    rows = []
+    rows, per_seed = [], []
     for seed in SEARCH_SEEDS:
         t0 = time.perf_counter()
         ev = Evaluator(fitness, P, budget=2000)
         res = run_config(name, ev, P, np.random.default_rng(seed))
         hits = int(res.mask[informative].sum())
         rows.append((hits / N_INFORMATIVE, int(res.mask.sum()), res.fitness, time.perf_counter() - t0))
+        per_seed.append({"seed": seed, "informative_selected": hits, "recovery": hits / N_INFORMATIVE,
+                         "subset_size": int(res.mask.sum()), "inner_auc": res.fitness,
+                         "seconds": rows[-1][3], "n_fitness_calls": ev.n_fitness_calls})
+    save_result(f"planted_{name}", {"searcher": name, "n": N, "p": P, "n_informative": N_INFORMATIVE,
+                                    "data_seed": DATA_SEED, "budget": 2000, "per_seed": per_seed})
     rec = np.array([r[0] for r in rows])
     line = (f"planted {name:<13} recovery mean {rec.mean():.2f} (per seed {', '.join(f'{r:.1f}' for r in rec)})  "
             f"size {', '.join(str(r[1]) for r in rows)}  inner AUC {', '.join(f'{r[2]:.3f}' for r in rows)}  "

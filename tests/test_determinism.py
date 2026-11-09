@@ -1,6 +1,8 @@
 """Determinism: the same search seed gives the identical returned mask; different seeds give
 different masks. Deterministic (noise-free) synthetic fitness; budget 2,000."""
 
+import hashlib
+
 import numpy as np
 import pytest
 
@@ -31,11 +33,19 @@ def returned_mask(name, seed):
     return run_config(name, ev, K, np.random.default_rng(seed)).mask
 
 
-@pytest.mark.parametrize("name", list(CONFIGS))
-def test_same_seed_same_mask(name):
-    assert np.array_equal(returned_mask(name, 7), returned_mask(name, 7))
+def digest(mask):
+    return hashlib.sha256(np.packbits(mask).tobytes()).hexdigest()[:16]
 
 
 @pytest.mark.parametrize("name", list(CONFIGS))
-def test_different_seeds_different_masks(name):
-    assert not np.array_equal(returned_mask(name, 1), returned_mask(name, 2)), f"{name}: seeds 1 and 2 gave the same mask"
+def test_determinism(name, save_result):
+    a, b = returned_mask(name, 7), returned_mask(name, 7)
+    m1, m2 = returned_mask(name, 1), returned_mask(name, 2)
+    same_seed_identical = bool(np.array_equal(a, b))
+    different_seeds_differ = not np.array_equal(m1, m2)
+    save_result(f"determinism_{name}", {
+        "searcher": name, "K": K, "budget": 2000, "landscape": "NK, k = 4, tables from seed 123",
+        "seed7_run1": digest(a), "seed7_run2": digest(b), "seed1": digest(m1), "seed2": digest(m2),
+        "same_seed_identical": same_seed_identical, "different_seeds_differ": different_seeds_differ})
+    assert same_seed_identical, f"{name}: seed 7 gave different masks in two runs"
+    assert different_seeds_differ, f"{name}: seeds 1 and 2 gave the same mask"
