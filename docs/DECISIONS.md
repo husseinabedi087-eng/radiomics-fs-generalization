@@ -65,6 +65,13 @@ Made after inspecting data properties in the audit (data/meta/audit.csv) and bef
 - Seal: src/data_access.py refuses to load any confirmation dataset until docs/PREREG_STAGE2.sha256 exists and is tracked by git. tests/test_seal.py passed (10 tests); the only real dataset loaded by the tests is the first development dataset.
 - No model has been trained and no feature-target statistic has been computed.
 
+## 2026-11-10: stage-1 pre-registration frozen (Gate 1)
+
+- docs/PREREG_STAGE1.md frozen, committed together with docs/PREREG_STAGE1.sha256.
+- SHA-256 (LF bytes, computed in Python): d5c7039a69b84d8e8eac8f2ec35b297de944eebe5b08a2073217cd47faf6302b
+- Frozen after the sealed dataset-level split and before any model was trained or any confirmation dataset was loaded; no feature-target statistic has been computed.
+- Any later change to the stage-1 content is a deviation and is recorded here with date, reason and commit.
+
 ## Pre-registration status
 
-Pre-registration status: stage 1 not frozen, stage 2 not frozen; data downloaded (2026-11-09); dataset-level split sealed (2026-11-10); no model trained.
+Pre-registration status: stage 1 frozen; stage 2 not frozen; no model trained.
