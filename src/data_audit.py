@@ -57,7 +57,7 @@ AUDIT_FIELDS = [
     "n_constant_features", "n_duplicate_feature_columns",
     "n_feature_pairs_abs_corr_above_0.99", "corr_sampled",
     "n_exact_duplicate_rows", "n_exact_duplicate_rows_with_target",
-    "id_unique", "n_unique_ids", "id_examples",
+    "id_unique", "n_unique_ids", "id_pattern",
     "suspicious_columns",
     "patient_structure_proposed", "patient_structure_reason",
     *CRITERIA,
@@ -90,6 +90,14 @@ def yn(flag):
 
 def one_line(text):
     return " ".join(str(text).split()) if text is not None else ""
+
+
+def mask_id(value):
+    """Mask an ID for privacy: letters -> 'A', digits -> '9', everything else unchanged
+    (e.g. 'EXAMPLE-123' -> 'AAAAAAA-999'). Missing IDs become ''."""
+    if value is None or pd.isna(value):
+        return ""
+    return re.sub(r"\d", "9", re.sub(r"[^\W\d_]", "A", str(value)))
 
 
 def count_high_corr_pairs(num):
@@ -250,7 +258,8 @@ def audit_dataset(name, df, meta, index_sha):
     if ID in df.columns:
         n_unique_ids = int(df[ID].nunique())
         id_unique = n_unique_ids == n_samples and not df[ID].isna().any()
-        id_examples = "; ".join(str(v) for v in df[ID].head(5).tolist())
+        # privacy: no real ID is written; the first 5 IDs are masked (letters -> A, digits -> 9)
+        id_pattern = "; ".join(mask_id(v) for v in df[ID].head(5).tolist())
         id_missing = int(df[ID].isna().sum())
         id_str = df[ID].dropna().astype(str)
         n_ws = int(id_str.str.contains(r"\s", regex=True).sum())
@@ -260,9 +269,9 @@ def audit_dataset(name, df, meta, index_sha):
         if id_has_ws:
             n_edge = int((id_str != id_str.str.strip()).sum())
             notes.append(f"{n_ws} IDs contain whitespace ({n_edge} with leading or trailing whitespace), "
-                         f"e.g. {id_str[id_str.str.contains(r'\s', regex=True)].head(3).map(repr).tolist()}.")
+                         f"masked e.g. {id_str[id_str.str.contains(r'\s', regex=True)].head(3).map(lambda v: repr(mask_id(v))).tolist()}.")
     else:
-        n_unique_ids, id_unique, id_examples = 0, False, ""
+        n_unique_ids, id_unique, id_pattern = 0, False, ""
         id_missing, id_has_ws = "", False
 
     susp = suspicious(features)
@@ -311,7 +320,7 @@ def audit_dataset(name, df, meta, index_sha):
         "n_exact_duplicate_rows_with_target": n_dup_rows_t,
         "id_unique": yn(id_unique),
         "n_unique_ids": n_unique_ids,
-        "id_examples": id_examples,
+        "id_pattern": id_pattern,
         "suspicious_columns": ";".join(susp),
         "patient_structure_proposed": proposed,
         "patient_structure_reason": reason,
