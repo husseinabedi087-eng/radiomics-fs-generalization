@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 57,
+  "Dimensionality": 15.11,
+  "Missings": 0,
+  "authors": "Zhang et al.",
+  "dataset": "Zhang2024A",
+  "download_source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0300170#sec017",
+  "modality": "PET/CT",
+  "nFeatures": 3850,
+  "nInstances": 255,
+  "outcome": "Histological type",
+  "pathology": "Lung cancer",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0300170",
+  "publication_title": "Machine learning for differentiating lung squamous cell cancer from adenocarcinoma using Clinical-Metabolic characteristics and 18F-FDG PET/CT radiomics",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2024
+}

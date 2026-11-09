@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 26,
+  "Dimensionality": 7.17,
+  "Missings": 0,
+  "authors": "Dai et al.",
+  "dataset": "Dai2023",
+  "download_source": "https://peerj.com/articles/16230/#supplemental-information",
+  "modality": "CT",
+  "nFeatures": 851,
+  "nInstances": 119,
+  "outcome": "Thrombocytopenia presence",
+  "pathology": "Gastrointestinal malignancies",
+  "publication_doi": "https://doi.org/10.7717/peerj.16230",
+  "publication_title": "A contrast-enhanced CT-based whole-spleen radiomics signature for early prediction of oxaliplatin-related thrombocytopenia in patients with gastrointestinal malignancies: a retrospective study",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2023
+}

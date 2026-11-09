@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 48,
+  "Dimensionality": 16.9,
+  "Missings": 0,
+  "authors": "Ocaña-Tienda et al.",
+  "dataset": "OcanaTienda2023",
+  "download_source": "https://springernature.figshare.com/articles/dataset/Radiomic_data_of_annotated_brain_metastases/22277638/1",
+  "modality": "MRI",
+  "nFeatures": 1130,
+  "nInstances": 67,
+  "outcome": "Survival (at 2 years)",
+  "pathology": "Brain metastasis",
+  "publication_doi": "https://doi.org/10.1038/s41597-023-02123-0",
+  "publication_title": "A comprehensive dataset of annotated brain metastasis MR images with clinical and radiomic data",
+  "remarks": "All patients died, therefore all data was processed.",
+  "software": "PyRadiomics",
+  "year": 2023
+}

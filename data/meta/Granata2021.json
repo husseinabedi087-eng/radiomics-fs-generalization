@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 3,
+  "ClassBalance": 47,
+  "Dimensionality": 6.61,
+  "Missings": 0,
+  "authors": "Granata et al.",
+  "dataset": "Granata2021",
+  "download_source": "https://zenodo.org/records/5162861",
+  "modality": "CT",
+  "nFeatures": 580,
+  "nInstances": 88,
+  "outcome": "Overall survival (at 32 months)",
+  "pathology": "Lung adenocarcinoma",
+  "publication_doi": "https://doi.org/10.3390/cancers13163992",
+  "publication_title": "Preliminary Report on Computed Tomography Radiomics Features as Biomarkers to Immunotherapy Selection in Lung Adenocarcinoma Patients",
+  "remarks": "No dead status/event is given.",
+  "software": "HealthMyne (Commercial)",
+  "year": 2021
+}

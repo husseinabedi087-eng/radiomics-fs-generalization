@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 10,
+  "ClassBalance": 44,
+  "Dimensionality": 4.85,
+  "Missings": 52,
+  "authors": "Keek et al.",
+  "dataset": "Keek2020",
+  "download_source": "https://github.com/SebastianSanduleanu/Peritumoral-HN-Radiomics",
+  "modality": "CT",
+  "nFeatures": 1322,
+  "nInstances": 273,
+  "outcome": "Overall survival (at 3 years)",
+  "pathology": "HNSCC",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0232639",
+  "publication_title": "Computed tomography-derived radiomic signature of head and neck squamous cell carcinoma (peri)tumoral tissue for the prediction of locoregional recurrence and distant metastasis after concurrent chemo-radiotherapy",
+  "remarks": "Due to incompatibilities, only the DESIGN data was used. Patients with less than 3 years of follow-up were removed.",
+  "software": "Inhouse",
+  "year": 2020
+}

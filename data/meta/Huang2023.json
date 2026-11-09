@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 46,
+  "Dimensionality": 4.04,
+  "Missings": 0,
+  "authors": "Huang et al.",
+  "dataset": "Huang2023",
+  "download_source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0292110#sec019",
+  "modality": "CT",
+  "nFeatures": 855,
+  "nInstances": 212,
+  "outcome": "Malignancy presence",
+  "pathology": "Renal cancer",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0292110",
+  "publication_title": "Enhanced and unenhanced: Radiomics models for discriminating between benign and malignant cystic renal masses on CT images: A multi-center study",
+  "remarks": "Unenhanced CT features were used",
+  "software": "PyRadiomics",
+  "year": 2023
+}

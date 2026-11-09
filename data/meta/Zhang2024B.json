@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 66,
+  "Dimensionality": 4.35,
+  "Missings": 0,
+  "authors": "Zhang et al.",
+  "dataset": "Zhang2024B",
+  "download_source": "https://peerj.com/articles/17111/#supplemental-information",
+  "modality": "CT",
+  "nFeatures": 833,
+  "nInstances": 192,
+  "outcome": "Lymph node metastasis presence",
+  "pathology": "Gastric cancer",
+  "publication_doi": "https://doi.org/10.7717/peerj.17111",
+  "publication_title": "Predictive nomogram for lymph node metastasis and survival in gastric cancer using contrast-enhanced computed tomography-based radiomics: a retrospective study",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2024
+}

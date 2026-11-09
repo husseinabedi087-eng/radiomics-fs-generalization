@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 2,
+  "ClassBalance": 31,
+  "Dimensionality": 1.35,
+  "Missings": 0,
+  "authors": "Veeraraghavan et al.",
+  "dataset": "Veeraraghavan2020",
+  "download_source": "https://github.com/The-Veeraraghavan-Lab/SciRepEndometrial2020",
+  "modality": "MRI",
+  "nFeatures": 200,
+  "nInstances": 150,
+  "outcome": "High tumor burden presence",
+  "pathology": "Breast cancer",
+  "publication_doi": "https://doi.org/10.1038/s41598-020-72475-9",
+  "publication_title": "Machine learning-based prediction of microsatellite instability and high tumor mutation burden from contrast-enhanced computed tomography in endometrial cancers",
+  "remarks": null,
+  "software": "CERR",
+  "year": 2020
+}

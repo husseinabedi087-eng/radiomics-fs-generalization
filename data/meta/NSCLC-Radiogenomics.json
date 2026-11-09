@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 16,
+  "Dimensionality": 0.74,
+  "Missings": 0,
+  "authors": "Gevaert et al.",
+  "dataset": "NSCLC-Radiogenomics",
+  "download_source": "https://radiomics.uk/",
+  "modality": "PET/CT",
+  "nFeatures": 105,
+  "nInstances": 144,
+  "outcome": "EGFR mutation status",
+  "pathology": "NSCLC",
+  "publication_doi": "http://doi.org/10.1148/radiol.12111607",
+  "publication_title": "Non–Small Cell Lung Cancer: Identifying Prognostic Imaging Biomarkers by Leveraging Public Gene Expression Microarray Data—Methods and Preliminary Results",
+  "remarks": "Original dataset at https://www.cancerimagingarchive.net/collection/nsclc-radiogenomics/",
+  "software": "PyRadiomics",
+  "year": 2012
+}

@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 49,
+  "Dimensionality": 4.27,
+  "Missings": 0,
+  "authors": "Sasaki et al.",
+  "dataset": "Sasaki2019",
+  "download_source": "https://www.nature.com/articles/s41598-019-50849-y#Sec11",
+  "modality": "MRI",
+  "nFeatures": 587,
+  "nInstances": 138,
+  "outcome": "MGMT mutation status",
+  "pathology": "Glioblastoma",
+  "publication_doi": "https://doi.org/10.1038/s41598-019-50849-y",
+  "publication_title": "Radiomics and MGMT promoter methylation for prognostication of newly diagnosed glioblastoma",
+  "remarks": null,
+  "software": "Inhouse",
+  "year": 2019
+}

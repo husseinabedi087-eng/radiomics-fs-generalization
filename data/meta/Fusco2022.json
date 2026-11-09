@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 61,
+  "Dimensionality": 3.59,
+  "Missings": 0,
+  "authors": "Fusco et al.",
+  "dataset": "Fusco2022",
+  "download_source": "https://zenodo.org/records/6344730",
+  "modality": "MRI",
+  "nFeatures": 192,
+  "nInstances": 54,
+  "outcome": "Malignancy presence",
+  "pathology": "Breast cancer",
+  "publication_doi": "https://doi.org/10.3390/curroncol29030159",
+  "publication_title": "Radiomic and Artificial Intelligence Analysis with Textural Metrics Extracted by Contrast-Enhanced Mammography and Dynamic Contrast Magnetic Resonance Imaging to Detect Breast Malignant Lesions",
+  "remarks": null,
+  "software": "TextureToolbox",
+  "year": 2022
+}

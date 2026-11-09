@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 43,
+  "Dimensionality": 23.09,
+  "Missings": 0,
+  "authors": "Vassantachart et al.",
+  "dataset": "Meningioma-SEG-CLASS",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 2030,
+  "nInstances": 88,
+  "outcome": "Tumor grade",
+  "pathology": "Meningioma",
+  "publication_doi": "https://doi.org/10.1038/s41598-022-07859-0",
+  "publication_title": "Automatic differentiation of Grade I and II meningiomas on magnetic resonance image using an asymmetric convolutional neural network",
+  "remarks": "Original dataset at https://www.cancerimagingarchive.net/collection/meningioma-seg-class/",
+  "software": "PyRadiomics",
+  "year": 2022
+}

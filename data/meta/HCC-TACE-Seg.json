@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 14,
+  "Dimensionality": 5.02,
+  "Missings": 0,
+  "authors": "Moawad et al.",
+  "dataset": "HCC-TACE",
+  "download_source": "https://radiomics.uk/",
+  "modality": "CT",
+  "nFeatures": 420,
+  "nInstances": 84,
+  "outcome": "Lymph node metastasis presence",
+  "pathology": "Hepatocellular cancer",
+  "publication_doi": "https://doi.org/10.1038/s41597-023-01928-3",
+  "publication_title": "Multimodality annotated hepatocellular carcinoma data set including pre- and post-TACE with imaging segmentation",
+  "remarks": "Original data at https://www.cancerimagingarchive.net/collection/hcc-tace-seg/.",
+  "software": "PyRadiomics",
+  "year": 2023
+}

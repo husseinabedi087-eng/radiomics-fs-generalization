@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 52,
+  "Dimensionality": 7.04,
+  "Missings": 0,
+  "authors": "Flanders et al.",
+  "dataset": "BraTS-2021",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 4060,
+  "nInstances": 577,
+  "outcome": "MGMT mutation status",
+  "pathology": "Glioblastoma",
+  "publication_doi": "https://doi.org/10.48550/arXiv.2107.02314",
+  "publication_title": "The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor Segmentation and Radiogenomic Classification",
+  "remarks": "Original dataset at https://www.kaggle.com/c/rsna-miccai-brain-tumor-radiogenomic-classification",
+  "software": "PyRadiomics",
+  "year": 2021
+}

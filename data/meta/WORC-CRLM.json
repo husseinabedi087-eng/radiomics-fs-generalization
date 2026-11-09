@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 48,
+  "Dimensionality": 13.21,
+  "Missings": 0,
+  "authors": "Starmans et. al.",
+  "dataset": "WORC-CRLM",
+  "download_source": "https://radiomics.uk/",
+  "modality": "CT",
+  "nFeatures": 1015,
+  "nInstances": 77,
+  "outcome": "Histopathological growth pattern",
+  "pathology": "Colorectal cancer",
+  "publication_doi": "https://doi.org/10.48550/arXiv.2108.08618",
+  "publication_title": "Reproducible radiomics through automated machine learning validated on twelve clinical applications",
+  "remarks": "Original data at https://xnat.bmia.nl/data/projects/worc",
+  "software": "PyRadiomics",
+  "year": 2021
+}

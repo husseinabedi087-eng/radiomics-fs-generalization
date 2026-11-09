@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 35,
+  "Dimensionality": 5.01,
+  "Missings": 0,
+  "authors": "Starmans et. al.",
+  "dataset": "WORC-Desmoid",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 1015,
+  "nInstances": 203,
+  "outcome": "Fibromatosis presence",
+  "pathology": "Soft-tissue sarcoma",
+  "publication_doi": "https://doi.org/10.48550/arXiv.2108.08618",
+  "publication_title": "Reproducible radiomics through automated machine learning validated on twelve clinical applications",
+  "remarks": "Original data at https://xnat.bmia.nl/data/projects/worc",
+  "software": "PyRadiomics",
+  "year": 2021
+}

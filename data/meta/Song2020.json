@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 49,
+  "Dimensionality": 1.02,
+  "Missings": 0,
+  "authors": "Song et al.",
+  "dataset": "Song2020",
+  "download_source": "https://github.com/salan668/FAE/tree/master/Feature",
+  "modality": "MRI",
+  "nFeatures": 264,
+  "nInstances": 260,
+  "outcome": "Clinical significance",
+  "pathology": "Prostate cancer",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0237587",
+  "publication_title": "FeAture Explorer (FAE): A tool for developing and comparing radiomics models",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2020
+}

@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 2,
+  "ClassBalance": 55,
+  "Dimensionality": 2.68,
+  "Missings": 0,
+  "authors": "Ramella et al.",
+  "dataset": "Ramella2018",
+  "download_source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0207455#sec010",
+  "modality": "CT",
+  "nFeatures": 242,
+  "nInstances": 91,
+  "outcome": "Adaptive chemoradiation presence",
+  "pathology": "NSCLC",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0207455",
+  "publication_title": "A radiomic approach for adaptive radiotherapy in non-small cell lung cancer patients",
+  "remarks": null,
+  "software": "Inhouse",
+  "year": 2018
+}

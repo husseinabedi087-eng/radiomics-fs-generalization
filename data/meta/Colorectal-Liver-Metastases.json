@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 84,
+  "Dimensionality": 5.86,
+  "Missings": 0,
+  "authors": "Simpson et al.",
+  "dataset": "Colorectal-Liver-Metastases",
+  "download_source": "https://radiomics.uk/",
+  "modality": "CT",
+  "nFeatures": 525,
+  "nInstances": 90,
+  "outcome": "Survival (at 10 years)",
+  "pathology": "Colorectal cancer",
+  "publication_doi": "https://doi.org/10.1038/s41597-024-02981-2",
+  "publication_title": "Preoperative CT and survival data for patients undergoing resection of colorectal liver metastases",
+  "remarks": "Original dataset at https://www.cancerimagingarchive.net/collection/colorectal-liver-metastases. Only patient that died were included.",
+  "software": "PyRadiomics",
+  "year": 2024
+}

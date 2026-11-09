@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 63,
+  "Dimensionality": 7.8,
+  "Missings": 0,
+  "authors": "Li et al.",
+  "dataset": "Li2020",
+  "download_source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0227703#sec017",
+  "modality": "MRI",
+  "nFeatures": 396,
+  "nInstances": 51,
+  "outcome": "Immunohistochemical result",
+  "pathology": "Glioma",
+  "publication_doi": "https://doi.org/10.1371/journal.pone.0227703",
+  "publication_title": "High-order radiomics features based on T2 FLAIR MRI predict multiple glioma immunohistochemical features: A more precise and personalized gliomas management",
+  "remarks": "Outcome is based on Ki-67, S-100, vimentin and CD34 immunohistochemical results (called Label in the study)",
+  "software": "Artificial Intelligence Kit (Commercial)",
+  "year": 2020
+}

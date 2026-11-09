@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 73,
+  "Dimensionality": 8.79,
+  "Missings": 0,
+  "authors": "Lu et al.",
+  "dataset": "Lu2019",
+  "download_source": "https://doi.org/10.17632/4c5znk5m8t.1",
+  "modality": "CT",
+  "nFeatures": 657,
+  "nInstances": 75,
+  "outcome": "Progression free survival (at 2 years)",
+  "pathology": "Ovarian cancer",
+  "publication_doi": "https://doi.org/10.1038/s41467-019-08718-9",
+  "publication_title": "A mathematical-descriptor of tumor-mesoscopic-structure from computed-tomography images annotates prognostic- and molecular-phenotypes of epithelial ovarian cancer",
+  "remarks": "Only patients with follow-up at least 2 years were included, only those with bilateral tumors (Code > 1).",
+  "software": "Inhouse",
+  "year": 2019
+}

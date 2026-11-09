@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 54,
+  "Dimensionality": 3.85,
+  "Missings": 0,
+  "authors": "Hunter et al.",
+  "dataset": "Hunter2023",
+  "download_source": "https://data.mendeley.com/datasets/rxn95mp24d/1",
+  "modality": "CT",
+  "nFeatures": 1998,
+  "nInstances": 520,
+  "outcome": "Nodule malignancy presence",
+  "pathology": "Lung cancer",
+  "publication_doi": "https://doi.org/10.1038/s41416-023-02480-y",
+  "publication_title": "Radiomics-based decision support tool assists radiologists in small lung nodule classification and improves lung cancer early diagnosis",
+  "remarks": null,
+  "software": "TexLab",
+  "year": 2023
+}

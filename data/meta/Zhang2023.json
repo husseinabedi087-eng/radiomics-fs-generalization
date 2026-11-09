@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 51,
+  "Dimensionality": 8.78,
+  "Missings": 0,
+  "authors": "Zhang et al.",
+  "dataset": "Zhang2023",
+  "download_source": "https://peerj.com/articles/14559/#supplemental-information",
+  "modality": "CT",
+  "nFeatures": 1781,
+  "nInstances": 203,
+  "outcome": "Histological invasiveness",
+  "pathology": "Lung cancer",
+  "publication_doi": "https://doi.org/10.7717/peerj.14559",
+  "publication_title": "Computed tomography-based radiomics machine learning models for prediction of histological invasiveness with sub-centimeter subsolid pulmonary nodules: a retrospective study",
+  "remarks": "Lesions, not patient-wise data.",
+  "software": "PyRadiomics",
+  "year": 2023
+}

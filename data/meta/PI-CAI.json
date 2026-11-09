@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 66,
+  "Dimensionality": 3.14,
+  "Missings": 0,
+  "authors": "Saha et al.",
+  "dataset": "PI-CAI",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 3045,
+  "nInstances": 969,
+  "outcome": "Gleason score risk group",
+  "pathology": "Prostate cancer",
+  "publication_doi": "https://doi.org/10.1016/j.media.2021.102155",
+  "publication_title": "End-to-end prostate cancer detection in bpMRI via 3D CNNs: Effects of attention mechanisms, clinical priori and decoupled false positive reduction",
+  "remarks": "Original dataset at https://pi-cai.grand-challenge.org/",
+  "software": "PyRadiomics",
+  "year": 2021
+}

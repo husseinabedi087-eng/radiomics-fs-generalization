@@ -10,3 +10,7 @@ __pycache__/
 
 # pytest
 .pytest_cache/
+
+# Raw datasets are not redistributed (source licenses unknown);
+# re-download with src/download_data.py
+data/raw/

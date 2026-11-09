@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 42,
+  "Dimensionality": 59.72,
+  "Missings": 0,
+  "authors": "Bakas et al.",
+  "dataset": "UPENN-GBM",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 11165,
+  "nInstances": 187,
+  "outcome": "MGMT mutation status",
+  "pathology": "Glioblastoma",
+  "publication_doi": "https://doi.org/10.1038/s41597-022-01560-7",
+  "publication_title": "The University of Pennsylvania glioblastoma (UPenn-GBM) cohort: advanced MRI, clinical, genomics, & radiomics",
+  "remarks": "Original data at https://www.cancerimagingarchive.net/collection/upenn-gbm/.  Features of the enhancing tumor were useed.",
+  "software": "PyRadiomics",
+  "year": 2022
+}

@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 89,
+  "Dimensionality": 17.0,
+  "Missings": 77,
+  "authors": "Calabrese et al.",
+  "dataset": "UCSF-PDGM",
+  "download_source": "https://radiomics.uk/",
+  "modality": "MRI",
+  "nFeatures": 7105,
+  "nInstances": 418,
+  "outcome": "IDH mutation status",
+  "pathology": "Brain cancer",
+  "publication_doi": "https://doi.org/10.1148/ryai.220058",
+  "publication_title": "The UCSF Preoperative Diffuse Glioma MRI (UCSF-PDGM) Dataset",
+  "remarks": "Original dataset at https://www.cancerimagingarchive.net/collection/ucsf-pdgm/. Features of the enhancing tumor were useed.",
+  "software": "PyRadiomics",
+  "year": 2022
+}

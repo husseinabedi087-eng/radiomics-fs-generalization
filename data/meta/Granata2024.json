@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 75,
+  "Dimensionality": 16.73,
+  "Missings": 0,
+  "authors": "Granata et al.",
+  "dataset": "Granata2024",
+  "download_source": "https://zenodo.org/records/10464602",
+  "modality": "MRI",
+  "nFeatures": 851,
+  "nInstances": 51,
+  "outcome": "Tumor budding presence",
+  "pathology": "Colorectal cancer",
+  "publication_doi": "https://doi.org/10.3390/diagnostics14020152",
+  "publication_title": "Machine Learning and Radiomics Analysis for Tumor Budding Prediction in Colorectal Liver Metastases Magnetic Resonance Imaging Assessment",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2024
+}

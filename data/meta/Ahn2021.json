@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 55,
+  "Dimensionality": 0.96,
+  "Missings": 0,
+  "authors": "Choi et al.",
+  "dataset": "Ahn2021",
+  "download_source": "https://data.mendeley.com/datasets/9mpy8mc6hn/1",
+  "modality": "MRI",
+  "nFeatures": 108,
+  "nInstances": 114,
+  "outcome": "MGMT mutation status",
+  "pathology": "Glioblastoma",
+  "publication_doi": "https://doi.org/10.1016/j.ejrad.2019.108642",
+  "publication_title": "Analysis of heterogeneity of peritumoral T2 hyperintensity in patients with pretreatment glioblastoma: Prognostic value of MRI-based radiomics",
+  "remarks": null,
+  "software": "PyRadiomics",
+  "year": 2021
+}

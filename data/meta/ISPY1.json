@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 9,
+  "ClassBalance": 57,
+  "Dimensionality": 2.31,
+  "Missings": 0,
+  "authors": "Newitt et al.",
+  "dataset": "ISPY1",
+  "download_source": "https://www.cancerimagingarchive.net/analysis-result/ispy1-tumor-seg-radiomics/",
+  "modality": "MRI",
+  "nFeatures": 370,
+  "nInstances": 161,
+  "outcome": "Hormone receptor positive status",
+  "pathology": "Breast cancer",
+  "publication_doi": "http://doi.org/10.7937/K9/TCIA.2016.HdHpgJLK",
+  "publication_title": "Multi-center breast DCE-MRI data and segmentations from patients in the I-SPY 1/ACRIN 6657 trials",
+  "remarks": "TCIA sources at https://www.cancerimagingarchive.net/collection/ispy1/, features from the cited analysis were used.",
+  "software": "CaPTk",
+  "year": 2016
+}

@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 66,
+  "Dimensionality": 4.08,
+  "Missings": 168,
+  "authors": "Arita et al.",
+  "dataset": "Arita2018",
+  "download_source": "https://www.nature.com/articles/s41598-018-30273-4#Sec18",
+  "modality": "MRI",
+  "nFeatures": 683,
+  "nInstances": 168,
+  "outcome": "IDH mutation status",
+  "pathology": "Glioma",
+  "publication_doi": "https://doi.org/10.1038/s41598-018-30273-4",
+  "publication_title": "Lesion location implemented magnetic resonance imaging radiomics for predicting IDH and TERT promoter mutations in grade II/III gliomas",
+  "remarks": null,
+  "software": "Inhouse",
+  "year": 2018
+}

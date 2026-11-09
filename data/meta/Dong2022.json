@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 49,
+  "Dimensionality": 3.06,
+  "Missings": 0,
+  "authors": "Dong et al.",
+  "dataset": "Dong2022",
+  "download_source": "https://peerj.com/articles/14127/#supplemental-information",
+  "modality": "CT",
+  "nFeatures": 851,
+  "nInstances": 279,
+  "outcome": "Tuberculosis granuloma presence",
+  "pathology": "Lung cancer",
+  "publication_doi": "https://doi.org/10.7717/peerj.14127",
+  "publication_title": "Radiomics combined with clinical features in distinguishing non-calcifying tuberculosis granuloma and lung adenocarcinoma in small pulmonary nodules",
+  "remarks": null,
+  "software": "PyRadiomics (FAE)",
+  "year": 2022
+}

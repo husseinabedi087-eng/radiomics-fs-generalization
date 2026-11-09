@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 1,
+  "ClassBalance": 29,
+  "Dimensionality": 4.76,
+  "Missings": 1157,
+  "authors": "Hosny et al.",
+  "dataset": "Hosny2018B",
+  "download_source": "https://github.com/modelhub-ai/deep-prognosis",
+  "modality": "CT",
+  "nFeatures": 984,
+  "nInstances": 207,
+  "outcome": "Overall survival (at 2 years)",
+  "pathology": "NSCLC",
+  "publication_doi": "https://doi.org/10.1371/journal.pmed.1002711",
+  "publication_title": "Deep learning for lung cancer prognostication: A retrospective multi-cohort radiomics study",
+  "remarks": "Maastro subset. Removed exponential_glcm features since they exhibited NA values due to numerical overflow.",
+  "software": "PyRadiomics",
+  "year": 2018
+}

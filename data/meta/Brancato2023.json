@@ -1,0 +1,19 @@
+{
+  "BrokenFeatures": 0,
+  "ClassBalance": 60,
+  "Dimensionality": 41.07,
+  "Missings": 0,
+  "authors": "Castaldo et al.",
+  "dataset": "Brancato2023",
+  "download_source": "https://data.mendeley.com/datasets/dvysdynchh/1",
+  "modality": "MRI",
+  "nFeatures": 2380,
+  "nInstances": 58,
+  "outcome": "Clinical significance",
+  "pathology": "Prostate cancer",
+  "publication_doi": "https://doi.org/10.3390/jcm12010140",
+  "publication_title": "A Framework of Analysis to Facilitate the Harmonization of Multicenter Radiomic Features in Prostate Cancer",
+  "remarks": "Only center 2 was used, since no labels were available for center 1",
+  "software": "PyRadiomics",
+  "year": 2023
+}
