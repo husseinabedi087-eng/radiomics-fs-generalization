@@ -40,7 +40,8 @@
     }
   },
   "strip_id_whitespace": [
-    "Hosny2018B"
+    "Hosny2018B",
+    "Dong2022"
   ],
   "target_to_int": {
     "datasets": [

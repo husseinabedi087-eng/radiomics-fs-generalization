@@ -14,7 +14,7 @@ Made after inspecting data properties in the audit (data/meta/audit.csv) and bef
 - Arita2018: drop the 10 IDHmt_* and IDHwt_* columns (location maps built from outcome labels; target leakage by construction).
 - Granata2021: drop LESION_TYPE (clinical variable, not a radiomic feature).
 - Song2020: drop the exact duplicate row (including target), keeping the first occurrence.
-- Hosny2018B: strip leading and trailing whitespace from IDs.
+- Hosny2018B, Dong2022: strip leading and trailing whitespace from IDs.
 - Fusco2022, Wang2024: convert the boolean target to integers (True -> 1, False -> 0).
 - Criterion 4 resolved as pass: Wang2024 (first biopsy only, one row per patient); Hosny2018B (IDs are patient IDs of the form LUNG1-xxx, one row per patient, the one missing ID is kept).
 - Sensitivity exclusion set: Arita2018, Hosny2018A, Hosny2018B, Hosny2018C, Keek2020, LNDb, UCSF-PDGM, Wang2024 (metadata reports missing values but the data has none, likely imputed on the full dataset before release); a pre-registered sensitivity analysis repeats the main comparisons without these datasets.
