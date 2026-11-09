@@ -1,0 +1,179 @@
+{
+  "dataset": "Granata2021",
+  "source_type": "zenodo",
+  "attempts": [
+    {
+      "request_url": "https://zenodo.org/api/records/5162861",
+      "timestamp_utc": "2026-11-09T20:56:35+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "response_json": {
+        "created": "2021-08-05T06:35:41.839274+00:00",
+        "modified": "2021-08-05T13:48:28.503729+00:00",
+        "id": 5162861,
+        "conceptrecid": "5162860",
+        "doi": "10.5281/zenodo.5162861",
+        "conceptdoi": "10.5281/zenodo.5162860",
+        "doi_url": "https://doi.org/10.5281/zenodo.5162861",
+        "metadata": {
+          "title": "Preliminary Report on Computed Tomography Radiomics Features as biomarkers to Immunotherapy selection in Lung Adenocarcinoma Patients",
+          "doi": "10.5281/zenodo.5162861",
+          "publication_date": "2021-08-05",
+          "description": "<p>We uploaded all radiomics metrics extracted for 88 patients enrolled in the study:&nbsp;Preliminary Report on Computed Tomography Radiomics Features as biomarkers to Immunotherapy selection in Lung Adenocarcinoma Patients.</p>\n\n<p>Each radiomic feature is described in the Appendix of the manuscript.</p>\n\n<p>Moreover Overall survival (OS) and Progression free survival (PFS)&nbsp;for each patient is provided.</p>",
+          "access_right": "open",
+          "creators": [
+            {
+              "name": "Vincenza Granata",
+              "affiliation": null
+            },
+            {
+              "name": "Roberta Fusco",
+              "affiliation": null
+            },
+            {
+              "name": "Matilde Costa",
+              "affiliation": null
+            },
+            {
+              "name": "Carmine Picone",
+              "affiliation": null
+            },
+            {
+              "name": "Diletta Cozzi",
+              "affiliation": null
+            },
+            {
+              "name": "Chiara Moroni",
+              "affiliation": null
+            },
+            {
+              "name": "Giorgia Viola La Casella",
+              "affiliation": null
+            },
+            {
+              "name": "Agnese Montanino",
+              "affiliation": null
+            },
+            {
+              "name": "Riccardo Monti",
+              "affiliation": null
+            },
+            {
+              "name": "Francesca Mazzoni",
+              "affiliation": null
+            },
+            {
+              "name": "Roberta Grassi",
+              "affiliation": null
+            },
+            {
+              "name": "Valeria Grazia Malagnino",
+              "affiliation": null
+            },
+            {
+              "name": "Salvatore Cappabianca",
+              "affiliation": null
+            },
+            {
+              "name": "Roberto Grassi",
+              "affiliation": null
+            },
+            {
+              "name": "Vittorio Miele",
+              "affiliation": null
+            },
+            {
+              "name": "Antonella Petrillo",
+              "affiliation": null
+            }
+          ],
+          "resource_type": {
+            "title": "Dataset",
+            "type": "dataset"
+          },
+          "license": {
+            "id": "cc-by-4.0"
+          },
+          "relations": {
+            "version": [
+              {
+                "index": 0,
+                "is_last": true,
+                "parent": {
+                  "pid_type": "recid",
+                  "pid_value": "5162860"
+                }
+              }
+            ]
+          }
+        },
+        "title": "Preliminary Report on Computed Tomography Radiomics Features as biomarkers to Immunotherapy selection in Lung Adenocarcinoma Patients",
+        "links": {
+          "self": "https://zenodo.org/api/records/5162861",
+          "self_html": "https://zenodo.org/records/5162861",
+          "preview_html": "https://zenodo.org/records/5162861?preview=1",
+          "doi": "https://doi.org/10.5281/zenodo.5162861",
+          "self_doi": "https://doi.org/10.5281/zenodo.5162861",
+          "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.5162861",
+          "reserve_doi": "https://zenodo.org/api/records/5162861/draft/pids/doi",
+          "parent": "https://zenodo.org/api/records/5162860",
+          "parent_html": "https://zenodo.org/records/5162860",
+          "parent_doi": "https://doi.org/10.5281/zenodo.5162860",
+          "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.5162860",
+          "self_iiif_manifest": "https://zenodo.org/api/iiif/record:5162861/manifest",
+          "self_iiif_sequence": "https://zenodo.org/api/iiif/record:5162861/sequence/default",
+          "files": "https://zenodo.org/api/records/5162861/files",
+          "media_files": "https://zenodo.org/api/records/5162861/media-files",
+          "latest": "https://zenodo.org/api/records/5162861/versions/latest",
+          "latest_html": "https://zenodo.org/records/5162861/latest",
+          "versions": "https://zenodo.org/api/records/5162861/versions",
+          "draft": "https://zenodo.org/api/records/5162861/draft",
+          "access_links": "https://zenodo.org/api/records/5162861/access/links",
+          "access_grants": "https://zenodo.org/api/records/5162861/access/grants",
+          "access_users": "https://zenodo.org/api/records/5162861/access/users",
+          "access_request": "https://zenodo.org/api/records/5162861/access/request",
+          "access": "https://zenodo.org/api/records/5162861/access",
+          "communities": "https://zenodo.org/api/records/5162861/communities",
+          "communities-suggestions": "https://zenodo.org/api/records/5162861/communities-suggestions",
+          "request_deletion": "https://zenodo.org/api/records/5162861/request-deletion",
+          "file_modification": "https://zenodo.org/api/records/5162861/file-modification",
+          "quota_increase": "https://zenodo.org/api/records/5162861/quota-increase",
+          "requests": "https://zenodo.org/api/records/5162861/requests"
+        },
+        "updated": "2021-08-05T13:48:28.503729+00:00",
+        "recid": "5162861",
+        "revision": 2,
+        "files": [
+          {
+            "id": "5cf6cce3-9ca2-4722-a495-e52bad87184b",
+            "key": "database immuno.xlsx",
+            "size": 536857,
+            "checksum": "md5:915a51bfd830b62fdc0c8351e20d6226",
+            "links": {
+              "self": "https://zenodo.org/api/records/5162861/files/database%20immuno.xlsx/content"
+            }
+          }
+        ],
+        "swh": {},
+        "owners": [
+          {
+            "id": "245145"
+          }
+        ],
+        "status": "published",
+        "stats": {
+          "downloads": 74,
+          "unique_downloads": 71,
+          "views": 331,
+          "unique_views": 320,
+          "version_downloads": 74,
+          "version_unique_downloads": 71,
+          "version_unique_views": 320,
+          "version_views": 331
+        },
+        "state": "done",
+        "submitted": true
+      }
+    }
+  ]
+}

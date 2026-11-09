@@ -1,0 +1,12 @@
+{
+  "dataset": "OcanaTienda2023",
+  "source_type": "figshare",
+  "attempts": [
+    {
+      "request_url": "https://api.figshare.com/v2/articles/22277638",
+      "timestamp_utc": "2026-11-09T20:56:42+00:00",
+      "http_status": "",
+      "error": "ConnectionError: HTTPSConnectionPool(host='api.figshare.com', port=443): Max retries exceeded with url: /v2/articles/22277638 (Caused by NameResolutionError(\"HTTPSConnection(host='api.figshare.com', port=443): Failed to resolve 'api.figshare.com' ([Errno 11001] getaddrinfo failed)\"))"
+    }
+  ]
+}
