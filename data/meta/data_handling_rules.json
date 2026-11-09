@@ -8,7 +8,8 @@
     "HCC-TACE-Seg": "criterion 2: minority class below 20",
     "Li2020": "criterion 2: minority class below 20",
     "QIN-HEADNECK": "criterion 2: minority class below 20",
-    "Zhang2023": "criterion 4: lesion-level rows without patient ID"
+    "Zhang2023": "criterion 4: lesion-level rows without patient ID",
+    "Deng2023": "criterion 3: no license file in the GitHub repository; the article (not open access) states data are provided upon journal request only"
   },
   "drop_columns": {
     "Arita2018": {
@@ -61,6 +62,14 @@
     "Hosny2018B": {
       "crit4": "pass",
       "reason": "IDs are patient IDs of the form LUNG1-xxx; one row per patient; one missing ID kept"
+    },
+    "Hunter2023": {
+      "crit4": "pass",
+      "reason": "520 distinct patient prefixes, one nodule per patient"
+    },
+    "UPENN-GBM": {
+      "crit4": "pass",
+      "reason": "187 distinct patients, all preoperative _11 scans"
     }
   },
   "sensitivity_exclusion_set": {
@@ -76,22 +85,28 @@
     ],
     "reason": "metadata reports missing values but the data has none; likely imputed on the full dataset before release. A pre-registered sensitivity analysis repeats the main comparisons without these datasets."
   },
-  "license_review": "pending",
+  "license_review": "complete (2026-11-10)",
   "split_clusters": {
     "clusters": [
       [
         "BraTS-2021",
         "UPENN-GBM",
         "UCSF-PDGM"
-      ],
-      [
-        "Arita2018",
-        "Sasaki2019"
       ]
     ],
-    "reason": "possible patient overlap (BraTS 2021 includes UPenn and UCSF cases; Arita2018 and Sasaki2019 both come from the KNBTG consortium); each cluster is assigned to development or confirmation as one unit"
+    "reason": "possible patient overlap (BraTS 2021 includes UPenn and UCSF cases); the cluster is assigned to development or confirmation as one unit",
+    "removed": [
+      {
+        "cluster": [
+          "Arita2018",
+          "Sasaki2019"
+        ],
+        "reason": "removed after id_checks: 0 overlapping normalised IDs; grade II/III glioma vs newly diagnosed glioblastoma"
+      }
+    ]
   },
   "known_limitations": {
-    "Petrillo2023": "the radMLBench curator chose the endpoint with the highest AUC in the source study, so absolute AUC may be optimistic; this affects all compared methods alike"
+    "Petrillo2023": "the radMLBench curator chose the endpoint with the highest AUC in the source study, so absolute AUC may be optimistic; this affects all compared methods alike",
+    "Veeraraghavan2020": "radMLBench metadata lists MRI/breast cancer, but the source study is contrast-enhanced CT in endometrial cancer; descriptive only"
   }
 }

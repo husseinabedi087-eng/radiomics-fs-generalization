@@ -1,0 +1,51 @@
+dataset,license,license_category,evidence,decision
+Ahn2021,CC BY-NC 3.0,non_commercial,Mendeley Data API (data/meta/license_evidence/Ahn2021.json),include
+Arita2018,CC BY 4.0,open,Scientific Reports supplementary material,include
+Brancato2023,CC BY 4.0,open,Mendeley Data API (data/meta/license_evidence/Brancato2023.json),include
+BraTS-2021,custom research terms,custom_research_terms,free to use in research with citation,include
+C4KC-KiTS,CC BY 3.0,open,TCIA collection licence,include
+Colorectal-Liver-Metastases,not assessed,excluded,criterion 2: minority class below 20,exclude
+Dai2023,CC BY 4.0,open,PeerJ article,include
+Deng2023,no license file,excluded,"GitHub API, 404 (data/meta/license_evidence/Deng2023.json); criterion 3: no license file in the GitHub repository; the article (not open access) states data are provided upon journal request only",exclude
+Dong2022,CC BY 4.0,open,PeerJ article,include
+Fusco2022,CC BY 4.0,open,Zenodo API (data/meta/license_evidence/Fusco2022.json),include
+Granata2021,CC BY 4.0,open,Zenodo API (data/meta/license_evidence/Granata2021.json),include
+Granata2024,not assessed,excluded,criterion 2: minority class below 20,exclude
+HCC-TACE-Seg,not assessed,excluded,criterion 2: minority class below 20,exclude
+Head-Neck-PET-CT,TCIA Restricted (images); CC BY 3.0 (clinical data),tcia_restricted_images_derived_features,"images under the TCIA Restricted licence because of face-reconstruction risk; clinical data CC BY 3.0; we use radiomic features published by RadiomicsHub, which cannot reconstruct images",include
+Head-Neck-Radiomics-HN1,CC BY-NC 3.0,non_commercial,TCIA collection licence,include
+HNSCC,TCIA Restricted (images); CC BY 3.0 (clinical data),tcia_restricted_images_derived_features,"images under the TCIA Restricted licence because of face-reconstruction risk; clinical data CC BY 3.0; we use radiomic features published by RadiomicsHub, which cannot reconstruct images",include
+Hosny2018A,no license file,no_license_file_plos_data_policy,"GitHub API, 404 (data/meta/license_evidence/Hosny2018A.json); article in PLOS Medicine; public repository shared to meet the PLOS data availability policy",include
+Hosny2018B,no license file,no_license_file_plos_data_policy,"GitHub API, 404 (data/meta/license_evidence/Hosny2018B.json); article in PLOS Medicine; public repository shared to meet the PLOS data availability policy",include
+Hosny2018C,no license file,no_license_file_plos_data_policy,"GitHub API, 404 (data/meta/license_evidence/Hosny2018C.json); article in PLOS Medicine; public repository shared to meet the PLOS data availability policy",include
+Huang2023,CC BY 4.0,open,PLOS ONE supplementary material,include
+Hunter2023,CC BY 4.0,open,Mendeley Data API (data/meta/license_evidence/Hunter2023.json),include
+ISPY1,CC BY 3.0,open,TCIA collection licence,include
+Keek2020,no license file,no_license_file_plos_data_policy,"GitHub API, 404 (data/meta/license_evidence/Keek2020.json); article in PLOS ONE; public repository shared to meet the PLOS data availability policy",include
+LGG-1p19qDeletion,TCIA Restricted (images); CC BY 3.0 (clinical data),tcia_restricted_images_derived_features,"images under the TCIA Restricted licence because of face-reconstruction risk; clinical data CC BY 3.0; we use radiomic features published by RadiomicsHub, which cannot reconstruct images",include
+Li2020,not assessed,excluded,criterion 2: minority class below 20,exclude
+LNDb,CC BY-NC-ND 4.0,non_commercial,"Zenodo record description says CC BY-NC-ND 4.0, record metadata says CC BY 4.0 (data/meta/license_evidence/LNDb.json); the stricter reading is used",include
+Lu2019,CC BY 4.0,open,Mendeley Data landing page (data/meta/license_evidence/Lu2019.json),include
+Meningioma-SEG-CLASS,TCIA Restricted (images); CC BY 3.0 (clinical data),tcia_restricted_images_derived_features,"images under the TCIA Restricted licence because of face-reconstruction risk; clinical data CC BY 3.0; we use radiomic features published by RadiomicsHub, which cannot reconstruct images",include
+NSCLC-Radiogenomics,CC BY 3.0,open,TCIA collection licence,include
+OcanaTienda2023,CC0,open,"figshare API, retry 2026-11-09 (data/meta/license_evidence/OcanaTienda2023.json)",include
+Petrillo2023,CC BY 4.0,open,Zenodo API (data/meta/license_evidence/Petrillo2023.json),include
+PI-CAI,CC BY-NC 4.0,non_commercial,Zenodo API (data/meta/license_evidence/PI-CAI.json),include
+Prostate-MRI-US-Biopsy,CC BY 4.0,open,TCIA collection licence,include
+QIN-HEADNECK,not assessed,excluded,criterion 2: minority class below 20,exclude
+Ramella2018,CC BY 4.0,open,PLOS ONE supplementary material,include
+Sasaki2019,CC BY 4.0,open,Scientific Reports supplementary material,include
+Song2020,Apache-2.0 (repository licence),open_repository_licence,"GitHub API (data/meta/license_evidence/Song2020.json); article in PLOS ONE, PLOS data availability policy",include
+UCSF-PDGM,CC BY 4.0,open,TCIA collection licence,include
+UPENN-GBM,CC BY 4.0,open,TCIA collection licence,include
+Veeraraghavan2020,LGPL-2.1 (repository licence),open_repository_licence,"GitHub API (data/meta/license_evidence/Veeraraghavan2020.json); article in Scientific Reports, CC BY 4.0",include
+Wang2024,CC BY 4.0,open,figshare API (data/meta/license_evidence/Wang2024.json),include
+WORC-CRLM,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+WORC-Desmoid,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+WORC-GIST,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+WORC-Lipo,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+WORC-Liver,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+WORC-Melanoma,WORC custom licence,custom_research_terms,"WORC custom licence: research use, no redistribution",include
+Zhang2023,not assessed,excluded,criterion 4: lesion-level rows without patient ID,exclude
+Zhang2024A,CC BY 4.0,open,PLOS ONE supplementary material,include
+Zhang2024B,CC BY 4.0,open,PeerJ article,include
