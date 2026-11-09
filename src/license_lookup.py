@@ -16,6 +16,7 @@ Usage (from the repository root, with .venv activated):
     python src/license_lookup.py
 """
 
+import argparse
 import csv
 import json
 import re
@@ -238,13 +239,35 @@ def lookup_mendeley(dataset, ds_id):
     return row(dataset, "mendeley_landing", att, lic)
 
 
+FIELDS = ["dataset", "source_type", "url", "license_found", "http_status", "timestamp"]
+
+
+def read_lookup_csv():
+    if not LOOKUP_CSV.exists():
+        return []
+    with open(LOOKUP_CSV, encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Look up dataset licences from public source metadata APIs.")
+    parser.add_argument("--only", metavar="DATASET",
+                        help="query only this dataset; its evidence file and its row in "
+                             "license_lookup.csv are replaced, all other rows are kept")
+    args = parser.parse_args()
+
     t0 = time.perf_counter()
     rows, cache = [], {}
     jobs = ([("github", d, x) for d, x in GITHUB.items()]
             + [("zenodo", d, x) for d, x in ZENODO.items()]
             + [("figshare", d, x) for d, x in FIGSHARE.items()]
             + [("mendeley", d, x) for d, x in MENDELEY.items()])
+    if args.only:
+        known = [d for _, d, _ in jobs]
+        jobs = [j for j in jobs if j[1] == args.only]
+        if not jobs:
+            print(f"Unknown dataset for --only: {args.only}. Known: {', '.join(known)}")
+            return 1
     for i, (kind, dataset, ident) in enumerate(jobs, start=1):
         print(f"[{i}/{len(jobs)}] {dataset} ({kind})", flush=True)
         if kind == "github":
@@ -256,7 +279,13 @@ def main():
         else:
             rows.append(lookup_mendeley(dataset, ident))
 
-    fields = ["dataset", "source_type", "url", "license_found", "http_status", "timestamp"]
+    if args.only:  # merge: replace only this dataset's row, keep the original row order
+        new = {r["dataset"]: r for r in rows}
+        old = read_lookup_csv()
+        merged = [new.pop(r["dataset"], r) for r in old]
+        rows = merged + list(new.values())
+
+    fields = FIELDS
     with open(LOOKUP_CSV, "w", encoding="utf-8", newline="\n") as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         w.writeheader()
