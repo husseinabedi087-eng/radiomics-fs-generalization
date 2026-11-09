@@ -132,7 +132,24 @@ def load_dataset(name):
     if _sha256(path) != index[name]["parquet_sha256"]:
         raise HashMismatchError(f"SHA-256 of {path.name} does not match radmlbench_index.csv")
 
-    df = pd.read_parquet(path)
+    df = apply_rules(pd.read_parquet(path), name, rules)
+
+    y = df[TARGET].to_numpy()
+    if pd.isna(y).any() or not set(np.unique(y)) <= {0, 1}:
+        raise IntegrityError(f"{name}: Target must contain only 0 and 1")
+    y = y.astype(np.int64)
+    ids = df[ID].astype("string").fillna("").to_numpy(dtype=str)
+    X = df.drop(columns=[ID, TARGET]).reset_index(drop=True)
+    return X, y, ids
+
+
+def apply_rules(df, name, rules):
+    """Apply the data-handling rules for `name` to `df` and return a new DataFrame.
+
+    Pure function: no file access. Order: drop_columns, drop_duplicate_rows (exact duplicates over
+    all columns except ID, keep first), strip_id_whitespace, target_to_int. No other transformation.
+    """
+    df = df.copy()
 
     # drop_columns
     rule = rules.get("drop_columns", {}).get(name)
@@ -160,10 +177,4 @@ def load_dataset(name):
             raise IntegrityError(f"{name}: Target has values outside True/False")
         df[TARGET] = df[TARGET].map(mapping)
 
-    y = df[TARGET].to_numpy()
-    if pd.isna(y).any() or not set(np.unique(y)) <= {0, 1}:
-        raise IntegrityError(f"{name}: Target must contain only 0 and 1")
-    y = y.astype(np.int64)
-    ids = df[ID].astype("string").fillna("").to_numpy(dtype=str)
-    X = df.drop(columns=[ID, TARGET]).reset_index(drop=True)
-    return X, y, ids
+    return df
