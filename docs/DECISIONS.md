@@ -72,6 +72,14 @@ Made after inspecting data properties in the audit (data/meta/audit.csv) and bef
 - Frozen after the sealed dataset-level split and before any model was trained or any confirmation dataset was loaded; no feature-target statistic has been computed.
 - Any later change to the stage-1 content is a deviation and is recorded here with date, reason and commit.
 
+## 2026-11-10: stage-1 pre-registration, amendment 1 (H5 one-sided test, before any model)
+
+- docs/PREREG_STAGE1_AMENDMENT1.md, SHA-256 (LF bytes, computed in Python): 1599d12f5a5304668e51f6dbeabd933e010e89ac88af13de12a21b9ad7d65722
+- Pre-data clarification, not results-driven: made after stage 1 was frozen and before any model was trained or any outcome was computed.
+- Reason: the H5 prediction is one-sided, but section 8 specified two-sided equivalence (TOST); a clearly worse result for the metaphor-based searchers would fail TOST while matching the prediction.
+- Change: the confirmatory H5 test is the upper arm of the TOST only (one-sided Wilcoxon signed-rank, per-dataset difference GWO/WOA minus GA/binary PSO/DE below +0.01); the full two-sided TOST (margin 0.01) and a two-sided Wilcoxon test are secondary. Nothing else in stage 1 changes.
+- docs/PREREG_STAGE1.md is not modified (SHA-256 still d5c7039a69b84d8e8eac8f2ec35b297de944eebe5b08a2073217cd47faf6302b).
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; no model trained.
