@@ -62,6 +62,8 @@ AUDIT_FIELDS = [
     "patient_structure_proposed", "patient_structure_reason",
     *CRITERIA,
     "included", "needs_review",
+    "target_dtype", "meta_missings_reported", "meta_missings_mismatch",
+    "id_missing_count", "id_has_whitespace",
 ]
 LICENSE_FIELDS = ["dataset", "download_source", "publication_doi", "publication_title", "authors", "year",
                   "license", "license_source", "decision"]
@@ -188,8 +190,12 @@ def audit_dataset(name, df, meta, index_sha):
         odd = [v for v in counts.index if v not in (0, 1)]
         if odd:
             notes.append(f"Target values other than 0/1: {odd}.")
+        target_dtype = str(y.dtype)
+        if pd.api.types.is_bool_dtype(y):
+            notes.append(f"Target is stored as boolean (True/False, dtype {target_dtype}), not 0/1.")
     else:
         n_classes, class_counts, minority, minority_fraction = 0, "", 0, ""
+        target_dtype = ""
         notes.append("No Target column.")
 
     # metadata agreement
@@ -211,6 +217,12 @@ def audit_dataset(name, df, meta, index_sha):
     na = X.isna()
     missing_total_fraction = round(float(na.to_numpy().mean()), 6) if n_features and n_samples else 0.0
     n_feat_missing = int(na.any().sum())
+    n_missing_cells = int(na.to_numpy().sum())
+    meta_missings = meta.get("Missings")
+    meta_missings_mismatch = meta_missings is not None and meta_missings != n_missing_cells
+    if meta_missings_mismatch:
+        notes.append(f"Metadata reports {meta_missings} missing values, but the features contain "
+                     f"{n_missing_cells} missing cells.")
     if numeric_cols:
         inf_mask = np.isinf(num.astype("float64").to_numpy())
         n_feat_inf = int(inf_mask.any(axis=0).sum())
@@ -230,14 +242,28 @@ def audit_dataset(name, df, meta, index_sha):
     n_dup_rows = int(X.duplicated().sum()) if n_features else 0
     with_target = features + ([TARGET] if TARGET in df.columns else [])
     n_dup_rows_t = int(df[with_target].duplicated().sum()) if with_target else 0
+    if n_dup_rows or n_dup_rows_t:
+        notes.append(f"{n_dup_rows} exact duplicate rows over features only, "
+                     f"{n_dup_rows_t} including the target.")
 
     # ID
     if ID in df.columns:
         n_unique_ids = int(df[ID].nunique())
         id_unique = n_unique_ids == n_samples and not df[ID].isna().any()
         id_examples = "; ".join(str(v) for v in df[ID].head(5).tolist())
+        id_missing = int(df[ID].isna().sum())
+        id_str = df[ID].dropna().astype(str)
+        n_ws = int(id_str.str.contains(r"\s", regex=True).sum())
+        id_has_ws = n_ws > 0
+        if id_missing:
+            notes.append(f"ID has {id_missing} missing value(s).")
+        if id_has_ws:
+            n_edge = int((id_str != id_str.str.strip()).sum())
+            notes.append(f"{n_ws} IDs contain whitespace ({n_edge} with leading or trailing whitespace), "
+                         f"e.g. {id_str[id_str.str.contains(r'\s', regex=True)].head(3).map(repr).tolist()}.")
     else:
         n_unique_ids, id_unique, id_examples = 0, False, ""
+        id_missing, id_has_ws = "", False
 
     susp = suspicious(features)
     if susp:
@@ -292,13 +318,19 @@ def audit_dataset(name, df, meta, index_sha):
         **crit,
         "included": yn(all(v == "pass" for v in crit.values())),
         "needs_review": yn(any(v == "flag" for v in crit.values())),
+        "target_dtype": target_dtype,
+        "meta_missings_reported": "" if meta_missings is None else meta_missings,
+        "meta_missings_mismatch": yn(meta_missings_mismatch),
+        "id_missing_count": id_missing,
+        "id_has_whitespace": yn(id_has_ws),
     }
+    remarks_text = f"\"{remarks}\"" if remarks is not None else "(no remarks in metadata)"
 
     paragraph = (
         f"## {name}\n\n"
         f"{meta.get('modality', '')}, {meta.get('pathology', '')}, outcome: {meta.get('outcome', '')}. "
         f"{n_samples} samples, {n_features} features, classes {class_counts or 'n/a'}. "
-        f"Metadata remarks (verbatim): \"{remarks if remarks is not None else 'None'}\". "
+        f"Metadata remarks (verbatim): {remarks_text}. "
         + (" ".join(notes) + " " if notes else "No odd values found. ")
         + f"Patient structure proposed: {proposed} (crit4 {crit4}). {reason}\n"
     )
