@@ -56,6 +56,15 @@ Made after inspecting data properties in the audit (data/meta/audit.csv) and bef
 - Second scan (22 commits, 129 blobs, 22 commit messages): no matches.
 - No model has been trained and no feature-target statistic has been computed.
 
+## 2026-11-10: sealed dataset-level split (development/confirmation)
+
+- Created by src/make_split.py (commit 29f38ac) from data/meta/audit.csv and data/meta/data_handling_rules.json only; no parquet file was opened. Full record in data/split/split_record.json; list hashes in data/split/split.sha256.
+- Units: the 43 included datasets form 41 units; the BraTS-2021/UCSF-PDGM/UPENN-GBM cluster is one unit (log_p_over_n = mean of its members).
+- Stratification: tertiles of post-rule log_p_over_n (numpy.quantile, default method; q1 = 1.230473, q2 = 1.691978); 14, 13 and 14 units per tertile. Within each tertile, units sorted by name and shuffled with numpy.random.default_rng(20261108); the first max(1, floor(k/3)) units go to development.
+- Result: development 12 datasets (4 units per tertile), confirmation 31 datasets.
+- Seal: src/data_access.py refuses to load any confirmation dataset until docs/PREREG_STAGE2.sha256 exists and is tracked by git. tests/test_seal.py passed (10 tests); the only real dataset loaded by the tests is the first development dataset.
+- No model has been trained and no feature-target statistic has been computed.
+
 ## Pre-registration status
 
-Pre-registration status: stage 1 not frozen, stage 2 not frozen; data downloaded (2026-11-09); no model trained.
+Pre-registration status: stage 1 not frozen, stage 2 not frozen; data downloaded (2026-11-09); dataset-level split sealed (2026-11-10); no model trained.
