@@ -93,6 +93,14 @@ All decisions below were made on synthetic problems (OneMax, NK landscapes, pure
 - Verification results are saved as raw JSON files in results/verification/ by the tests; docs/VERIFICATION.md (supplement) is generated from them by src/make_verification_report.py.
 - The commit "searchers, evaluator and verification tests (not yet run)" (a71df32) was preceded by a local run of the fast synthetic tests by Claude Code during development; the message refers to the author's run.
 
+## 2026-11-11: woa_S corner bias under pure noise (finding; no searcher changed)
+
+- Finding (synthetic pure-noise fitness, K = 200, budget 2,000, 30 seeds; tests/test_dispersion.py, raw files results/verification/dispersion_*.json, docs/VERIFICATION.md section 3b): woa_S returns corner masks. SD of the returned subset size 71.3 (min 1, max 195; 7 seeds <= 20 features, 6 seeds >= 180), not distinguishable from random_search, whose sizes are uniform on 1..200 by construction (Brown-Forsythe p = 0.051). The other ten searchers, woa_V included, have SD 5.6 to 7.9, near the Binomial(200, 0.5) SD of 7.1 (Brown-Forsythe vs random_search p <= 1.1e-09). The location tests of section 3 (Mann-Whitney between encodings, Wilcoxon against K/2) pass for woa_S because its mean stays near K/2; they do not detect dispersion.
+- Mechanism as measured: from iteration 10 on, 0.27 to 0.33 of woa_S position coordinates sit at the bounds (+-6), and within each whale at least 0.98 of its saturated coordinates sit on the same bound; the sign coherence of the proposed moves rises from 0.69 to 0.97 over the run. This matches the author's hypothesis: the spiral move X* + c |X* - X| uses one scalar c for all coordinates with a non-negative distance term, and the encircling and exploration moves share one scalar A, so coordinates move in the same direction and saturate together. woa_V shows the same position saturation (0.27 to 0.32 at the bounds; same-bound share >= 0.99; coherence 0.69 to 0.95) but no size bias, because the V-shaped rule uses the step and is symmetric in its sign, whereas the S-shaped rule maps saturated positions directly to fixed bits.
+- Decision: woa_S is kept unchanged. It follows the canonical WOA update (verified against MEALPY 3.0.3 OriginalWOA) with the standard S-shaped transfer; changing it would make it a different algorithm from the one the study evaluates. The bias is reported as a finding. No searcher was changed.
+- Slow verification run (planted subset): pytest reported a wall time of 23 h 21 min, which includes machine sleep; the measured compute of the 36 runs was 50 min (2998 s, summed from the raw files). Standby on AC power was then disabled by the author (powercfg /change standby-timeout-ac 0) for later runs.
+- No model has been trained on real data and no feature-target statistic has been computed on real data.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; no model trained.
