@@ -40,6 +40,10 @@ def fp(p):
     return "<0.0001" if p < 1e-4 else f"{p:.4f}"
 
 
+def f3(x):
+    return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else f"{x:.3f}"
+
+
 def main():
     sections, metas = [], []
 
@@ -106,6 +110,49 @@ def main():
         "one-sample two-sided Wilcoxon of the original sizes against K/2 = 100 (reported; flagged if p <= 0.01).\n\n"
         + (table(["Searcher", "Size original", "Size inverted", "p (MW)", "p (Wilcoxon vs 100)",
                   "Encoding test", "Wilcoxon"], rows) if rows else "_Not run._"))
+
+    disp_path = RESULTS_DIR / "dispersion_sizes.json"
+    if disp_path.exists():
+        r = json.loads(disp_path.read_bytes().decode("utf-8"))
+        metas.append(r["meta"])
+        d = r["data"]["searchers"]
+        rows = []
+        for name in ORDER:
+            s = d.get(name)
+            if not s:
+                continue
+            p = s["p_brown_forsythe_vs_random"]
+            rows.append([name, f"{s['sd']:.1f}", s["min"], f"{s['median']:.1f}", s["max"], s["n_le_20"],
+                         s["n_ge_180"], "reference" if p is None else fp(p)])
+        disp = (table(["Searcher", "SD", "Min", "Median", "Max", "Size <= 20", "Size >= 180",
+                       "p (Brown-Forsythe vs random)"], rows))
+        curves = []
+        for transfer in ("S", "V"):
+            pth = RESULTS_DIR / f"dispersion_woa_{transfer}.json"
+            if not pth.exists():
+                continue
+            rr = json.loads(pth.read_bytes().decode("utf-8"))
+            metas.append(rr["meta"])
+            c = rr["data"]["mean_per_iteration"]
+            n = len(c["sign_coherence"])
+            for i in sorted({0, 9, n // 4, n // 2, (3 * n) // 4, n - 1}):
+                curves.append([f"woa_{transfer}", i + 1, f3(c["at_bound_current"][i]),
+                               f3(c["bound_side_coherence"][i]), f3(c["sign_coherence"][i]),
+                               f3(c["zero_move"][i])])
+        sections.append(
+            "## 3b. Structural bias: dispersion (diagnostic, not a gate)\n\n"
+            "Same pure-noise setup as section 3 (original encoding, 30 seeds). Returned subset size per "
+            "searcher; Brown-Forsythe test (Levene, median-centred) of equal dispersion against random_search, "
+            "whose sizes are uniform on 1..200 by construction (SD about 57.7). An unbiased searcher that "
+            "starts from masks drawn bit by bit with probability 0.5 is expected near the Binomial(200, 0.5) "
+            "SD of 7.1.\n\n" + disp + "\n\n"
+            "WOA per update iteration, mean over 30 seeds: fraction of position coordinates at the bounds "
+            "(+-6) in the current population; same-bound share (per whale, the fraction of its saturated "
+            "coordinates on the majority bound); sign coherence of the proposed move x_new - x (fraction of "
+            "non-zero coordinates moving in the majority direction); fraction of zero moves. Recorded by "
+            "wrapping the objective passed to woa.core; the searcher code is unchanged.\n\n"
+            + (table(["Searcher", "Iteration", "At bounds", "Same-bound share", "Sign coherence", "Zero move"],
+                     curves) if curves else "_Not run._"))
 
     det = load("determinism")
     rows = []
