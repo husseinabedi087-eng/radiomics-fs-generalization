@@ -1,0 +1,25 @@
+{
+  "name": "determinism_de_V",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T22:25:04+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "de_V",
+    "K": 60,
+    "budget": 2000,
+    "landscape": "NK, k = 4, tables from seed 123",
+    "seed7_run1": "2e060d55708bc069",
+    "seed7_run2": "2e060d55708bc069",
+    "seed1": "497659b2237c9300",
+    "seed2": "55ac2c7580da4661",
+    "same_seed_identical": true,
+    "different_seeds_differ": true
+  }
+}

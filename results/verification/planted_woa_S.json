@@ -1,0 +1,50 @@
+{
+  "name": "planted_woa_S",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-10T22:10:48+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "woa_S",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 3,
+        "recovery": 0.3,
+        "subset_size": 28,
+        "inner_auc": 0.7598709401709401,
+        "seconds": 23.151488100003917,
+        "n_fitness_calls": 1931
+      },
+      {
+        "seed": 1,
+        "informative_selected": 3,
+        "recovery": 0.3,
+        "subset_size": 17,
+        "inner_auc": 0.7396205128205128,
+        "seconds": 21.05344740000146,
+        "n_fitness_calls": 1993
+      },
+      {
+        "seed": 2,
+        "informative_selected": 5,
+        "recovery": 0.5,
+        "subset_size": 9,
+        "inner_auc": 0.7785367521367522,
+        "seconds": 23.037841900004423,
+        "n_fitness_calls": 1976
+      }
+    ]
+  }
+}

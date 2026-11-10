@@ -1,0 +1,50 @@
+{
+  "name": "planted_hill_climb",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T23:02:28+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "hill_climb",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 8,
+        "recovery": 0.8,
+        "subset_size": 73,
+        "inner_auc": 0.992525641025641,
+        "seconds": 56.3701602000001,
+        "n_fitness_calls": 1542
+      },
+      {
+        "seed": 1,
+        "informative_selected": 9,
+        "recovery": 0.9,
+        "subset_size": 63,
+        "inner_auc": 0.9759820512820513,
+        "seconds": 78.38256529999853,
+        "n_fitness_calls": 1190
+      },
+      {
+        "seed": 2,
+        "informative_selected": 9,
+        "recovery": 0.9,
+        "subset_size": 66,
+        "inner_auc": 0.9952,
+        "seconds": 129.4143333000029,
+        "n_fitness_calls": 1775
+      }
+    ]
+  }
+}

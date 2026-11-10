@@ -1,0 +1,50 @@
+{
+  "name": "planted_one_plus_one",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T23:06:02+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "one_plus_one",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 6,
+        "recovery": 0.6,
+        "subset_size": 66,
+        "inner_auc": 0.9541222222222222,
+        "seconds": 51.74315050000223,
+        "n_fitness_calls": 1225
+      },
+      {
+        "seed": 1,
+        "informative_selected": 9,
+        "recovery": 0.9,
+        "subset_size": 75,
+        "inner_auc": 0.9823957264957265,
+        "seconds": 95.89490429999933,
+        "n_fitness_calls": 1174
+      },
+      {
+        "seed": 2,
+        "informative_selected": 9,
+        "recovery": 0.9,
+        "subset_size": 78,
+        "inner_auc": 0.9807965811965812,
+        "seconds": 66.23438449999958,
+        "n_fitness_calls": 1253
+      }
+    ]
+  }
+}

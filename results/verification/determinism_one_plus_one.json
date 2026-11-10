@@ -1,0 +1,25 @@
+{
+  "name": "determinism_one_plus_one",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T22:25:02+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "one_plus_one",
+    "K": 60,
+    "budget": 2000,
+    "landscape": "NK, k = 4, tables from seed 123",
+    "seed7_run1": "445c205d8ec61cd3",
+    "seed7_run2": "445c205d8ec61cd3",
+    "seed1": "85f0e7a0bfe2aec5",
+    "seed2": "23ab542b6eb81199",
+    "same_seed_identical": true,
+    "different_seeds_differ": true
+  }
+}

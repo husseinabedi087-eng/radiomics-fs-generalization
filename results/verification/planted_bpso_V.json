@@ -1,0 +1,50 @@
+{
+  "name": "planted_bpso_V",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T23:25:05+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "bpso_V",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 8,
+        "recovery": 0.8,
+        "subset_size": 90,
+        "inner_auc": 0.8639034188034188,
+        "seconds": 152.28364650000003,
+        "n_fitness_calls": 1999
+      },
+      {
+        "seed": 1,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 93,
+        "inner_auc": 0.8810025641025642,
+        "seconds": 167.03908840000076,
+        "n_fitness_calls": 1994
+      },
+      {
+        "seed": 2,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 92,
+        "inner_auc": 0.8687188034188035,
+        "seconds": 151.88114150000183,
+        "n_fitness_calls": 1999
+      }
+    ]
+  }
+}

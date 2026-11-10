@@ -1,0 +1,50 @@
+{
+  "name": "planted_de_S",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-10T21:58:15+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "de_S",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 87,
+        "inner_auc": 0.8591538461538462,
+        "seconds": 56.991840900009265,
+        "n_fitness_calls": 2000
+      },
+      {
+        "seed": 1,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 99,
+        "inner_auc": 0.8463290598290598,
+        "seconds": 46.32153190000099,
+        "n_fitness_calls": 2000
+      },
+      {
+        "seed": 2,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 88,
+        "inner_auc": 0.8884820512820513,
+        "seconds": 54.45499130000826,
+        "n_fitness_calls": 2000
+      }
+    ]
+  }
+}

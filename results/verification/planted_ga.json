@@ -1,0 +1,50 @@
+{
+  "name": "planted_ga",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T23:12:58+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "ga",
+    "n": 150,
+    "p": 200,
+    "n_informative": 10,
+    "data_seed": 2026,
+    "budget": 2000,
+    "per_seed": [
+      {
+        "seed": 0,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 80,
+        "inner_auc": 0.9775965811965812,
+        "seconds": 145.5450372000014,
+        "n_fitness_calls": 1852
+      },
+      {
+        "seed": 1,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 78,
+        "inner_auc": 0.941308547008547,
+        "seconds": 131.00626060000286,
+        "n_fitness_calls": 1884
+      },
+      {
+        "seed": 2,
+        "informative_selected": 10,
+        "recovery": 1.0,
+        "subset_size": 74,
+        "inner_auc": 0.9871905982905984,
+        "seconds": 139.58506359999956,
+        "n_fitness_calls": 1866
+      }
+    ]
+  }
+}

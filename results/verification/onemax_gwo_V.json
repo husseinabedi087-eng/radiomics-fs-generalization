@@ -1,0 +1,50 @@
+{
+  "name": "onemax_gwo_V",
+  "meta": {
+    "git_commit": "f44ad90e05e5f7c2672c42badffe75b8dc0eceed",
+    "git_dirty": false,
+    "utc": "2026-11-09T22:25:42+00:00",
+    "python": "3.12.10",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "mealpy": "3.0.3"
+  },
+  "data": {
+    "searcher": "gwo_V",
+    "K": 200,
+    "per_seed": [
+      {
+        "seed": 0,
+        "best_250": 0.575,
+        "best_2000": 0.595
+      },
+      {
+        "seed": 1,
+        "best_250": 0.58,
+        "best_2000": 0.67
+      },
+      {
+        "seed": 2,
+        "best_250": 0.575,
+        "best_2000": 0.595
+      },
+      {
+        "seed": 3,
+        "best_250": 0.585,
+        "best_2000": 0.615
+      },
+      {
+        "seed": 4,
+        "best_250": 0.57,
+        "best_2000": 0.635
+      }
+    ],
+    "mean_250": 0.5769999999999998,
+    "mean_2000": 0.6220000000000001,
+    "all_optimal_at_250": false,
+    "criterion_a": true,
+    "criterion_b": true,
+    "passed": true
+  }
+}
