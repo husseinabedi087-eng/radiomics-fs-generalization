@@ -115,6 +115,13 @@ Approved by the author; made on synthetic data only, before any model was traine
 - Restored metadata: a development run before that override overwrote the 12 committed results/verification/determinism_*.json files; only their metadata (git commit, dirty flag, UTC time) differed, the results were identical; the committed files were restored from git unchanged.
 - Standard inner AUC: computed, outside the budget, for the returned subset and for every checkpoint subset.
 
+## 2026-11-12: pilot attempt 1 discarded
+
+- Pilot attempt 1 (configs/pilot.yaml, 480 planned runs, 6 workers, commit 4f10b80) started on 2026-11-11 at 17:48:29 UTC (earliest run start). 390 runs were finished and recorded in results/MANIFEST.csv (last at 18:32:51 UTC); 431 run files had been written in total (41 finished by workers but never recorded by the main process); the last run started at 21:31:23 UTC. No temporary files were left.
+- Reason: the author put the machine into hibernate during the pilot and it did not resume correctly, so the run times are contaminated; the pilot exists to measure run times (section 10).
+- No performance result (AUC, Brier score, subset) was inspected by the author or by Claude Code; only run counts, start and finish times, plan names, status values and commits were read to write this entry.
+- Deleted: results/runs/development/ (431 files), results/MANIFEST.csv and results/progress.csv (pilot rows only), and results/partitions/ (3 files; deleted rather than verified, because verifying them would have required loading the datasets' labels; the runner recreates them deterministically from the dataset names). The pilot is rerun from scratch with the same plan and commit-checked code.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; no model trained.
