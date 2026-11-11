@@ -74,13 +74,20 @@ def _control_rng(search_seed):
     return np.random.default_rng(np.random.SeedSequence([int(search_seed), 3]))
 
 
-def _subset_record(fd, mask, standard, counter, value=None):
-    """Everything logged for one reported subset. The outer evaluation happens here, last."""
+def _subset_record(fd, mask, standard, counter, timer, value=None):
+    """Everything logged for one reported subset. The outer evaluation happens here, last.
+    timer accumulates the wall time of the standard inner AUC and of the outer scoring separately."""
     mask = np.asarray(mask, dtype=bool)
+    t0 = time.perf_counter()
+    std_auc = standard(mask)
+    t1 = time.perf_counter()
     auc, brier = outer_evaluation(fd.X_train, fd.y_train, fd.X_test, fd.y_test, mask, counter)
+    t2 = time.perf_counter()
+    timer["standard_inner_auc_s"] += t1 - t0
+    timer["outer_scoring_s"] += t2 - t1
     rec = {"size": int(mask.sum()), "subset": [fd.pool_names[i] for i in np.flatnonzero(mask)],
            "pool_indices": [int(i) for i in np.flatnonzero(mask)],
-           "standard_inner_auc": standard(mask), "outer_auc": auc, "outer_brier": brier}
+           "standard_inner_auc": std_auc, "outer_auc": auc, "outer_brier": brier}
     if value is not None:
         rec["best_inner_fitness"] = float(value)
     return rec
@@ -117,19 +124,18 @@ def run_search(fd, searcher, control="C0", param=None, search_seed=0, budget=200
     search_seconds = time.perf_counter() - t0
 
     # ---- search finished; from here on nothing feeds back into the search ----
-    t1 = time.perf_counter()
+    timer = {"standard_inner_auc_s": 0.0, "outer_scoring_s": 0.0}
     checkpoints = {}
     for c in CHECKPOINTS:
         cp = res.checkpoints.get(c)
         if cp is not None:
-            rec = _subset_record(fd, cp.best_mask, standard, counter, cp.best_fitness)
+            rec = _subset_record(fd, cp.best_mask, standard, counter, timer, cp.best_fitness)
             rec["filled_after_stop"] = False
         else:  # run ended before c (C1 early stop): the returned subset stays the answer
-            rec = _subset_record(fd, res.mask, standard, counter, res.fitness)
+            rec = _subset_record(fd, res.mask, standard, counter, timer, res.fitness)
             rec["filled_after_stop"] = True
         checkpoints[str(c)] = rec
-    returned = _subset_record(fd, res.mask, standard, counter, res.fitness)
-    eval_seconds = time.perf_counter() - t1
+    returned = _subset_record(fd, res.mask, standard, counter, timer, res.fitness)
 
     out = {"kind": "search", "dataset": fd.dataset, "repeat": fd.repeat, "fold": fd.fold,
            "searcher": searcher, "control": control,
@@ -139,7 +145,7 @@ def run_search(fd, searcher, control="C0", param=None, search_seed=0, budget=200
            "n_evals": int(ev.n_evals), "checkpoints": checkpoints, "returned": returned,
            "archive": {"fitness": ev.archive_fitness().tolist(), "size": ev.archive_sizes().tolist()},
            "convergence_warnings": counter.convergence,
-           "timings": {"pipeline_s": fd.pipeline_seconds, "search_s": search_seconds, "evaluation_s": eval_seconds},
+           "timings": {"fold_preparation_s": fd.pipeline_seconds, "search_s": search_seconds, **timer},
            "status": "ok"}
     if control == "C1":
         out["c1"] = {"selection_log": [list(x) for x in ev.selection_log], "stopped_early": ev.stopped_early,
@@ -154,14 +160,13 @@ def run_baseline(fd, name, model_seed=None):
     sel = baselines.run(name, fd.X_train, fd.y_train, fd.inner, counter, model_seed=model_seed)
     select_seconds = time.perf_counter() - t0
     # ---- selection finished ----
-    t1 = time.perf_counter()
+    timer = {"standard_inner_auc_s": 0.0, "outer_scoring_s": 0.0}
     mask = sel["mask"]
-    returned = _subset_record(fd, mask, lambda m: 0.5 if not m.any() else std_fitness(m), counter)
+    returned = _subset_record(fd, mask, lambda m: 0.5 if not m.any() else std_fitness(m), counter, timer)
     return {"kind": "baseline", "dataset": fd.dataset, "repeat": fd.repeat, "fold": fd.fold, "selector": name,
             "search_seed": None, "model_seed": None if model_seed is None else int(model_seed), "K": fd.K,
             "n_features_raw": fd.n_features_raw, "n_train": int(len(fd.y_train)), "n_test": int(len(fd.y_test)),
             "hyperparameter": sel["hyperparameter"], "grid": sel["grid"], "grid_inner_scores": sel["inner_scores"],
             "flags": sel["flags"], "returned": returned, "convergence_warnings": counter.convergence,
-            "timings": {"pipeline_s": fd.pipeline_seconds, "selection_s": select_seconds,
-                        "evaluation_s": time.perf_counter() - t1},
+            "timings": {"fold_preparation_s": fd.pipeline_seconds, "selection_s": select_seconds, **timer},
             "status": "ok"}
