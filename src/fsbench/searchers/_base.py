@@ -29,7 +29,8 @@ def budgeted(search_fn):
             search_fn(evaluator, K, rng, trace=trace, **kwargs)
         except BudgetExhausted:
             pass
-        return SearchResult(mask=evaluator.best_mask.copy(), fitness=evaluator.best_fitness,
+        mask, value = evaluator.returned()
+        return SearchResult(mask=mask.copy(), fitness=float(value),
                             n_evals=evaluator.n_evals, checkpoints=dict(evaluator.checkpoints), trace=trace)
 
     return run

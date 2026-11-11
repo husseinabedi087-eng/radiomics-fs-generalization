@@ -8,6 +8,7 @@
 """
 
 import json
+import os
 import platform
 import subprocess
 from datetime import datetime, timezone
@@ -17,7 +18,9 @@ import numpy as np
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-RESULTS_DIR = REPO_ROOT / "results" / "verification"
+# FSBENCH_RESULTS_DIR redirects raw results (used for development runs, so that the committed
+# verification results are only ever written by the author's runs).
+RESULTS_DIR = Path(os.environ.get("FSBENCH_RESULTS_DIR", REPO_ROOT / "results" / "verification"))
 _REPORT = []
 
 

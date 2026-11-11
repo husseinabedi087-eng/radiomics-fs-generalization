@@ -54,13 +54,31 @@ class Evaluator:
     def remaining(self):
         return self.budget - self.n_evals
 
-    def __call__(self, mask):
+    def returned(self):
+        """(mask, value) the run returns if it ended now. C0: best inner fitness so far.
+        Controls override this (fsbench.controls)."""
+        return self.best_mask, self.best_fitness
+
+    def _count_evaluation(self):
         if self.n_evals >= self.budget:
             raise BudgetExhausted(f"budget of {self.budget} evaluations used")
+        self.n_evals += 1
+
+    def _record_checkpoint_if_due(self):
+        if self.n_evals in self.checkpoint_at and self.n_evals not in self.checkpoints:
+            mask, value = self.returned()
+            self.checkpoints[self.n_evals] = Checkpoint(
+                n_evals=self.n_evals, best_fitness=float(value), best_size=int(mask.sum()), best_mask=mask.copy())
+
+    def __call__(self, mask):
+        return self.score(mask)
+
+    def score(self, mask):
+        """Score one subset: one evaluation, archived; updates the best-so-far."""
         mask = np.asarray(mask, dtype=bool).reshape(-1)
         if mask.shape[0] != self.K:
             raise ValueError(f"mask has length {mask.shape[0]}, expected {self.K}")
-        self.n_evals += 1
+        self._count_evaluation()
         size = int(mask.sum())
         packed = np.packbits(mask)
         if size == 0:
@@ -80,10 +98,7 @@ class Evaluator:
         self._arch_fitness.append(fit)
         self._arch_size.append(size)
         self._arch_masks.append(packed)
-        if self.n_evals in self.checkpoint_at:
-            self.checkpoints[self.n_evals] = Checkpoint(
-                n_evals=self.n_evals, best_fitness=self.best_fitness,
-                best_size=int(self.best_mask.sum()), best_mask=self.best_mask.copy())
+        self._record_checkpoint_if_due()
         return fit
 
     # ---- archive access ----
