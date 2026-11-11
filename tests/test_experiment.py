@@ -286,3 +286,13 @@ def test_c4_knee_records(fold_data):
         assert np.isclose(rec["standard_inner_auc"], fit[i])  # C0 inner fitness is the standard inner AUC
     assert "c4_s" in r["timings"]
     assert "c4" not in experiment.run_search(fold_data, "ga", "C3", 2, search_seed=1, budget=BUDGET)
+
+
+def test_c4_knee_choice_ignores_outer_test_labels(fold_data):
+    """The knee is chosen from the archive's inner fitness and size only; the outer fold is scored afterwards."""
+    flipped = dataclasses.replace(fold_data, y_test=1 - fold_data.y_test)
+    a = experiment.run_search(fold_data, "ga", "C0", None, search_seed=4, budget=600)
+    c = experiment.run_search(flipped, "ga", "C0", None, search_seed=4, budget=600)
+    assert sorted(a["c4"], key=int) == ["250", "500"] and _strip(a["c4"]) == _strip(c["c4"])
+    assert all(set(rec) >= {"standard_inner_auc", "outer_auc", "outer_brier"} for rec in a["c4"].values())
+    assert any(a["c4"][k]["outer_auc"] != c["c4"][k]["outer_auc"] for k in a["c4"])
