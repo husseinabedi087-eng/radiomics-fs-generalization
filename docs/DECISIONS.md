@@ -101,6 +101,20 @@ All decisions below were made on synthetic problems (OneMax, NK landscapes, pure
 - Slow verification run (planted subset): pytest reported a wall time of 23 h 21 min, which includes machine sleep; the measured compute of the 36 runs was 50 min (2998 s, summed from the raw files). Standby on AC power was then disabled by the author (powercfg /change standby-timeout-ac 0) for later runs.
 - No model has been trained on real data and no feature-target statistic has been computed on real data.
 
+## 2026-11-11: part 6a implementation decisions (pre-data)
+
+Approved by the author; made on synthetic data only, before any model was trained on real data (commit "study pipeline components (not yet run on real data)").
+
+- Baseline tuning (section 6): every hyperparameter value is scored by the inner 3-fold cross-validated AUC on the fixed inner split. Inside each inner fold the selector is refitted on the inner-training part, the section 4 L2 logistic regression is fitted on the selected features, and the AUC is computed on the inner-test part (an empty selection scores 0.5 in that fold); this applies to L1 and elastic net as well as to the top-k selectors. Ties go to the sparser setting (smaller k, smaller C). The selector is then refitted on the whole outer-training part with the chosen value.
+- Fixed solver random_state = 0 for liblinear (L1) and saga (elastic net). This is a fixed constant, not a study seed; the only model with a model seed is the random forest.
+- C1: the selection fold is scored after every 100 search evaluations; selection scorings do not count toward this 100-evaluation cadence but each counts as one evaluation against the total budget of 2,000 (section 7). The selection-fold model is the L2 logistic regression fitted on the whole 80% C1 fit part. Improvement means a strictly higher selection-fold AUC (the first such subset is kept on ties). After an early stop, the later checkpoints report the returned subset and are flagged filled_after_stop.
+- C2: the standard deviation of the 9 AUC values uses ddof = 0.
+- C3: the r neighbours flip r distinct bits chosen uniformly, drawn from a random stream that is derived from the search seed but independent of the searcher's own stream (the searcher's random numbers are the same as in C0); the best-so-far is tracked on the smoothed value; the archive stores the raw inner fitness of every scored subset.
+- Evaluator split: fsbench.Evaluator has score() (one counted, archived evaluation) and returned() (the subset the run returns: the best inner fitness for C0, the control's choice for C1 and C3). C0 behaviour is unchanged (all earlier tests pass; determinism masks identical before and after).
+- FSBENCH_RESULTS_DIR: an environment variable that redirects the raw verification results written by tests/conftest.py, so that development runs by Claude Code never overwrite the committed results in results/verification/.
+- Restored metadata: a development run before that override overwrote the 12 committed results/verification/determinism_*.json files; only their metadata (git commit, dirty flag, UTC time) differed, the results were identical; the committed files were restored from git unchanged.
+- Standard inner AUC: computed, outside the budget, for the returned subset and for every checkpoint subset.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; no model trained.
