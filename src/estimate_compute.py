@@ -1,6 +1,6 @@
 """Project the compute of the study plans from the pilot run files (part 6b, item 10).
 
-    python src/estimate_compute.py [--plan-name pilot] [--workers 6]
+    python src/estimate_compute.py [--plan-name pilot] [--workers 6] [--plan configs/development.yaml]
 
 Inputs: the pilot run files (results/runs/development/**/*.json.gz with plan == pilot, status ok) and,
 for the projection, n and p of every development and confirmation dataset from data/meta/audit.csv and
@@ -21,6 +21,10 @@ Plans projected (section 10):
   confirmation, core tier: 31 confirmation datasets, same folds and seeds; C0 x 12; C1, C2, C3 on 4
                searchers at one chosen value (12 controlled configurations); baselines. C4 costs nothing.
   confirmation, reduced tier: as core without the V-shaped variants (bpso_V, de_V, gwo_V, woa_V).
+
+--plan <yaml>: additionally project exactly the units of that plan (fsbench.run.expand). A controlled
+configuration whose grid value was not in the pilot uses the pilot fit of the same searcher and control
+(the pilot ran P = 5, lambda = 1, r = 4 only), so C1 at P = 3 or 10 is only approximated.
 """
 
 import argparse
@@ -103,6 +107,7 @@ def main(argv=None):
     ap.add_argument("--seeds", type=int, default=3, help="search seeds per outer fold")
     ap.add_argument("--folds", type=int, default=10, help="outer folds per dataset (repeats x folds)")
     ap.add_argument("--results-dir", default=str(REPO_ROOT / "results"))
+    ap.add_argument("--plan", action="append", default=[], help="plan file(s) to project unit by unit")
     args = ap.parse_args(argv)
 
     runs = load_runs(args.plan_name, args.results_dir)
@@ -168,6 +173,39 @@ def main(argv=None):
         parts = ", ".join(f"{k.removesuffix('_s')} {v / 3600:.0f} h" for k, v in cost.items())
         print(f"  {label}: {total / 3600:.0f} CPU hours ({parts}) -> {total / 3600 / args.workers:.1f} h "
               f"({total / 3600 / args.workers / 24:.1f} days) at {args.workers} workers")
+
+    for plan_path in args.plan:
+        sys.path.insert(0, str(REPO_ROOT / "src"))
+        from fsbench.run import expand, load_plan
+        plan = load_plan(plan_path)
+        units = expand(plan)
+        per_phase, per_ds, missing = defaultdict(float), defaultdict(float), set()
+        folds = set()
+        for u in units:
+            g, n, p = sizes[u["dataset"]]
+            n_train, K = 0.8 * n, min(200, p)
+            fam = f"{u['searcher']}|{u['control']}" if u["kind"] == "search" else f"baseline|{u['selector']}"
+            if fam not in models:
+                missing.add(fam)
+                continue
+            for ph in PHASES:
+                t = predict(models[fam][ph], n_train, K)
+                per_phase[ph] += t
+                per_ds[u["dataset"]] += t
+            key = (u["dataset"], u["repeat"], u["fold"])
+            if prep_model and key not in folds:
+                folds.add(key)
+                per_phase["fold_preparation"] += predict(prep_model, n_train, p)
+        total = sum(per_phase.values())
+        parts = ", ".join(f"{k.removesuffix('_s')} {v / 3600:.1f} h" for k, v in per_phase.items())
+        print(f"\nPlan {plan['name']} ({plan_path}): {len(units)} units")
+        if missing:
+            print(f"  WARNING: no pilot runs for {sorted(missing)}; those units are not counted")
+        print(f"  {total / 3600:.1f} CPU hours ({parts}) -> {total / 3600 / args.workers:.1f} h "
+              f"({total / 3600 / args.workers / 24:.2f} days) at {args.workers} workers")
+        print("  by dataset (CPU hours; n_train):")
+        for d in sorted(per_ds, key=per_ds.get, reverse=True):
+            print(f"    {d:<24} {per_ds[d] / 3600:6.1f}   n_train ~{0.8 * sizes[d][1]:.0f}")
     return 0
 
 

@@ -1,0 +1,31 @@
+# Development plan (PREREG_STAGE1 section 10; docs/DECISIONS.md 2026-11-12: development protocol).
+# Serves only the stage-2 choices: control hyperparameters, primary control (H2), primary wrapper (H3).
+# Reduced protocol: repeat 0 (5 outer folds), search seed index 0; C0 only for the four controlled
+# searchers (their C0 runs also log C4); C1, C2, C3 at all three grid values; six baselines for context.
+name: development
+group: development
+datasets:
+  - Ahn2021
+  - Arita2018
+  - Brancato2023
+  - Dai2023
+  - HNSCC
+  - Hosny2018B
+  - ISPY1
+  - Meningioma-SEG-CLASS
+  - Ramella2018
+  - WORC-CRLM
+  - WORC-Desmoid
+  - Wang2024
+repeats: [0]
+folds: [0, 1, 2, 3, 4]
+search_seed_indices: [0]
+budget: 2000
+c0_searchers: [ga, bpso_S, de_S, gwo_S]
+control_searchers: [ga, bpso_S, de_S, gwo_S]
+controls:
+  C1: [3, 5, 10]       # P (patience)
+  C2: [0.5, 1.0, 2.0]  # lambda
+  C3: [2, 4, 8]        # r (neighbours)
+baselines: [all_k, l1, enet, ftest, mrmr, rf]
+rf_model_seed_indices: [0, 1, 2]

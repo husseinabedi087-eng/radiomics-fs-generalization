@@ -8,7 +8,7 @@ One unit of work = (dataset, repeat, fold, configuration, seed index).
     .derive_seed), shared by every configuration (common random numbers).
   Baselines: one run per outer fold; the random forest once per model seed index, model seed =
     SHA-256 of "dataset|repeat|fold|rf|model_seed_index".
-Output: results/runs/<group>/<dataset>/<config>/r<repeat>_f<fold>_s<seed index>.json.gz, written atomically
+Output: results/runs/<group>/<plan>/<dataset>/<config>/r<repeat>_f<fold>_s<seed index>.json.gz, written atomically
 (temporary file, then rename); then one row in results/MANIFEST.csv (path, SHA-256, identifiers, seeds,
 commit, status) and one in results/progress.csv. Only the main process writes the CSV files.
 Resume: a unit is skipped if its file exists and its SHA-256 matches an "ok" manifest row.
@@ -93,7 +93,7 @@ def expand(plan):
         for r in plan["repeats"]:
             for f in plan["folds"]:
                 def add(config, seed_index, **kw):
-                    rel = Path("runs") / plan["group"] / ds / config / f"r{r}_f{f}_s{seed_index}.json.gz"
+                    rel = Path("runs") / plan["group"] / plan["name"] / ds / config / f"r{r}_f{f}_s{seed_index}.json.gz"
                     units.append({"plan": plan["name"], "group": plan["group"], "dataset": ds, "repeat": r,
                                   "fold": f, "configuration": config, "seed_index": seed_index,
                                   "budget": budget, "path": rel.as_posix(), **kw})

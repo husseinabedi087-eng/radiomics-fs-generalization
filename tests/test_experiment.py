@@ -271,3 +271,18 @@ def test_search_result_contents(fold_data):
     assert 0 <= cp["outer_brier"] <= 1 and 0 <= cp["outer_auc"] <= 1
     # C0: the best inner fitness is the standard inner AUC of the same subset
     assert np.isclose(cp["best_inner_fitness"], cp["standard_inner_auc"])
+
+
+def test_c4_knee_records(fold_data):
+    """C0 runs log the knee of the archive prefix at every checkpoint; controlled runs do not."""
+    from fsbench.archive import knee_point
+    r = experiment.run_search(fold_data, "ga", "C0", None, search_seed=1, budget=600)
+    assert sorted(r["c4"], key=int) == ["250", "500"]
+    fit, size = np.array(r["archive"]["fitness"]), np.array(r["archive"]["size"])
+    for c, rec in r["c4"].items():
+        i = knee_point(fit[:int(c)], size[:int(c)])
+        assert rec["archive_index"] == i < int(c)
+        assert rec["size"] == size[i] == len(rec["subset"]) and rec["best_inner_fitness"] == fit[i]
+        assert np.isclose(rec["standard_inner_auc"], fit[i])  # C0 inner fitness is the standard inner AUC
+    assert "c4_s" in r["timings"]
+    assert "c4" not in experiment.run_search(fold_data, "ga", "C3", 2, search_seed=1, budget=BUDGET)

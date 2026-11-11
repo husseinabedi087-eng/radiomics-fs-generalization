@@ -11,6 +11,12 @@ Standard inner AUC: for every reported subset (each checkpoint and the returned 
 over the fixed 3-fold inner split of the whole outer-training part (section 4 inner fitness),
 computed outside the budget, so that the optimism gap (standard inner AUC - outer AUC) is comparable
 across controls.
+
+C4 (section 7): every C0 run also logs, under "c4", the knee point (fsbench.archive.knee_point, the
+min-max normalized rule in docs/DECISIONS.md) of the archive of the first c evaluations for each
+checkpoint c, with the same record as a checkpoint (size, subset, standard inner AUC, outer AUC and
+Brier score) plus its archive index. It is computed after the search has finished and costs no
+evaluations; its wall time is logged as timings["c4_s"].
 """
 
 import time
@@ -19,6 +25,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from . import baselines, controls, pipeline
+from .archive import knee_point
 from .evaluator import CHECKPOINTS, Evaluator
 from .fitness import WarningCounter, make_c2_fitness, make_split_fitness, outer_evaluation
 from .partitions import to_positions
@@ -137,6 +144,22 @@ def run_search(fd, searcher, control="C0", param=None, search_seed=0, budget=200
         checkpoints[str(c)] = rec
     returned = _subset_record(fd, res.mask, standard, counter, timer, res.fitness)
 
+    # ---- C4 (section 7): knee of the archive prefix at each checkpoint; C0 runs only, no evaluations ----
+    c4 = None
+    if control == "C0":
+        c4_timer = {"standard_inner_auc_s": 0.0, "outer_scoring_s": 0.0}
+        t_c4 = time.perf_counter()
+        fit_all, size_all = ev.archive_fitness(), ev.archive_sizes()
+        c4 = {}
+        for c in CHECKPOINTS:
+            if c > ev.n_evals:
+                continue
+            i = knee_point(fit_all[:c], size_all[:c])
+            rec = _subset_record(fd, ev.archive_mask(i), standard, counter, c4_timer, fit_all[i])
+            rec["archive_index"] = int(i)
+            c4[str(c)] = rec
+        c4_seconds = time.perf_counter() - t_c4
+
     out = {"kind": "search", "dataset": fd.dataset, "repeat": fd.repeat, "fold": fd.fold,
            "searcher": searcher, "control": control,
            "control_param": None if control == "C0" else {CONTROL_PARAM[control]: param},
@@ -147,6 +170,9 @@ def run_search(fd, searcher, control="C0", param=None, search_seed=0, budget=200
            "convergence_warnings": counter.convergence,
            "timings": {"fold_preparation_s": fd.pipeline_seconds, "search_s": search_seconds, **timer},
            "status": "ok"}
+    if c4 is not None:
+        out["c4"] = c4
+        out["timings"]["c4_s"] = c4_seconds
     if control == "C1":
         out["c1"] = {"selection_log": [list(x) for x in ev.selection_log], "stopped_early": ev.stopped_early,
                      "best_selection_auc": None if ev.sel_best_mask is None else float(ev.sel_best_auc)}
