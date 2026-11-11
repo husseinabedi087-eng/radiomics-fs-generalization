@@ -5,7 +5,11 @@
 Checks
   1. every manifest entry (latest row per path) re-hashes to its SHA-256, and the file's own commit and
      status match the manifest row;
-  2. for each plan, every expected unit has an "ok" run (counts per dataset and configuration);
+  2. for each plan, separately: every expected unit has an "ok" run (counts per dataset and configuration),
+     every file lies under results/runs/<group>/<plan>/, and its payload names that plan and group and the
+     unit's dataset, configuration, repeat, fold and seed index; the plan's files are re-hashed and its
+     commits listed on their own. Across plans: no two plans expect the same path (no collisions).
+     Manifest entries that belong to none of the given plans are counted and reported (not a failure).
   3. every run's commit exists in the git history;
   4. no confirmation-group run started before the commit that added docs/PREREG_STAGE2.sha256 (and,
      if that file is not committed, there is no confirmation-group run at all).
@@ -73,17 +77,50 @@ def main(argv=None):
     if n_err:
         problems.append(f"{n_err} runs with status other than ok")
 
-    # 2. expected counts per plan
+    # 2. each plan separately
+    plan_paths = {}
     for plan_path in args.plan:
         plan = load_plan(plan_path)
         units = expand(plan)
+        name = plan["name"]
+        prefix = f"runs/{plan['group']}/{name}/"
         expected = Counter((u["dataset"], u["configuration"]) for u in units)
         found = Counter((u["dataset"], u["configuration"]) for u in units if u["path"] in ok_paths)
         missing = {k: expected[k] - found[k] for k in expected if found[k] < expected[k]}
-        print(f"check 2: plan {plan['name']}: {sum(found.values())}/{len(units)} expected runs present "
-              f"({len(expected)} dataset x configuration cells)")
+        bad_place, bad_payload = 0, 0
+        for u in units:
+            if not u["path"].startswith(prefix):
+                bad_place += 1
+                problems.append(f"plan {name}: path outside {prefix}: {u['path']}")
+            r = run_meta.get(u["path"])
+            if r is None:
+                continue
+            ident = (r.get("plan"), r.get("group"), r.get("dataset"), r.get("configuration"), r.get("repeat"),
+                     r.get("fold"), r.get("seed_index"))
+            want = (name, plan["group"], u["dataset"], u["configuration"], u["repeat"], u["fold"], u["seed_index"])
+            if ident != want:
+                bad_payload += 1
+                problems.append(f"plan {name}: payload identifiers {ident} do not match unit {want}")
+        plan_commits = sorted({latest[u["path"]]["commit"] for u in units if u["path"] in latest})
+        n_hashed = sum(u["path"] in run_meta for u in units)
+        print(f"check 2: plan {name}: {sum(found.values())}/{len(units)} expected runs present "
+              f"({len(expected)} dataset x configuration cells); {n_hashed} files re-hashed; "
+              f"path or payload mismatches {bad_place + bad_payload}; commits {[c[:7] for c in plan_commits]}")
         for (ds, cfg), n in sorted(missing.items()):
-            problems.append(f"plan {plan['name']}: {ds} / {cfg}: {n} runs missing")
+            problems.append(f"plan {name}: {ds} / {cfg}: {n} runs missing")
+        if name in plan_paths:
+            problems.append(f"plan name {name} given twice")
+        plan_paths[name] = {u["path"] for u in units}
+    names = sorted(plan_paths)
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            shared = plan_paths[a] & plan_paths[b]
+            if shared:
+                problems.append(f"plans {a} and {b} share {len(shared)} paths (collision)")
+            print(f"check 2: plans {a} / {b}: {len(shared)} shared paths")
+    if args.plan:
+        other = set(latest) - set().union(*plan_paths.values())
+        print(f"check 2: manifest entries outside the given plans: {len(other)}")
 
     # 3. commits exist
     commits = {r["commit"] for r in latest.values()}
@@ -108,8 +145,10 @@ def main(argv=None):
 
     if problems:
         print(f"\nFAILED: {len(problems)} problem(s)")
-        for p in problems[:200]:
+        for p in problems[:20]:
             print(f"  - {p}")
+        if len(problems) > 20:
+            print(f"  ... and {len(problems) - 20} more")
         return 1
     print("\nAll checks passed.")
     return 0

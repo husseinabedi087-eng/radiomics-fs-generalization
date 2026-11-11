@@ -71,3 +71,20 @@ def test_run_resume_and_validate(plan_file, tmp_path):
     assert run.main(["--plan", str(plan_file), "--n-jobs", "1", "--results-dir", str(results)]) == 0
     assert len(run.read_manifest(results / "MANIFEST.csv")) == 12
     assert validate_release.main(["--plan", str(plan_file), "--results-dir", str(results)]) == 0
+
+
+def test_two_plans_with_identical_units_never_collide(plan_file, tmp_path):
+    """Same units under two plan names: separate paths, both validate, files of one plan untouched by the other."""
+    other = tmp_path / "other.yaml"
+    other.write_text(PLAN.replace("name: runner_test", "name: runner_other"), encoding="utf-8", newline="\n")
+    a, b = run.expand(run.load_plan(plan_file)), run.expand(run.load_plan(other))
+    assert len(a) == len(b) and not {u["path"] for u in a} & {u["path"] for u in b}
+    assert all(u["path"].startswith("runs/synthetic/runner_test/") for u in a)
+    results = tmp_path / "results"
+    assert run.main(["--plan", str(plan_file), "--n-jobs", "1", "--results-dir", str(results)]) == 0
+    before = {p: (results / p).read_bytes() for p in (u["path"] for u in a)}
+    assert run.main(["--plan", str(other), "--n-jobs", "1", "--results-dir", str(results)]) == 0
+    assert all((results / p).read_bytes() == data for p, data in before.items())
+    assert len(run.read_manifest(results / "MANIFEST.csv")) == 2 * len(a)
+    assert validate_release.main(["--plan", str(plan_file), "--plan", str(other), "--results-dir", str(results)]) == 0
+    assert validate_release.main(["--plan", str(plan_file), "--plan", str(plan_file), "--results-dir", str(results)]) == 1
