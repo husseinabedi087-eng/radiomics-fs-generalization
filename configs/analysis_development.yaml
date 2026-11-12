@@ -1,0 +1,9 @@
+# Exploratory dry run of the analysis on development data (outputs carry "EXPLORATORY (development data)").
+label: development_dryrun
+plans:
+  - file: configs/development.yaml
+  - file: configs/dev_enet_fix.yaml
+    replaces: [baseline__enet]     # max_iter 10000 rerun replaces the development enet runs
+s2_plan: null
+control_values: {C1: 5, C2: 1.0, C3: 8}   # stage-2 choices (results/stage2/stage2_choices.json)
+sensitivity_list: configs/sensitivity_s1.txt
