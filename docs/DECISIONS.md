@@ -158,6 +158,11 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 - A mixed-model fit is accepted when statsmodels reports converged = True. Optimizer order: lbfgs first; powell only if lbfgs does not converge (or raises). Every warning raised during a fit is recorded verbatim (category and message) in results.json and does not reject the fit. If neither optimizer converges for the full or the reduced model, H4 is reported as "not estimable" and enters the Holm family with p = 1. Implemented in src/analysis/stats.py (ACCEPTANCE_RULE) and tested in tests/test_analysis_stats.py.
 - Fixed before any confirmatory run, after the exploratory development dry run, in which every fit converged with lbfgs and logged one ConvergenceWarning whose text had not been recorded.
 
+## 2026-11-13: stage 2 pre-registration frozen
+
+- 2026-11-13: stage 2 pre-registration frozen. Confirmation set unsealed by this commit. No confirmation dataset was loaded before it.
+- docs/PREREG_STAGE2.md, SHA-256 32fc0d8b2cd5260ff53b4343707e61504ab3a6994a76c5436d3ba709bf10f85c (docs/PREREG_STAGE2.sha256), committed together with its hash file; the analysis code it cites is src/analysis/ at 0b3da97 and configs/analysis_confirmation.yaml at 44d6c32.
+
 ## Pre-registration status
 
-Pre-registration status: stage 1 frozen; stage 2 not frozen; pilot run on 3 development datasets (timing only); no development run yet.
+Pre-registration status: stage 1 frozen (8fa82c7, amendment 1 in 485ee76); stage 2 frozen (this commit: "pre-registration stage 2 frozen (unseals confirmation)"); confirmation set unsealed; no confirmation run yet.
