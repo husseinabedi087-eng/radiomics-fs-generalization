@@ -24,7 +24,10 @@ Plans projected (section 10):
 
 --plan <yaml>: additionally project exactly the units of that plan (fsbench.run.expand). A controlled
 configuration whose grid value was not in the pilot uses the pilot fit of the same searcher and control
-(the pilot ran P = 5, lambda = 1, r = 4 only), so C1 at P = 3 or 10 is only approximated.
+(the pilot ran P = 5, lambda = 1, r = 4 only), so C1 at P = 3 or 10 is only approximated. A plan with
+prefilter: false is projected with K = p (all features after the data-handling rules; constant features
+dropped by the pipeline are not known from metadata), which extrapolates in K beyond the pilot's K <= 200.
+Dataset names are printed only for non-confirmation plans; confirmation plans get counts and a summary.
 """
 
 import argparse
@@ -179,11 +182,12 @@ def main(argv=None):
         from fsbench.run import expand, load_plan
         plan = load_plan(plan_path)
         units = expand(plan)
+        prefilter = plan.get("prefilter", True)
         per_phase, per_ds, missing = defaultdict(float), defaultdict(float), set()
         folds = set()
         for u in units:
             g, n, p = sizes[u["dataset"]]
-            n_train, K = 0.8 * n, min(200, p)
+            n_train, K = 0.8 * n, (min(200, p) if prefilter else p)
             fam = f"{u['searcher']}|{u['control']}" if u["kind"] == "search" else f"baseline|{u['selector']}"
             if fam not in models:
                 missing.add(fam)
@@ -203,9 +207,14 @@ def main(argv=None):
             print(f"  WARNING: no pilot runs for {sorted(missing)}; those units are not counted")
         print(f"  {total / 3600:.1f} CPU hours ({parts}) -> {total / 3600 / args.workers:.1f} h "
               f"({total / 3600 / args.workers / 24:.2f} days) at {args.workers} workers")
-        print("  by dataset (CPU hours; n_train):")
-        for d in sorted(per_ds, key=per_ds.get, reverse=True):
-            print(f"    {d:<24} {per_ds[d] / 3600:6.1f}   n_train ~{0.8 * sizes[d][1]:.0f}")
+        if plan["group"] == "confirmation":  # confirmation dataset names are never printed
+            top = sorted(per_ds.values(), reverse=True)
+            print(f"  {len(per_ds)} datasets, prefilter {prefilter}; per dataset (CPU hours): max {top[0] / 3600:.1f}, "
+                  f"median {top[len(top) // 2] / 3600:.1f}, min {top[-1] / 3600:.1f}")
+        else:
+            print("  by dataset (CPU hours; n_train):")
+            for d in sorted(per_ds, key=per_ds.get, reverse=True):
+                print(f"    {d:<24} {per_ds[d] / 3600:6.1f}   n_train ~{0.8 * sizes[d][1]:.0f}")
     return 0
 
 
