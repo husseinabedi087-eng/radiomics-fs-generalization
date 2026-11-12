@@ -137,6 +137,11 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 - 2026-11-12: stage2_select.py run unchanged (script commit 0e21454). The field script_commit in stage2_choices.json records HEAD at run time (7424ecd), not the script commit; the file is kept unedited to preserve its hash.
 - results/stage2/stage2_choices.json: SHA-256 d38695a8ecca2587d0acf7ebd0570cae20f8925115d8e95ca32c4e8c4b075f14; runs from commit 3b69ca5 (development run committed in 7424ecd). Choices: P = 5, lambda = 1.0, r = 8, primary control C4, primary wrapper ga + C4; no tie-break was needed. Stage 2 is not yet written.
 
+## 2026-11-12: bench_scaling.py result and confirmation compute projection
+
+- 2026-11-12: bench_scaling.py (synthetic data, K = 200, one thread) shows search time flat in n_train from 166 to 775 (slope b = 0.01 for ga C0, -0.03 for ga C2). The confirmation core tier projects at 359-389 CPU h, 60-65 h at 6 workers; planning figure 65 h (development fit). The linear-in-n bound is ruled out. S2 projects at 7-19 CPU h; the benchmark does not cover K > 200. No confirmation dataset was loaded.
+- Records: bench_scaling.py at commit 468d682; its console output, as pasted by the author, in results/compute/bench_scaling_output.txt; projection script src/project_compute.py (commit c38cfb3), which writes results/compute/projection.json.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; pilot run on 3 development datasets (timing only); no development run yet.
