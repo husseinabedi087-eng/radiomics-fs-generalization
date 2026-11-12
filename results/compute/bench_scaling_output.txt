@@ -1,0 +1,30 @@
+# Output of `python src/bench_scaling.py` (script commit 468d682), run by the author on 2026-11-12 in a
+# separate PowerShell window. bench_scaling.py prints only and writes no file; this is the console output
+# exactly as the author pasted it, recorded by Claude Code. Synthetic data only.
+
+  ga C0  n_train  166  seed 0: search    22.6 s (whole unit    22.7 s)
+  ga C0  n_train  166  seed 1: search    24.3 s (whole unit    24.5 s)
+  ga C2  n_train  166  seed 0: search    78.1 s (whole unit    78.2 s)
+  ga C2  n_train  166  seed 1: search    74.3 s (whole unit    74.3 s)
+  ga C0  n_train  400  seed 0: search    27.9 s (whole unit    28.1 s)
+  ga C0  n_train  400  seed 1: search    28.5 s (whole unit    28.7 s)
+  ga C2  n_train  400  seed 0: search    78.1 s (whole unit    78.1 s)
+  ga C2  n_train  400  seed 1: search    73.8 s (whole unit    73.9 s)
+  ga C0  n_train  775  seed 0: search    23.4 s (whole unit    23.5 s)
+  ga C0  n_train  775  seed 1: search    23.3 s (whole unit    23.4 s)
+  ga C2  n_train  775  seed 0: search    77.7 s (whole unit    77.8 s)
+  ga C2  n_train  775  seed 1: search    67.9 s (whole unit    68.0 s)
+
+Search-phase time vs n_train (K = 200, budget 2000, 2 repeats, 1 thread):
+
+  ga C0
+    n_train  166: times 22.6, 24.3 s; mean    23.4 s; ratio  1.00
+    n_train  400: times 27.9, 28.5 s; mean    28.2 s; ratio  1.20  implied b =  0.21
+    n_train  775: times 23.4, 23.3 s; mean    23.3 s; ratio  1.00  implied b = -0.00
+    least-squares b over all runs:  0.01
+
+  ga C2 (lambda = 1)
+    n_train  166: times 78.1, 74.3 s; mean    76.2 s; ratio  1.00
+    n_train  400: times 78.1, 73.8 s; mean    75.9 s; ratio  1.00  implied b = -0.00
+    n_train  775: times 77.7, 67.9 s; mean    72.8 s; ratio  0.96  implied b = -0.03
+    least-squares b over all runs: -0.03
