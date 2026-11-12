@@ -188,6 +188,8 @@ def nogueira_stability(subsets, d):
     kbar = sum(len(set(s)) for s in subsets) / M
     if kbar <= 0 or kbar >= d:
         return None
-    pf = np.array(list(counts.values()), dtype=float) / M
+    # sorted feature order: set/dict order of strings depends on PYTHONHASHSEED, and a different
+    # summation order changes the last bits of the result (outputs must be byte-identical across processes)
+    pf = np.array([counts[f] for f in sorted(counts)], dtype=float) / M
     s2_sum = (M / (M - 1) * pf * (1 - pf)).sum()  # features never selected contribute 0
     return _f(1 - (s2_sum / d) / ((kbar / d) * (1 - kbar / d)))

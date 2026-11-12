@@ -253,3 +253,35 @@ def test_refuses_to_clear_a_foreign_output_folder(study, tmp_path):
     (foreign / "keep.txt").write_text("x", encoding="utf-8")
     assert arun.main(["--config", str(cfg), "--results-dir", str(results), "--output-dir", str(foreign)]) == 2
     assert (foreign / "keep.txt").exists()
+
+
+def test_outputs_identical_across_processes_with_different_hash_seeds(study, tmp_path):
+    """Separate processes (different PYTHONHASHSEED, different output folders) give byte-identical outputs."""
+    import os
+    import sys
+    from pathlib import Path
+    cfg, results = study
+    repo = Path(__file__).resolve().parent.parent
+    snaps = []
+    for seed in ("1", "2"):
+        out = tmp_path / f"out_{seed}"
+        env = {**os.environ, "PYTHONHASHSEED": seed, "PYTHONPATH": str(repo / "src")}
+        proc = subprocess.run([sys.executable, "-m", "analysis.run", "--config", str(cfg), "--results-dir",
+                               str(results), "--output-dir", str(out)], env=env, capture_output=True, text=True)
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+        snaps.append(_snapshot(out))
+    assert snaps[0] == snaps[1]
+
+
+def test_stability_independent_of_hash_seed():
+    import os
+    import sys
+    from pathlib import Path
+    code = ("from analysis.stats import nogueira_stability as n; import numpy as np; "
+            "r = np.random.default_rng(0); "
+            "s = [[f'feat_{j}' for j in r.choice(300, 40, replace=False)] for _ in range(10)]; print(repr(n(s, 300)))")
+    repo = Path(__file__).resolve().parent.parent
+    outs = {subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True,
+                           env={**os.environ, "PYTHONHASHSEED": seed, "PYTHONPATH": str(repo / "src")}).stdout
+            for seed in ("1", "2", "3", "4")}
+    assert len(outs) == 1
