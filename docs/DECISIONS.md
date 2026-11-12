@@ -148,6 +148,11 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 - Fix rule, set before any rerun: max_iter = 10000 for the elastic net only, tol unchanged; adopted whatever the outcome; if warnings remain, max_iter stays 10000, the residual counts are reported, and there is no further iteration. Implemented in src/fsbench/baselines.py (ENET_MAX_ITER). No other selector, searcher or model changes.
 - Rerun: configs/dev_enet_fix.yaml reruns only baseline__enet on the 12 development datasets (repeat 0, folds 0-4) under its own plan path, results/runs/development/dev_enet_fix/; the original enet runs (plan development) are kept unchanged. The stage-2 choices (results/stage2/stage2_choices.json) use only search runs and are not affected.
 
+## 2026-11-13: elastic net max_iter fix adopted (development rerun)
+
+- 2026-11-13: elastic net baseline max_iter raised from 2000 to 10000 (commit a1535d6), fixed before rerun and adopted regardless of outcome. At 2000, 1,221 inner and 438 final fits warned, all at C >= 0.43; at 10000, none. Development enet rerun as plan dev_enet_fix; original runs kept. Fast test suite at HEAD: 131 passed, structural-bias results identical to VERIFICATION.md. No AUC was read for this decision.
+- Records: rerun committed in c8574f1 (60 runs, 0 errors, 0 warnings; validate_release.py passes for pilot, development and dev_enet_fix). Attribution by src/diag_enet_warnings.py, output results/diagnostics/enet_warnings.json (SHA-256 45fad676441f25cff41ebc69bc2ece600021cb3efe56cce1e26249d73db07eb9). The 438 final-fit warnings count the final fit at every C of the grid; the run files count only the final fit at the chosen C, so the original 1,228 warnings per the run files reconcile exactly as 1,221 inner + 7 final at the chosen C, with none from the L2 scoring models. The fast test suite was run with FSBENCH_RESULTS_DIR redirected, so the committed results/verification/ files are unchanged.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; pilot run on 3 development datasets (timing only); no development run yet.
