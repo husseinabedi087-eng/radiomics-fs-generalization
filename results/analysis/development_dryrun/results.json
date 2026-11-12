@@ -1,0 +1,1613 @@
+{
+  "code": {
+    "analysis_code_sha256": "b68f3b7181ff89af271022ad67b837be0c112597d547c30f96a7a17d0d396d58",
+    "head_at_run": "0b3da97a0a47162350fdfa46b5195887abb7639e"
+  },
+  "config": {
+    "control_values": {
+      "C1": 5,
+      "C2": 1.0,
+      "C3": 8
+    },
+    "plans": [
+      {
+        "file": "configs/development.yaml"
+      },
+      {
+        "file": "configs/dev_enet_fix.yaml",
+        "replaces": [
+          "baseline__enet"
+        ]
+      }
+    ],
+    "s2_plan": null,
+    "sensitivity_list": "configs/sensitivity_s1.txt",
+    "sensitivity_set": [
+      "Arita2018",
+      "Hosny2018A",
+      "Hosny2018B",
+      "Hosny2018C",
+      "Keek2020",
+      "LNDb",
+      "UCSF-PDGM",
+      "Wang2024"
+    ]
+  },
+  "configurations": {
+    "excluded_control_values": [
+      "bpso_S__C1 (C1 = 10)",
+      "bpso_S__C1 (C1 = 3)",
+      "de_S__C1 (C1 = 10)",
+      "de_S__C1 (C1 = 3)",
+      "ga__C1 (C1 = 10)",
+      "ga__C1 (C1 = 3)",
+      "gwo_S__C1 (C1 = 10)",
+      "gwo_S__C1 (C1 = 3)",
+      "bpso_S__C2 (C2 = 0.5)",
+      "bpso_S__C2 (C2 = 2)",
+      "de_S__C2 (C2 = 0.5)",
+      "de_S__C2 (C2 = 2)",
+      "ga__C2 (C2 = 0.5)",
+      "ga__C2 (C2 = 2)",
+      "gwo_S__C2 (C2 = 0.5)",
+      "gwo_S__C2 (C2 = 2)",
+      "bpso_S__C3 (C3 = 2)",
+      "bpso_S__C3 (C3 = 4)",
+      "de_S__C3 (C3 = 2)",
+      "de_S__C3 (C3 = 4)",
+      "ga__C3 (C3 = 2)",
+      "ga__C3 (C3 = 4)",
+      "gwo_S__C3 (C3 = 2)",
+      "gwo_S__C3 (C3 = 4)"
+    ],
+    "expected_full_design": [
+      "random__C0",
+      "hill_climb__C0",
+      "one_plus_one__C0",
+      "ga__C0",
+      "bpso_S__C0",
+      "bpso_V__C0",
+      "de_S__C0",
+      "de_V__C0",
+      "gwo_S__C0",
+      "gwo_V__C0",
+      "woa_S__C0",
+      "woa_V__C0",
+      "ga__C1",
+      "bpso_S__C1",
+      "de_S__C1",
+      "gwo_S__C1",
+      "ga__C2",
+      "bpso_S__C2",
+      "de_S__C2",
+      "gwo_S__C2",
+      "ga__C3",
+      "bpso_S__C3",
+      "de_S__C3",
+      "gwo_S__C3",
+      "random__C4",
+      "hill_climb__C4",
+      "one_plus_one__C4",
+      "ga__C4",
+      "bpso_S__C4",
+      "bpso_V__C4",
+      "de_S__C4",
+      "de_V__C4",
+      "gwo_S__C4",
+      "gwo_V__C4",
+      "woa_S__C4",
+      "woa_V__C4",
+      "baseline__all_k",
+      "baseline__l1",
+      "baseline__enet",
+      "baseline__ftest",
+      "baseline__mrmr",
+      "baseline__rf"
+    ],
+    "missing": [
+      "random__C0",
+      "hill_climb__C0",
+      "one_plus_one__C0",
+      "bpso_V__C0",
+      "de_V__C0",
+      "gwo_V__C0",
+      "woa_S__C0",
+      "woa_V__C0",
+      "random__C4",
+      "hill_climb__C4",
+      "one_plus_one__C4",
+      "bpso_V__C4",
+      "de_V__C4",
+      "gwo_V__C4",
+      "woa_S__C4",
+      "woa_V__C4"
+    ],
+    "note": "every analysis runs on the configurations present and lists the missing ones",
+    "present": [
+      "baseline__all_k",
+      "baseline__enet",
+      "baseline__ftest",
+      "baseline__l1",
+      "baseline__mrmr",
+      "baseline__rf",
+      "bpso_S__C0",
+      "bpso_S__C1",
+      "bpso_S__C2",
+      "bpso_S__C3",
+      "bpso_S__C4",
+      "de_S__C0",
+      "de_S__C1",
+      "de_S__C2",
+      "de_S__C3",
+      "de_S__C4",
+      "ga__C0",
+      "ga__C1",
+      "ga__C2",
+      "ga__C3",
+      "ga__C4",
+      "gwo_S__C0",
+      "gwo_S__C1",
+      "gwo_S__C2",
+      "gwo_S__C3",
+      "gwo_S__C4"
+    ]
+  },
+  "confirmatory": {
+    "H1": {
+      "configurations_missing": [
+        "random__C0",
+        "hill_climb__C0",
+        "one_plus_one__C0",
+        "bpso_V__C0",
+        "de_V__C0",
+        "gwo_V__C0",
+        "woa_S__C0",
+        "woa_V__C0"
+      ],
+      "configurations_used": [
+        "ga__C0",
+        "bpso_S__C0",
+        "de_S__C0",
+        "gwo_S__C0"
+      ],
+      "d_per_dataset": {
+        "Ahn2021": 0.10676586893498655,
+        "Arita2018": 0.13876475828889967,
+        "Brancato2023": 0.1499074074074074,
+        "Dai2023": 0.06032359199718537,
+        "HNSCC": 0.12152823297560142,
+        "Hosny2018B": 0.1286729571912762,
+        "ISPY1": 0.18798438403701562,
+        "Meningioma-SEG-CLASS": 0.26479020979020984,
+        "Ramella2018": 0.009953726828726807,
+        "WORC-CRLM": 0.3533769991582492,
+        "WORC-Desmoid": 0.08442308952370867,
+        "Wang2024": 0.1863446969696969
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          0.1026421321707831,
+          0.20262147071244457
+        ],
+        "mean": 0.14940299359191364,
+        "median": 0.13371885774008793,
+        "n_datasets": 12,
+        "rank_biserial": 1.0
+      },
+      "p_holm": 0.001220703125,
+      "p_raw": 0.000244140625,
+      "reject_holm": true,
+      "test": {
+        "alternative": "greater",
+        "method": "exact",
+        "n": 12,
+        "n_after_zero_removal": 12,
+        "p": 0.000244140625,
+        "statistic": 78.0
+      },
+      "wording": "optimism gap greater than zero"
+    },
+    "H2": {
+      "d_per_dataset": {
+        "Ahn2021": 0.009114219114219085,
+        "Arita2018": -0.00754955683315367,
+        "Brancato2023": 0.012499999999999928,
+        "Dai2023": 0.003839869281045738,
+        "HNSCC": -0.003076923076923088,
+        "Hosny2018B": 0.006623563218390777,
+        "ISPY1": 0.022843165606323462,
+        "Meningioma-SEG-CLASS": 0.009999999999999981,
+        "Ramella2018": -0.013472222222222219,
+        "WORC-CRLM": 0.0022321428571429186,
+        "WORC-Desmoid": 0.004168701668701619,
+        "Wang2024": -0.012083333333333335
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.002815306575806029,
+          0.008746078196259801
+        ],
+        "mean": 0.002928302190015933,
+        "median": 0.004004285474873678,
+        "n_datasets": 12,
+        "rank_biserial": 0.28205128205128205
+      },
+      "p_holm": 0.2119140625,
+      "p_raw": 0.2119140625,
+      "reject_holm": false,
+      "searchers_missing": [],
+      "searchers_used": [
+        "ga",
+        "bpso_S",
+        "de_S",
+        "gwo_S"
+      ],
+      "test": {
+        "alternative": "greater",
+        "method": "exact",
+        "n": 12,
+        "n_after_zero_removal": 12,
+        "p": 0.2119140625,
+        "statistic": 50.0
+      },
+      "wording": "no detectable difference"
+    },
+    "H3": {
+      "d_per_dataset": {
+        "Ahn2021": -0.003193473193473184,
+        "Arita2018": -0.015939034614923964,
+        "Brancato2023": 0.0914285714285713,
+        "Dai2023": 0.030189853719265414,
+        "HNSCC": -0.0013186813186812918,
+        "Hosny2018B": -0.09783524904214558,
+        "ISPY1": -0.04663260715892292,
+        "Meningioma-SEG-CLASS": -0.008928571428571397,
+        "Ramella2018": 0.03749999999999998,
+        "WORC-CRLM": -0.029910714285714346,
+        "WORC-Desmoid": 0.00912087912087911,
+        "Wang2024": 0.04500000000000004
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.026400407829369595,
+          0.027372774235423978
+        ],
+        "mean": 0.0007900811021902635,
+        "median": -0.002256077256077238,
+        "n_datasets": 12,
+        "rank_biserial": 0.0
+      },
+      "p_holm": 0.17626953125,
+      "p_raw": 0.088134765625,
+      "reject_holm": false,
+      "tost": {
+        "lower": {
+          "alternative": "greater",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.064697265625,
+          "statistic": 59.0
+        },
+        "margin": 0.02,
+        "p_tost": 0.088134765625,
+        "upper": {
+          "alternative": "less",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.088134765625,
+          "statistic": 21.0
+        }
+      },
+      "two_sided": {
+        "alternative": "two-sided",
+        "method": "exact",
+        "n": 12,
+        "n_after_zero_removal": 12,
+        "p": 1.0,
+        "statistic": 39.0
+      },
+      "wording": "no detectable difference"
+    },
+    "H4": {
+      "controls": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "optimism_gap_descriptive": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": -0.07046556010891088,
+          "C(control)[T.C2]": -0.05323186517735284,
+          "C(control)[T.C3]": -0.037708998225403065,
+          "C(control)[T.C4]": -0.023743744691828002,
+          "C(searcher)[T.de_S]": 0.0018198098805853433,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0007181288557850012,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.006107314999399575,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.005522653946934402,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 0.004790389531943298,
+          "C(searcher)[T.ga]": 0.03671764401411222,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.026345444915914354,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.02159751437743657,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.030854960456548192,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.010410568864208587,
+          "C(searcher)[T.gwo_S]": -0.013186352774167265,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.0021022318567064558,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0011698387980685642,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.006062811939530386,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.0018832440220743543,
+          "Intercept": -0.016318221947094064,
+          "log_budget": 0.013709858502583768,
+          "log_pn": 0.03227466821282032
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 7038.263307568401,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 6996.252201047944,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0007181288557850012,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.006107314999399575,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.005522653946934402,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 0.004790389531943298,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.026345444915914354,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.02159751437743657,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.030854960456548192,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.010410568864208587,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.0021022318567064558,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0011698387980685642,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.006062811939530386,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.0018832440220743543
+        },
+        "llf_full": 7038.263307568401,
+        "llf_reduced": 6996.252201047944,
+        "lr_statistic": 84.0222130409129,
+        "n_datasets": 12,
+        "n_partitions": 60,
+        "n_rows": 4800,
+        "p": 7.014322545791607e-13,
+        "response": "gap"
+      },
+      "outer_auc": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": -0.013547617196781398,
+          "C(control)[T.C2]": -0.006687696425077514,
+          "C(control)[T.C3]": -0.0018575690032370806,
+          "C(control)[T.C4]": 0.002461363410766321,
+          "C(searcher)[T.de_S]": -0.003626716993072884,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": 0.0007843309212590639,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0028858296841725636,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.0016858653919661142,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.0042471079778597255,
+          "C(searcher)[T.ga]": -0.0022687185210524883,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.0017181253574937196,
+          "C(searcher)[T.ga]:C(control)[T.C2]": 0.00916269021272554,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.0007453798170953898,
+          "C(searcher)[T.ga]:C(control)[T.C4]": -0.00580175573280849,
+          "C(searcher)[T.gwo_S]": -0.005794349841884746,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.01542168430018439,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.012492344763632209,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0013515091727328648,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.002493237003903854,
+          "Intercept": 0.6333976333692143,
+          "log_budget": 0.0015810661436496008,
+          "log_pn": 0.01754408680212262
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 7496.604715971294,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 7484.796226609211,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": 0.0007843309212590639,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0028858296841725636,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.0016858653919661142,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.0042471079778597255,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.0017181253574937196,
+          "C(searcher)[T.ga]:C(control)[T.C2]": 0.00916269021272554,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.0007453798170953898,
+          "C(searcher)[T.ga]:C(control)[T.C4]": -0.00580175573280849,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.01542168430018439,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.012492344763632209,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0013515091727328648,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.002493237003903854
+        },
+        "llf_full": 7496.604715971294,
+        "llf_reduced": 7484.796226609211,
+        "lr_statistic": 23.616978724166984,
+        "n_datasets": 12,
+        "n_partitions": 60,
+        "n_rows": 4800,
+        "p": 0.022921939648907177,
+        "response": "auc"
+      },
+      "p_holm": 0.06876581894672153,
+      "p_raw": 0.022921939648907177,
+      "reject_holm": false,
+      "searchers": [
+        "bpso_S",
+        "de_S",
+        "ga",
+        "gwo_S"
+      ],
+      "wording": "no detectable interaction"
+    },
+    "H5": {
+      "classical_used": [
+        "ga__C0",
+        "bpso_S__C0",
+        "de_S__C0"
+      ],
+      "configurations_missing": [
+        "gwo_V__C0",
+        "woa_S__C0",
+        "woa_V__C0",
+        "bpso_V__C0",
+        "de_V__C0"
+      ],
+      "d_per_dataset": {
+        "Ahn2021": -0.05688422688422701,
+        "Arita2018": -0.010432387112228936,
+        "Brancato2023": -0.0014285714285714457,
+        "Dai2023": 0.0022097727980078252,
+        "HNSCC": -0.014945054945055047,
+        "Hosny2018B": 0.04008939974457215,
+        "ISPY1": -0.012245356982199085,
+        "Meningioma-SEG-CLASS": -0.01571428571428579,
+        "Ramella2018": 0.0037962962962962976,
+        "WORC-CRLM": 0.015029761904761851,
+        "WORC-Desmoid": -0.024884004884004773,
+        "Wang2024": -0.009444444444444478
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.01970736649377654,
+          0.005456295499289349
+        ],
+        "mean": -0.007071091804281536,
+        "median": -0.009938415778336707,
+        "n_datasets": 12,
+        "rank_biserial": -0.38461538461538464
+      },
+      "metaphor_used": [
+        "gwo_S__C0"
+      ],
+      "p_holm": 0.0537109375,
+      "p_raw": 0.013427734375,
+      "reject_holm": false,
+      "test": {
+        "alternative": "less",
+        "method": "exact",
+        "n": 12,
+        "n_after_zero_removal": 12,
+        "p": 0.013427734375,
+        "statistic": 11.0
+      },
+      "tost_full": {
+        "lower": {
+          "alternative": "greater",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.338623046875,
+          "statistic": 45.0
+        },
+        "margin": 0.01,
+        "p_tost": 0.338623046875,
+        "upper": {
+          "alternative": "less",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.013427734375,
+          "statistic": 11.0
+        }
+      },
+      "two_sided": {
+        "alternative": "two-sided",
+        "method": "exact",
+        "n": 12,
+        "n_after_zero_removal": 12,
+        "p": 0.26611328125,
+        "statistic": 24.0
+      },
+      "wording": "no detectable difference"
+    },
+    "holm": {
+      "alpha": 0.05,
+      "family": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5"
+      ],
+      "note": "H3 enters with p_TOST; H4 with the likelihood-ratio p; missing p-values are left out",
+      "p_adjusted": [
+        0.001220703125,
+        0.2119140625,
+        0.17626953125,
+        0.06876581894672153,
+        0.0537109375
+      ],
+      "p_raw": [
+        0.000244140625,
+        0.2119140625,
+        0.088134765625,
+        0.022921939648907177,
+        0.013427734375
+      ],
+      "reject": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "definitions": {
+    "bootstrap": "95% percentile CI of the mean over datasets, 10,000 resamples, numpy default_rng(20261113)",
+    "holm": "statsmodels multipletests(method='holm'), alpha 0.05, over H1, H2, H3 (p_TOST), H4 (LRT), H5",
+    "optimism_gap": "standard inner AUC (unpenalized mean over the fixed 3-fold inner split) minus outer AUC",
+    "per_dataset_score": "mean over runs (outer folds x search seeds; rf: outer folds x model seeds)",
+    "primary_checkpoint": 2000,
+    "run_level_outer_auc": "outer AUC of the subset returned at the checkpoint; C4: knee record; baseline: returned subset at 2000",
+    "wilcoxon": "scipy.stats.wilcoxon(zero_method='wilcox', method='auto'); method actually used recorded"
+  },
+  "exploratory": true,
+  "group": "development",
+  "header": "EXPLORATORY (development data)",
+  "inputs": {
+    "datasets": [
+      "Ahn2021",
+      "Arita2018",
+      "Brancato2023",
+      "Dai2023",
+      "HNSCC",
+      "Hosny2018B",
+      "ISPY1",
+      "Meningioma-SEG-CLASS",
+      "Ramella2018",
+      "WORC-CRLM",
+      "WORC-Desmoid",
+      "Wang2024"
+    ],
+    "n_records": 3120,
+    "n_run_files": 2940,
+    "sha256_of_sorted_path_hash_list": "f185ab57311947dfafb4de300f5d36e78aec3ea30100bf2941a2d2330233f620"
+  },
+  "label": "development_dryrun",
+  "secondary": {
+    "anytime": "tables/anytime.csv",
+    "brier": {
+      "H1": {
+        "not_applicable": "no inner Brier score exists"
+      },
+      "H2": {
+        "d_per_dataset": {
+          "Ahn2021": -0.002543676923152341,
+          "Arita2018": 0.005814066239785996,
+          "Brancato2023": 0.00032150946152768867,
+          "Dai2023": 0.0032091704489885867,
+          "HNSCC": -0.0011981859769227207,
+          "Hosny2018B": -0.004709948206577351,
+          "ISPY1": -0.011041006335198278,
+          "Meningioma-SEG-CLASS": -0.005210565620379803,
+          "Ramella2018": 0.008805341196743706,
+          "WORC-CRLM": -0.0014978729851100464,
+          "WORC-Desmoid": -0.004004439737922132,
+          "Wang2024": 0.008682887344001758
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            -0.003540864552697642,
+            0.002981608316675895
+          ],
+          "mean": -0.00028106009118457803,
+          "median": -0.0013480294810163836,
+          "n_datasets": 12,
+          "rank_biserial": -0.07692307692307693
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.85009765625,
+          "statistic": 36.0
+        }
+      },
+      "H3": {
+        "d_per_dataset": {
+          "Ahn2021": 0.0018427983731092445,
+          "Arita2018": 0.006139441000445972,
+          "Brancato2023": -0.006750801511241661,
+          "Dai2023": -0.010687463261615793,
+          "HNSCC": 0.005772554379245953,
+          "Hosny2018B": 0.04904364844259973,
+          "ISPY1": 0.03434964726124806,
+          "Meningioma-SEG-CLASS": 0.02854666792555538,
+          "Ramella2018": -0.023389205934357143,
+          "WORC-CRLM": 0.015718658049893697,
+          "WORC-Desmoid": -0.001483039690299004,
+          "Wang2024": -0.03264551568832491
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            -0.006758958320159048,
+            0.018576954138494507
+          ],
+          "mean": 0.00553811577885496,
+          "median": 0.003807676376177599,
+          "n_datasets": 12,
+          "rank_biserial": 0.23076923076923078
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.5185546875,
+          "statistic": 30.0
+        }
+      },
+      "H4": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": 0.007374766116374123,
+          "C(control)[T.C2]": 0.0061453923340407555,
+          "C(control)[T.C3]": 0.002789978213935076,
+          "C(control)[T.C4]": -0.0002158504223829668,
+          "C(searcher)[T.de_S]": 0.0009929896765259575,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0015595828091264268,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0011431989970743326,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.001434527653770049,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 8.06079193226708e-05,
+          "C(searcher)[T.ga]": 0.0012673602457601964,
+          "C(searcher)[T.ga]:C(control)[T.C1]": 0.0005313298411508869,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.0048404724610172,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.002895860768463711,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.002228404247601831,
+          "C(searcher)[T.gwo_S]": 0.0022410461559528643,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.006418775154387745,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": -0.008557575964306612,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.0014061629598546216,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.001750221446945968,
+          "Intercept": 0.23834533217309742,
+          "log_budget": -0.0006718303845730265,
+          "log_pn": 0.007548188771807942
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 10772.156707892718,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 10759.900928886978,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0015595828091264268,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0011431989970743326,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.001434527653770049,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 8.06079193226708e-05,
+          "C(searcher)[T.ga]:C(control)[T.C1]": 0.0005313298411508869,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.0048404724610172,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.002895860768463711,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.002228404247601831,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.006418775154387745,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": -0.008557575964306612,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.0014061629598546216,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.001750221446945968
+        },
+        "llf_full": 10772.156707892718,
+        "llf_reduced": 10759.900928886978,
+        "lr_statistic": 24.511558011479792,
+        "n_datasets": 12,
+        "n_partitions": 60,
+        "n_rows": 4800,
+        "p": 0.017314792751199477,
+        "response": "brier"
+      },
+      "H5": {
+        "d_per_dataset": {
+          "Ahn2021": 0.01900529220428654,
+          "Arita2018": 0.0103604867894527,
+          "Brancato2023": -0.011850362900241884,
+          "Dai2023": 0.004286265772500658,
+          "HNSCC": 0.004788637305437493,
+          "Hosny2018B": -0.01950284611595357,
+          "ISPY1": 0.002918404425304888,
+          "Meningioma-SEG-CLASS": -0.0031820397262120603,
+          "Ramella2018": 0.002737225895869111,
+          "WORC-CRLM": -0.011916706442992697,
+          "WORC-Desmoid": 0.01943996727318814,
+          "Wang2024": 0.005361508227246736
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            -0.0047251230842149375,
+            0.008256057934492916
+          ],
+          "mean": 0.0018704860589905045,
+          "median": 0.003602335098902773,
+          "n_datasets": 12,
+          "rank_biserial": 0.1794871794871795
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 12,
+          "n_after_zero_removal": 12,
+          "p": 0.6220703125,
+          "statistic": 32.0
+        }
+      }
+    },
+    "friedman": {
+      "context_only": true,
+      "n_datasets": 12,
+      "n_pairs": 325,
+      "n_pairs_rejected_holm": 0,
+      "p": 0.3934361222017696,
+      "selectors": [
+        "baseline__all_k",
+        "baseline__enet",
+        "baseline__ftest",
+        "baseline__l1",
+        "baseline__mrmr",
+        "baseline__rf",
+        "bpso_S__C0",
+        "bpso_S__C1",
+        "bpso_S__C2",
+        "bpso_S__C3",
+        "bpso_S__C4",
+        "de_S__C0",
+        "de_S__C1",
+        "de_S__C2",
+        "de_S__C3",
+        "de_S__C4",
+        "ga__C0",
+        "ga__C1",
+        "ga__C2",
+        "ga__C3",
+        "ga__C4",
+        "gwo_S__C0",
+        "gwo_S__C1",
+        "gwo_S__C2",
+        "gwo_S__C3",
+        "gwo_S__C4"
+      ],
+      "statistic": 26.267491236569956
+    },
+    "label": "secondary analyses; not in the Holm family",
+    "random_vs_guided": {
+      "configurations_missing": [
+        "random__C0"
+      ],
+      "reason": "random__C0 not in the plans",
+      "skipped": true
+    },
+    "size_stability": {
+      "method": "Nogueira et al. (2018) across outer folds per dataset x configuration x seed index, averaged over seed indices; features identified by original column name (stored in the run files); d = n_features after the data-handling rules",
+      "summary": [
+        {
+          "config": "baseline__all_k",
+          "mean_size": 184.41666666666666,
+          "mean_stability": 0.5743969696788144,
+          "n_datasets": 12,
+          "n_undefined_stability": 2
+        },
+        {
+          "config": "baseline__enet",
+          "mean_size": 39.266666666666666,
+          "mean_stability": 0.2573435288939186,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__ftest",
+          "mean_size": 87.25,
+          "mean_stability": 0.27586027149341946,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__l1",
+          "mean_size": 20.633333333333333,
+          "mean_stability": 0.24053554690416612,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__mrmr",
+          "mean_size": 58.35,
+          "mean_stability": 0.1580617409840703,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__rf",
+          "mean_size": 65.39444444444445,
+          "mean_stability": 0.1466973613942325,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C0",
+          "mean_size": 84.46666666666667,
+          "mean_stability": 0.1825296730599332,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C1",
+          "mean_size": 88.58333333333333,
+          "mean_stability": 0.1880329247363254,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C2",
+          "mean_size": 83.3,
+          "mean_stability": 0.18581566464884014,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C3",
+          "mean_size": 86.71666666666665,
+          "mean_stability": 0.1897812794575026,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C4",
+          "mean_size": 73.26666666666667,
+          "mean_stability": 0.15967908906462888,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C0",
+          "mean_size": 83.51666666666667,
+          "mean_stability": 0.1891476464062324,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C1",
+          "mean_size": 87.56666666666666,
+          "mean_stability": 0.17812221045289747,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C2",
+          "mean_size": 82.16666666666667,
+          "mean_stability": 0.19475728755691243,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C3",
+          "mean_size": 90.0,
+          "mean_stability": 0.1860412997688049,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C4",
+          "mean_size": 75.68333333333334,
+          "mean_stability": 0.16358818838627387,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C0",
+          "mean_size": 73.18333333333334,
+          "mean_stability": 0.16881401226767878,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C1",
+          "mean_size": 86.13333333333333,
+          "mean_stability": 0.17190189249347898,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C2",
+          "mean_size": 66.7,
+          "mean_stability": 0.1789464898213157,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C3",
+          "mean_size": 88.35000000000001,
+          "mean_stability": 0.18914594244606028,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C4",
+          "mean_size": 68.46666666666667,
+          "mean_stability": 0.16446845406213698,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C0",
+          "mean_size": 86.63333333333333,
+          "mean_stability": 0.18705624755247827,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C1",
+          "mean_size": 88.96666666666665,
+          "mean_stability": 0.19870279809759542,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C2",
+          "mean_size": 85.60000000000001,
+          "mean_stability": 0.20495063334548935,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C3",
+          "mean_size": 89.5,
+          "mean_stability": 0.1954926821995436,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C4",
+          "mean_size": 77.2,
+          "mean_stability": 0.16443294014264773,
+          "n_datasets": 12,
+          "n_undefined_stability": 0
+        }
+      ]
+    }
+  },
+  "sensitivity": {
+    "S1": {
+      "datasets_remaining": [
+        "Ahn2021",
+        "Brancato2023",
+        "Dai2023",
+        "HNSCC",
+        "ISPY1",
+        "Meningioma-SEG-CLASS",
+        "Ramella2018",
+        "WORC-CRLM",
+        "WORC-Desmoid"
+      ],
+      "excluded_datasets": [
+        "Arita2018",
+        "Hosny2018A",
+        "Hosny2018B",
+        "Hosny2018C",
+        "Keek2020",
+        "LNDb",
+        "UCSF-PDGM",
+        "Wang2024"
+      ],
+      "label": "sensitivity analysis; not in the Holm family",
+      "results": {
+        "H1": {
+          "configurations_missing": [
+            "random__C0",
+            "hill_climb__C0",
+            "one_plus_one__C0",
+            "bpso_V__C0",
+            "de_V__C0",
+            "gwo_V__C0",
+            "woa_S__C0",
+            "woa_V__C0"
+          ],
+          "configurations_used": [
+            "ga__C0",
+            "bpso_S__C0",
+            "de_S__C0",
+            "gwo_S__C0"
+          ],
+          "d_per_dataset": {
+            "Ahn2021": 0.10676586893498655,
+            "Brancato2023": 0.1499074074074074,
+            "Dai2023": 0.06032359199718537,
+            "HNSCC": 0.12152823297560142,
+            "ISPY1": 0.18798438403701562,
+            "Meningioma-SEG-CLASS": 0.26479020979020984,
+            "Ramella2018": 0.009953726828726807,
+            "WORC-CRLM": 0.3533769991582492,
+            "WORC-Desmoid": 0.08442308952370867
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              0.08715716312483299,
+              0.21775231111787552
+            ],
+            "mean": 0.14878372340589896,
+            "median": 0.12152823297560142,
+            "n_datasets": 9,
+            "rank_biserial": 1.0
+          },
+          "p_holm": 0.009765625,
+          "p_raw": 0.001953125,
+          "reject_holm": true,
+          "test": {
+            "alternative": "greater",
+            "method": "exact",
+            "n": 9,
+            "n_after_zero_removal": 9,
+            "p": 0.001953125,
+            "statistic": 45.0
+          },
+          "wording": "optimism gap greater than zero"
+        },
+        "H2": {
+          "d_per_dataset": {
+            "Ahn2021": 0.009114219114219085,
+            "Brancato2023": 0.012499999999999928,
+            "Dai2023": 0.003839869281045738,
+            "HNSCC": -0.003076923076923088,
+            "ISPY1": 0.022843165606323462,
+            "Meningioma-SEG-CLASS": 0.009999999999999981,
+            "Ramella2018": -0.013472222222222219,
+            "WORC-CRLM": 0.0022321428571429186,
+            "WORC-Desmoid": 0.004168701668701619
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.001025367186825533,
+              0.01149640415356787
+            ],
+            "mean": 0.005349883692031936,
+            "median": 0.004168701668701619,
+            "n_datasets": 9,
+            "rank_biserial": 0.5555555555555556
+          },
+          "p_holm": 0.24609375,
+          "p_raw": 0.08203125,
+          "reject_holm": false,
+          "searchers_missing": [],
+          "searchers_used": [
+            "ga",
+            "bpso_S",
+            "de_S",
+            "gwo_S"
+          ],
+          "test": {
+            "alternative": "greater",
+            "method": "exact",
+            "n": 9,
+            "n_after_zero_removal": 9,
+            "p": 0.08203125,
+            "statistic": 35.0
+          },
+          "wording": "no detectable difference"
+        },
+        "H3": {
+          "d_per_dataset": {
+            "Ahn2021": -0.003193473193473184,
+            "Brancato2023": 0.0914285714285713,
+            "Dai2023": 0.030189853719265414,
+            "HNSCC": -0.0013186813186812918,
+            "ISPY1": -0.04663260715892292,
+            "Meningioma-SEG-CLASS": -0.008928571428571397,
+            "Ramella2018": 0.03749999999999998,
+            "WORC-CRLM": -0.029910714285714346,
+            "WORC-Desmoid": 0.00912087912087911
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.015660597524632607,
+              0.0357206645063058
+            ],
+            "mean": 0.00869502854259474,
+            "median": -0.0013186813186812918,
+            "n_datasets": 9,
+            "rank_biserial": 0.15555555555555556
+          },
+          "p_holm": 0.30078125,
+          "p_raw": 0.150390625,
+          "reject_holm": false,
+          "tost": {
+            "lower": {
+              "alternative": "greater",
+              "method": "exact",
+              "n": 9,
+              "n_after_zero_removal": 9,
+              "p": 0.02734375,
+              "statistic": 39.0
+            },
+            "margin": 0.02,
+            "p_tost": 0.150390625,
+            "upper": {
+              "alternative": "less",
+              "method": "exact",
+              "n": 9,
+              "n_after_zero_removal": 9,
+              "p": 0.150390625,
+              "statistic": 13.0
+            }
+          },
+          "two_sided": {
+            "alternative": "two-sided",
+            "method": "exact",
+            "n": 9,
+            "n_after_zero_removal": 9,
+            "p": 0.734375,
+            "statistic": 19.0
+          },
+          "wording": "no detectable difference"
+        },
+        "H4": {
+          "controls": [
+            "C0",
+            "C1",
+            "C2",
+            "C3",
+            "C4"
+          ],
+          "optimism_gap_descriptive": {
+            "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+            "covariates_dropped_as_constant": [],
+            "df": 12,
+            "estimable": true,
+            "fe_params_full": {
+              "C(control)[T.C1]": -0.07512605613709765,
+              "C(control)[T.C2]": -0.057876276565289986,
+              "C(control)[T.C3]": -0.03783457064346343,
+              "C(control)[T.C4]": -0.018191530342821022,
+              "C(searcher)[T.de_S]": 0.0015512788385688672,
+              "C(searcher)[T.de_S]:C(control)[T.C1]": -0.003804017176187063,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": 0.003990404009693707,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": -0.008557254999172995,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": -0.006820053258630492,
+              "C(searcher)[T.ga]": 0.037167670281096014,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.029767226243072525,
+              "C(searcher)[T.ga]:C(control)[T.C2]": -0.02478539948877929,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.02576620043404376,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.002334002109392103,
+              "C(searcher)[T.gwo_S]": -0.018705682635612876,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.007703864297842183,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.004959645985490378,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.009462957017413839,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.005922560227060903,
+              "Intercept": -0.01951211151572532,
+              "log_budget": 0.013568996099423242,
+              "log_pn": 0.0332399355382273
+            },
+            "fit_full": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 5241.348533346096,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "fit_reduced": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 5208.1672890061855,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+            "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+            "interaction_coefficients": {
+              "C(searcher)[T.de_S]:C(control)[T.C1]": -0.003804017176187063,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": 0.003990404009693707,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": -0.008557254999172995,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": -0.006820053258630492,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.029767226243072525,
+              "C(searcher)[T.ga]:C(control)[T.C2]": -0.02478539948877929,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.02576620043404376,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.002334002109392103,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.007703864297842183,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.004959645985490378,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.009462957017413839,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.005922560227060903
+            },
+            "llf_full": 5241.348533346096,
+            "llf_reduced": 5208.1672890061855,
+            "lr_statistic": 66.36248867982067,
+            "n_datasets": 9,
+            "n_partitions": 45,
+            "n_rows": 3600,
+            "p": 1.5249594250522798e-09,
+            "response": "gap"
+          },
+          "outer_auc": {
+            "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+            "covariates_dropped_as_constant": [],
+            "df": 12,
+            "estimable": true,
+            "fe_params_full": {
+              "C(control)[T.C1]": -0.014248175030768749,
+              "C(control)[T.C2]": -0.00418907994899136,
+              "C(control)[T.C3]": -0.0037752896549551013,
+              "C(control)[T.C4]": -0.004480272817583614,
+              "C(searcher)[T.de_S]": -0.003528555518364586,
+              "C(searcher)[T.de_S]:C(control)[T.C1]": 0.002008422159673421,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0012907922007186848,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": 8.23728517656774e-05,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": 0.006556850786350686,
+              "C(searcher)[T.ga]": -0.002700673239028917,
+              "C(searcher)[T.ga]:C(control)[T.C1]": 0.0011731879287563576,
+              "C(searcher)[T.ga]:C(control)[T.C2]": 0.009042532385755617,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.006158732917902621,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0015382107091235807,
+              "C(searcher)[T.gwo_S]": -0.003961522894110169,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.011602900318285557,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.009741955026397733,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.001103034806165205,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.00607420949864834,
+              "Intercept": 0.6256598555158545,
+              "log_budget": 0.0023536256752331904,
+              "log_pn": 0.018370539340603197
+            },
+            "fit_full": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 5656.349526691258,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "fit_reduced": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 5649.936218837827,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+            "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+            "interaction_coefficients": {
+              "C(searcher)[T.de_S]:C(control)[T.C1]": 0.002008422159673421,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0012907922007186848,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": 8.23728517656774e-05,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": 0.006556850786350686,
+              "C(searcher)[T.ga]:C(control)[T.C1]": 0.0011731879287563576,
+              "C(searcher)[T.ga]:C(control)[T.C2]": 0.009042532385755617,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.006158732917902621,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0015382107091235807,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.011602900318285557,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.009741955026397733,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.001103034806165205,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.00607420949864834
+            },
+            "llf_full": 5656.349526691258,
+            "llf_reduced": 5649.936218837827,
+            "lr_statistic": 12.826615706861048,
+            "n_datasets": 9,
+            "n_partitions": 45,
+            "n_rows": 3600,
+            "p": 0.381768019095253,
+            "response": "auc"
+          },
+          "p_holm": 0.381768019095253,
+          "p_raw": 0.381768019095253,
+          "reject_holm": false,
+          "searchers": [
+            "bpso_S",
+            "de_S",
+            "ga",
+            "gwo_S"
+          ],
+          "wording": "no detectable interaction"
+        },
+        "H5": {
+          "classical_used": [
+            "ga__C0",
+            "bpso_S__C0",
+            "de_S__C0"
+          ],
+          "configurations_missing": [
+            "gwo_V__C0",
+            "woa_S__C0",
+            "woa_V__C0",
+            "bpso_V__C0",
+            "de_V__C0"
+          ],
+          "d_per_dataset": {
+            "Ahn2021": -0.05688422688422701,
+            "Brancato2023": -0.0014285714285714457,
+            "Dai2023": 0.0022097727980078252,
+            "HNSCC": -0.014945054945055047,
+            "ISPY1": -0.012245356982199085,
+            "Meningioma-SEG-CLASS": -0.01571428571428579,
+            "Ramella2018": 0.0037962962962962976,
+            "WORC-CRLM": 0.015029761904761851,
+            "WORC-Desmoid": -0.024884004884004773
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.025140790345705263,
+              -0.00023493446367654856
+            ],
+            "mean": -0.011673963315475242,
+            "median": -0.012245356982199085,
+            "n_datasets": 9,
+            "rank_biserial": -0.5111111111111111
+          },
+          "metaphor_used": [
+            "gwo_S__C0"
+          ],
+          "p_holm": 0.015625,
+          "p_raw": 0.00390625,
+          "reject_holm": true,
+          "test": {
+            "alternative": "less",
+            "method": "exact",
+            "n": 9,
+            "n_after_zero_removal": 9,
+            "p": 0.00390625,
+            "statistic": 1.0
+          },
+          "tost_full": {
+            "lower": {
+              "alternative": "greater",
+              "method": "exact",
+              "n": 9,
+              "n_after_zero_removal": 9,
+              "p": 0.5,
+              "statistic": 23.0
+            },
+            "margin": 0.01,
+            "p_tost": 0.5,
+            "upper": {
+              "alternative": "less",
+              "method": "exact",
+              "n": 9,
+              "n_after_zero_removal": 9,
+              "p": 0.00390625,
+              "statistic": 1.0
+            }
+          },
+          "two_sided": {
+            "alternative": "two-sided",
+            "method": "exact",
+            "n": 9,
+            "n_after_zero_removal": 9,
+            "p": 0.203125,
+            "statistic": 11.0
+          },
+          "wording": "not better than classical searchers by more than 0.01 AUC"
+        },
+        "holm": {
+          "alpha": 0.05,
+          "family": [
+            "H1",
+            "H2",
+            "H3",
+            "H4",
+            "H5"
+          ],
+          "note": "H3 enters with p_TOST; H4 with the likelihood-ratio p; missing p-values are left out",
+          "p_adjusted": [
+            0.009765625,
+            0.24609375,
+            0.30078125,
+            0.381768019095253,
+            0.015625
+          ],
+          "p_raw": [
+            0.001953125,
+            0.08203125,
+            0.150390625,
+            0.381768019095253,
+            0.00390625
+          ],
+          "reject": [
+            true,
+            false,
+            false,
+            false,
+            true
+          ]
+        }
+      }
+    },
+    "S2": {
+      "reason": "no S2 plan named in the config",
+      "skipped": true
+    }
+  },
+  "validation_report": [
+    "manifest rows: 3420; distinct run files: 3420",
+    "check 1: 3420 files re-hashed; ok 3420, not ok 0",
+    "check 2: plan development: 2880/2880 expected runs present (552 dataset x configuration cells); 2880 files re-hashed; path or payload mismatches 0; commits ['3b69ca5']",
+    "check 2: plan dev_enet_fix: 60/60 expected runs present (12 dataset x configuration cells); 60 files re-hashed; path or payload mismatches 0; commits ['a1535d6']",
+    "check 2: plans dev_enet_fix / development: 0 shared paths",
+    "check 2: manifest entries outside the given plans: 480",
+    "check 3: 3 distinct commits checked",
+    "check 4: 0 confirmation runs; stage 2 committed: no",
+    "",
+    "All checks passed."
+  ],
+  "versions": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "patsy": "1.0.3",
+    "python": "3.12.10",
+    "scipy": "1.18.1",
+    "statsmodels": "0.14.6"
+  }
+}
