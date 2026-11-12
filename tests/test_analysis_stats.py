@@ -146,3 +146,19 @@ def test_control_values_required_when_a_control_has_several():
     assert list(kept["control_value"].fillna(-1)) == [5.0, -1] and excluded == ["ga__C1 (C1 = 3)"]
     with pytest.raises(Refused):
         an.select_control_values(df, {"C1": 10})
+
+
+def test_mixed_model_warnings_recorded_and_not_estimable_rule(monkeypatch):
+    res = st.mixed_lrt(_h4_frame(True, SEED), "auc")
+    for fit in res["fit_full"] + res["fit_reduced"]:
+        assert isinstance(fit["warnings"], list)
+        assert all(set(w) == {"category", "message"} for w in fit["warnings"])
+    assert res["estimable"] and res["acceptance_rule"] == st.ACCEPTANCE_RULE
+    # neither optimizer converges -> not estimable, p = 1, enters Holm, wording "not estimable"
+    monkeypatch.setattr(st, "_fit_mixed", lambda f, d, r: (None, [{"method": "lbfgs", "converged": False},
+                                                                  {"method": "powell", "converged": False}]))
+    bad = st.mixed_lrt(_h4_frame(True, SEED), "auc")
+    assert bad["estimable"] is False and bad["p"] == 1.0
+    out = an.confirmatory(an.run_table(records(8, 0.03, SEED)))
+    assert out["H4"]["p_raw"] == 1.0 and out["H4"]["wording"] == "not estimable"
+    assert out["holm"]["p_raw"][3] == 1.0 and out["H4"]["p_holm"] == 1.0

@@ -153,6 +153,11 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 - 2026-11-13: elastic net baseline max_iter raised from 2000 to 10000 (commit a1535d6), fixed before rerun and adopted regardless of outcome. At 2000, 1,221 inner and 438 final fits warned, all at C >= 0.43; at 10000, none. Development enet rerun as plan dev_enet_fix; original runs kept. Fast test suite at HEAD: 131 passed, structural-bias results identical to VERIFICATION.md. No AUC was read for this decision.
 - Records: rerun committed in c8574f1 (60 runs, 0 errors, 0 warnings; validate_release.py passes for pilot, development and dev_enet_fix). Attribution by src/diag_enet_warnings.py, output results/diagnostics/enet_warnings.json (SHA-256 45fad676441f25cff41ebc69bc2ece600021cb3efe56cce1e26249d73db07eb9). The 438 final-fit warnings count the final fit at every C of the grid; the run files count only the final fit at the chosen C, so the original 1,228 warnings per the run files reconcile exactly as 1,221 inner + 7 final at the chosen C, with none from the L2 scoring models. The fast test suite was run with FSBENCH_RESULTS_DIR redirected, so the committed results/verification/ files are unchanged.
 
+## 2026-11-13: H4 mixed-model acceptance rule (analysis code, before any confirmatory run)
+
+- A mixed-model fit is accepted when statsmodels reports converged = True. Optimizer order: lbfgs first; powell only if lbfgs does not converge (or raises). Every warning raised during a fit is recorded verbatim (category and message) in results.json and does not reject the fit. If neither optimizer converges for the full or the reduced model, H4 is reported as "not estimable" and enters the Holm family with p = 1. Implemented in src/analysis/stats.py (ACCEPTANCE_RULE) and tested in tests/test_analysis_stats.py.
+- Fixed before any confirmatory run, after the exploratory development dry run, in which every fit converged with lbfgs and logged one ConvergenceWarning whose text had not been recorded.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; pilot run on 3 development datasets (timing only); no development run yet.

@@ -1,0 +1,9 @@
+# Confirmatory analysis (PREREG_STAGE1 section 8, amendment 1; section 11 S1 and S2).
+# Outputs carry "CONFIRMATORY (confirmation data)". Refuses to run unless validate_release passes, which
+# requires docs/PREREG_STAGE2.sha256 to be committed before any confirmation run.
+label: confirmation
+plans:
+  - file: configs/confirmation.yaml
+s2_plan: configs/confirmation_s2.yaml
+control_values: {C1: 5, C2: 1.0, C3: 8}   # stage-2 choices (results/stage2/stage2_choices.json)
+sensitivity_list: configs/sensitivity_s1.txt

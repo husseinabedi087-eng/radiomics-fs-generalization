@@ -101,6 +101,8 @@ def _wording(h, res):
             return "ga + C4 higher than L1" if res["effect"]["median"] > 0 else "ga + C4 lower than L1"
         return "no detectable difference"
     if h == "H4":
+        if not res["outer_auc"].get("estimable", True):
+            return "not estimable"
         return "searcher-by-control interaction detected" if rej else "no detectable interaction"
     if h == "H5":
         if rej:

@@ -100,31 +100,55 @@ def holm(pvalues, alpha=ALPHA):
     return adj, rej
 
 
+# H4 acceptance rule (fixed on 2026-11-13, before any confirmatory run; docs/DECISIONS.md):
+#   - optimizer order: lbfgs first; powell only if lbfgs does not converge (or raises);
+#   - a fit is accepted when statsmodels reports converged = True;
+#   - every warning raised during a fit is recorded verbatim (category and message) and does not
+#     reject the fit (deprecation notices from library imports are not fit warnings and are skipped);
+#   - if neither optimizer converges for the full or the reduced model, H4 is reported as
+#     "not estimable" and enters the Holm family with p = 1.
+ACCEPTANCE_RULE = ("accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not "
+                   "converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is "
+                   "'not estimable' and enters Holm with p = 1")
+_SKIP = (DeprecationWarning, PendingDeprecationWarning, FutureWarning)
+
+
 def _fit_mixed(formula, data, response):
-    """ML fit with optimizer order lbfgs, then powell if lbfgs does not converge."""
+    """ML fit following ACCEPTANCE_RULE. Returns (result or None, tried) where tried lists every attempt
+    with its optimizer, convergence flag, log-likelihood and verbatim warnings."""
     import statsmodels.formula.api as smf
-    from statsmodels.tools.sm_exceptions import ConvergenceWarning
     tried = []
-    res = None
     for method in ("lbfgs", "powell"):
+        res, error = None, None
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter("always")
-            model = smf.mixedlm(f"{response} ~ {formula}", data, groups=data["dataset"], re_formula="1",
-                                vc_formula={"partition": "0 + C(partition)"})
-            res = model.fit(reml=False, method=method)
-        n_conv = sum(issubclass(w.category, ConvergenceWarning) for w in caught)
-        tried.append({"method": method, "converged": bool(res.converged), "convergence_warnings": n_conv,
-                      "llf": _f(res.llf)})
-        if res.converged:
-            break
-    return res, tried
+            try:
+                model = smf.mixedlm(f"{response} ~ {formula}", data, groups=data["dataset"], re_formula="1",
+                                    vc_formula={"partition": "0 + C(partition)"})
+                res = model.fit(reml=False, method=method)
+            except (np.linalg.LinAlgError, ValueError) as e:
+                error = f"{type(e).__name__}: {e}"
+        msgs = [{"category": w.category.__name__, "message": str(w.message)} for w in caught
+                if not issubclass(w.category, _SKIP)]
+        converged = bool(res is not None and res.converged)
+        tried.append({"method": method, "converged": converged, "error": error,
+                      "llf": _f(res.llf) if res is not None else None,
+                      "convergence_warnings": sum(m["category"] == "ConvergenceWarning" for m in msgs),
+                      "warnings": msgs})
+        if converged:
+            return res, tried
+    return None, tried
+
+
+# warm the statsmodels import so that import-time notices never fall inside a recorded fit
+import statsmodels.formula.api  # noqa: E402,F401
 
 
 def mixed_lrt(data, response):
     """H4: C(searcher) * C(control) + log_budget + log_pn vs the model without the interaction; LRT with
     df = difference in fixed-effect count. Random intercept for dataset, variance component for outer
-    partition within dataset. A covariate that is constant in the data is dropped (recorded); a fit that
-    fails is recorded as fit_error with p = None."""
+    partition within dataset. A covariate that is constant in the data is dropped (recorded). Fits follow
+    ACCEPTANCE_RULE; if the full or the reduced model is not estimable, p = 1 and estimable = False."""
     covariates = [c for c in ("log_budget", "log_pn") if data[c].nunique() > 1]
     dropped = [c for c in ("log_budget", "log_pn") if c not in covariates]  # constant: collinear with intercept
     tail = "".join(f" + {c}" for c in covariates)
@@ -132,21 +156,20 @@ def mixed_lrt(data, response):
     red_f = "C(searcher) + C(control)" + tail
     data = data.sort_values(["dataset", "partition", "searcher", "control", "checkpoint", "seed_index"],
                             kind="stable").reset_index(drop=True)
+    full, full_tried = _fit_mixed(full_f, data, response)
+    red, red_tried = _fit_mixed(red_f, data, response)
     base = {"response": response, "formula_full": full_f, "formula_reduced": red_f,
-            "covariates_dropped_as_constant": dropped, "n_rows": int(len(data))}
-    try:
-        full, full_tried = _fit_mixed(full_f, data, response)
-        red, red_tried = _fit_mixed(red_f, data, response)
-    except (np.linalg.LinAlgError, ValueError) as e:
-        return {**base, "fit_error": f"{type(e).__name__}: {e}", "p": None}
+            "covariates_dropped_as_constant": dropped, "n_rows": int(len(data)),
+            "n_datasets": int(data["dataset"].nunique()),
+            "n_partitions": int(data[["dataset", "partition"]].drop_duplicates().shape[0]),
+            "acceptance_rule": ACCEPTANCE_RULE, "fit_full": full_tried, "fit_reduced": red_tried}
+    if full is None or red is None:
+        return {**base, "estimable": False, "p": 1.0, "note": "not estimable: enters Holm with p = 1"}
     df = int(len(full.fe_params) - len(red.fe_params))
     lr = 2.0 * (full.llf - red.llf)
     p = stats.chi2.sf(lr, df) if df > 0 else np.nan
     inter = {k: _f(v) for k, v in full.fe_params.items() if ":" in k}
-    return {**base,
-            "n_datasets": int(data["dataset"].nunique()), "n_partitions": int(data[["dataset", "partition"]]
-                                                                            .drop_duplicates().shape[0]),
-            "fit_full": full_tried, "fit_reduced": red_tried, "llf_full": _f(full.llf), "llf_reduced": _f(red.llf),
+    return {**base, "estimable": True, "llf_full": _f(full.llf), "llf_reduced": _f(red.llf),
             "lr_statistic": _f(lr), "df": df, "p": _f(p), "interaction_coefficients": inter,
             "fe_params_full": {k: _f(v) for k, v in full.fe_params.items()}}
 

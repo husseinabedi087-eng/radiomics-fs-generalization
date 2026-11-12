@@ -1,6 +1,6 @@
 """Analysis entry point.
 
-    python -m analysis.run --config configs/analysis_<label>.yaml [--results-dir results]
+    python -m analysis.run --config configs/analysis_<label>.yaml [--results-dir results] [--output-dir DIR]
 
 Steps: validate the named plans exactly as src/validate_release.py (refuse on any failure); load the run
 files listed in results/MANIFEST.csv for those plans (applying 'replaces'); keep the configured control
@@ -87,7 +87,19 @@ def confirmatory_rows(name, res):
     return rows
 
 
-def analyse(cfg, results_dir):
+def _prepare_output(out_dir):
+    """Create the output folder; an existing one is cleared only if it is empty or holds a previous
+    analysis output (results.json or analysis_manifest.csv), never an arbitrary folder."""
+    if out_dir.exists():
+        entries = list(out_dir.iterdir())
+        if entries and not ((out_dir / "results.json").exists() or (out_dir / "analysis_manifest.csv").exists()):
+            raise Refused(f"output folder exists and is not an analysis output: {out_dir}")
+        shutil.rmtree(out_dir)
+    (out_dir / "tables").mkdir(parents=True)
+    (out_dir / "figures").mkdir(parents=True)
+
+
+def analyse(cfg, results_dir, output_dir=None):
     results_dir = Path(results_dir).resolve()
     plan_files = [resolve(e["file"]) for e in cfg["plans"]]
     s2_file = resolve(cfg["s2_plan"]) if cfg.get("s2_plan") else None
@@ -105,11 +117,8 @@ def analyse(cfg, results_dir):
                      float(r["control_value"]) == float(cfg["control_values"].get(r["control"], r["control_value"])))]
 
     s1_list = read_list(cfg["sensitivity_list"]) if cfg.get("sensitivity_list") else S1_DEFAULT
-    out_dir = results_dir / "analysis" / cfg["label"]
-    if out_dir.exists():
-        shutil.rmtree(out_dir)
-    (out_dir / "tables").mkdir(parents=True)
-    (out_dir / "figures").mkdir(parents=True)
+    out_dir = Path(output_dir).resolve() if output_dir else results_dir / "analysis" / cfg["label"]
+    _prepare_output(out_dir)
     written = []
 
     # per-dataset tables
@@ -218,10 +227,11 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
     ap.add_argument("--results-dir", default=str(REPO_ROOT / "results"))
+    ap.add_argument("--output-dir", default=None, help="default: <results-dir>/analysis/<label>")
     args = ap.parse_args(argv)
     try:
         cfg = load_config(resolve(args.config))
-        out_dir, res = analyse(cfg, args.results_dir)
+        out_dir, res = analyse(cfg, args.results_dir, args.output_dir)
     except Refused as e:
         print(f"REFUSED: {e}")
         return 2
@@ -229,6 +239,12 @@ def main(argv=None):
     for h in ["H1", "H2", "H3", "H4", "H5"]:
         r = res["confirmatory"][h]
         print(f"  {h}: p_raw {r.get('p_raw')}, p_holm {r.get('p_holm')}: {r.get('wording')}")
+    h4 = res["confirmatory"]["H4"]
+    for part in ("outer_auc", "optimism_gap_descriptive"):
+        for model in ("fit_full", "fit_reduced"):
+            for fit in h4.get(part, {}).get(model, []):
+                for w in fit.get("warnings", []):
+                    print(f"  H4 {part} {model} {fit['method']}: {w['category']}: {w['message']}")
     print(f"  missing configurations: {len(res['configurations']['missing'])}")
     return 0
 
