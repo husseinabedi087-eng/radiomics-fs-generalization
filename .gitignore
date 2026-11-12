@@ -14,3 +14,6 @@ __pycache__/
 # Raw datasets are not redistributed (source licenses unknown);
 # re-download with src/download_data.py
 data/raw/
+
+# Throwaway smoke tests on development data (never committed)
+results/smoke/

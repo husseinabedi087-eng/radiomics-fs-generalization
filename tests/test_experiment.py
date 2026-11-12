@@ -296,3 +296,17 @@ def test_c4_knee_choice_ignores_outer_test_labels(fold_data):
     assert sorted(a["c4"], key=int) == ["250", "500"] and _strip(a["c4"]) == _strip(c["c4"])
     assert all(set(rec) >= {"standard_inner_auc", "outer_auc", "outer_brier"} for rec in a["c4"].values())
     assert any(a["c4"][k]["outer_auc"] != c["c4"][k]["outer_auc"] for k in a["c4"])
+
+
+def test_pipeline_without_prefilter_keeps_every_nonconstant_feature():
+    X, y = synthetic(p=250)
+    X["const"] = 3.0
+    on = pipeline.fit_transform(X.iloc[:90], y[:90], X.iloc[90:])
+    off = pipeline.fit_transform(X.iloc[:90], y[:90], X.iloc[90:], None)
+    assert on[0].shape[1] == 200 and off[0].shape[1] == 250 and "const" not in off[2]
+    assert off[2][:200] == on[2] and np.array_equal(off[0][:, :200], on[0])  # same order, prefix = the pre-filtered pool
+    parts = partitions.derive("SyntheticSet", y)
+    fd_on = experiment.prepare_fold("SyntheticSet", X, y, partitions.fold(parts, 0, 0))
+    fd_off = experiment.prepare_fold("SyntheticSet", X, y, partitions.fold(parts, 0, 0), prefilter=False)
+    assert fd_on.K == 200 and fd_off.K == 250
+    assert all(np.array_equal(a[0], b[0]) and np.array_equal(a[1], b[1]) for a, b in zip(fd_on.inner, fd_off.inner))

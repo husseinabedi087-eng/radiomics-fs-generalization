@@ -88,3 +88,38 @@ def test_two_plans_with_identical_units_never_collide(plan_file, tmp_path):
     assert len(run.read_manifest(results / "MANIFEST.csv")) == 2 * len(a)
     assert validate_release.main(["--plan", str(plan_file), "--plan", str(other), "--results-dir", str(results)]) == 0
     assert validate_release.main(["--plan", str(plan_file), "--plan", str(plan_file), "--results-dir", str(results)]) == 1
+
+
+def test_prefilter_false_keeps_all_features(tmp_path):
+    """S2 option: K = every non-constant feature; same partitions, seeds, budget, checkpoints and C4 logging."""
+    base = PLAN.replace("SYNTH_80_30_7", "SYNTH_80_260_7").replace("c0_searchers: [ga, woa_S]", "c0_searchers: [ga]") \
+               .replace("control_searchers: [ga]", "control_searchers: []").replace("controls:\n  C1: 2\n  C3: 2\n", "controls: {}\n") \
+               .replace("baselines: [ftest, rf]", "baselines: [l1]").replace("search_seed_indices: [0, 1]", "search_seed_indices: [0]") \
+               .replace("budget: 60", "budget: 260")  # past the first C4 checkpoint (250)
+    on, off = tmp_path / "on.yaml", tmp_path / "off.yaml"
+    on.write_text(base, encoding="utf-8", newline="\n")
+    off.write_text(base.replace("name: runner_test", "name: runner_nopf") + "prefilter: false\n", encoding="utf-8", newline="\n")
+    u_on, u_off = run.expand(run.load_plan(on)), run.expand(run.load_plan(off))
+    key = lambda u: (u["dataset"], u["repeat"], u["fold"], u["configuration"], u.get("search_seed"), u["budget"])
+    assert sorted(map(key, u_on)) == sorted(map(key, u_off))  # same units, seeds and budget
+    results = tmp_path / "results"
+    for p in (on, off):
+        assert run.main(["--plan", str(p), "--n-jobs", "1", "--results-dir", str(results)]) == 0
+    load = lambda u: json.loads(gzip.decompress((results / u["path"]).read_bytes()))
+    for a, b in zip(sorted(u_on, key=key), sorted(u_off, key=key)):
+        ra, rb = load(a), load(b)
+        assert "prefilter" not in ra and rb["prefilter"] is False
+        assert ra["K"] == 200 and rb["K"] == 260 and ra["n_features_raw"] == rb["n_features_raw"] == 260
+        assert (ra["n_train"], ra["n_test"], ra.get("search_seed"), ra.get("budget")) == \
+               (rb["n_train"], rb["n_test"], rb.get("search_seed"), rb.get("budget"))
+        if a["kind"] == "search":
+            assert sorted(rb["checkpoints"], key=int) == ["250", "500", "1000", "2000"][:len(rb["checkpoints"])]
+            assert set(rb["c4"]) == set(ra["c4"]) == {"250"} and len(rb["archive"]["fitness"]) == rb["n_evals"]
+    assert validate_release.main(["--plan", str(on), "--plan", str(off), "--results-dir", str(results)]) == 0
+
+
+def test_prefilter_must_be_boolean(tmp_path):
+    p = tmp_path / "bad.yaml"
+    p.write_text(PLAN + "prefilter: no_thanks\n", encoding="utf-8", newline="\n")
+    with pytest.raises(ValueError):
+        run.load_plan(p)

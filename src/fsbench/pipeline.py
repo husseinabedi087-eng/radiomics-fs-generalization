@@ -10,6 +10,10 @@ Fitted on the outer-training part only, then applied to the outer-test part:
      column order (stable sort); a non-finite F counts as the lowest.
 Returns the transformed train and test arrays (columns = the K-feature pool, in decreasing F) and
 the pool-index -> original feature name mapping.
+
+Option prefilter = False (sensitivity analysis S2, PREREG_STAGE1 section 11): step 4 keeps every
+remaining feature (k_max = None, K = number of non-constant features), in the same decreasing-F order;
+steps 1-3 are unchanged. The default (k_max = 200) is the stage-1 pipeline.
 """
 
 from dataclasses import dataclass
@@ -51,7 +55,7 @@ def fit(X_train, y_train, k_max=K_MAX):
     A = (A - means) / scales
     F, _ = f_classif(A, np.asarray(y_train))
     F = np.where(np.isfinite(F), F, -np.inf)
-    K = min(k_max, len(kept))
+    K = len(kept) if k_max is None else min(k_max, len(kept))
     order = np.argsort(-F, kind="stable")[:K]
     return PoolTransform(kept_columns=kept, medians=medians, means=means, scales=scales, pool_order=order,
                          f_scores=F[order], pool_names=[str(kept[i]) for i in order])

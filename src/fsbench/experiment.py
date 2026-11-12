@@ -58,12 +58,14 @@ class FoldData:
         return self.X_train.shape[1]
 
 
-def prepare_fold(dataset, X, y, fold):
-    """X: features (DataFrame), y: 0/1 array, fold: one fold dict from fsbench.partitions."""
+def prepare_fold(dataset, X, y, fold, prefilter=True):
+    """X: features (DataFrame), y: 0/1 array, fold: one fold dict from fsbench.partitions.
+    prefilter=False keeps every non-constant feature (S2); the default is the stage-1 pre-filter (K <= 200)."""
     t0 = time.perf_counter()
     y = np.asarray(y)
     tr, te = np.asarray(fold["outer_train"]), np.asarray(fold["outer_test"])
-    Xtr, Xte, names, _ = pipeline.fit_transform(X.iloc[tr], y[tr], X.iloc[te])
+    Xtr, Xte, names, _ = pipeline.fit_transform(X.iloc[tr], y[tr], X.iloc[te],
+                                                pipeline.K_MAX if prefilter else None)
     pos = lambda idx: to_positions(idx, tr)
     c1_fit = pos(fold["c1"]["fit"])
     return FoldData(

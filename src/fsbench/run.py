@@ -14,6 +14,11 @@ commit, status) and one in results/progress.csv. Only the main process writes th
 Resume: a unit is skipped if its file exists and its SHA-256 matches an "ok" manifest row.
 Refuses to start if git has uncommitted changes in src/ or configs/ (except the test-only "synthetic"
 group, whose datasets SYNTH_<n>_<p>_<seed> are generated in memory and never touch real data).
+Plan option prefilter (default true): false runs every unit without the section 3 pre-filter
+(fsbench.pipeline, K = all non-constant features; sensitivity analysis S2); such run files carry
+"prefilter": false. With the default, run files are unchanged (no "prefilter" field).
+Results directory: results/ for real data; the development group may also write a throwaway smoke
+test under results/smoke/ (git-ignored; its own MANIFEST.csv); the synthetic group anywhere.
 Workers: process pool with spawn; OMP/MKL/OPENBLAS threads set to 1 in the environment inherited by
 every worker (set before the pool starts) and enforced with threadpoolctl.
 """
@@ -75,6 +80,8 @@ def load_plan(path):
         raise ValueError("the synthetic group accepts only SYNTH_* datasets")
     if plan["group"] != "synthetic" and any(d.startswith("SYNTH_") for d in plan["datasets"]):
         raise ValueError("SYNTH_* datasets are allowed only in the synthetic group")
+    if not isinstance(plan.get("prefilter", True), bool):
+        raise ValueError("prefilter must be true or false")
     return plan
 
 
@@ -88,6 +95,7 @@ def expand(plan):
     ctrl_searchers = plan.get("control_searchers", [])
     selectors = plan.get("baselines", [])
     rf_seeds = plan.get("rf_model_seed_indices", [0])
+    prefilter = plan.get("prefilter", True)
     units = []
     for ds in plan["datasets"]:
         for r in plan["repeats"]:
@@ -96,7 +104,7 @@ def expand(plan):
                     rel = Path("runs") / plan["group"] / plan["name"] / ds / config / f"r{r}_f{f}_s{seed_index}.json.gz"
                     units.append({"plan": plan["name"], "group": plan["group"], "dataset": ds, "repeat": r,
                                   "fold": f, "configuration": config, "seed_index": seed_index,
-                                  "budget": budget, "path": rel.as_posix(), **kw})
+                                  "budget": budget, "prefilter": prefilter, "path": rel.as_posix(), **kw})
                 for k in plan["search_seed_indices"]:
                     seed = derive_seed(ds, r, f, k)
                     for s in searchers:
@@ -194,10 +202,12 @@ def execute(unit, results_root, commit, partitions_dir):
             X, y = _CACHE["data"][ds]
             if ds not in _CACHE["parts"]:
                 _CACHE["parts"][ds] = partitions.get(ds, y, directory=partitions_dir)
-            key = (ds, unit["repeat"], unit["fold"])
+            prefilter = unit.get("prefilter", True)
+            key = (ds, unit["repeat"], unit["fold"], prefilter)
             fold_cached = key in _CACHE["folds"]
             if not fold_cached:
-                _CACHE["folds"] = {key: experiment.prepare_fold(ds, X, y, partitions.fold(_CACHE["parts"][ds], *key[1:]))}
+                _CACHE["folds"] = {key: experiment.prepare_fold(ds, X, y, partitions.fold(_CACHE["parts"][ds], *key[1:3]),
+                                                                prefilter=prefilter)}
             fd = _CACHE["folds"][key]
             if unit["kind"] == "search":
                 res = experiment.run_search(fd, unit["searcher"], unit["control"], unit["param"],
@@ -206,6 +216,8 @@ def execute(unit, results_root, commit, partitions_dir):
                 res = experiment.run_baseline(fd, unit["selector"], model_seed=unit["model_seed"])
             res["timings"]["fold_preparation_cached"] = fold_cached
             out.update(res)
+            if not prefilter:
+                out["prefilter"] = False
     except Exception as e:  # recorded, never silently dropped
         out.update({"dataset": unit["dataset"], "repeat": unit["repeat"], "fold": unit["fold"],
                     "search_seed": unit.get("search_seed"), "model_seed": unit.get("model_seed"),
@@ -262,8 +274,11 @@ def main(argv=None):
     results_root = Path(args.results_dir).resolve()
     synthetic = plan["group"] == "synthetic"
     if not synthetic:
-        if results_root != (REPO_ROOT / "results").resolve():
-            sys.exit("only the synthetic group may write outside results/")
+        smoke = (REPO_ROOT / "results" / "smoke").resolve()
+        if results_root != (REPO_ROOT / "results").resolve() and not (
+                plan["group"] == "development" and (results_root == smoke or smoke in results_root.parents)):
+            sys.exit("only the synthetic group may write outside results/ "
+                     "(the development group may also use results/smoke/)")
         dirty = git("status", "--porcelain", "--", "src", "configs")
         if dirty:
             sys.exit(f"refusing to start: uncommitted changes in src/ or configs/:\n{dirty}")
