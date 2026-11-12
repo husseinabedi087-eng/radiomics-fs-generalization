@@ -1,0 +1,25 @@
+# Elastic net rerun after the max_iter fix (docs/DECISIONS.md, 2026-11-12). Only baseline__enet,
+# same datasets, repeat, folds as configs/development.yaml; own plan path, the original enet runs are kept.
+name: dev_enet_fix
+group: development
+datasets:
+  - Ahn2021
+  - Arita2018
+  - Brancato2023
+  - Dai2023
+  - HNSCC
+  - Hosny2018B
+  - ISPY1
+  - Meningioma-SEG-CLASS
+  - Ramella2018
+  - WORC-CRLM
+  - WORC-Desmoid
+  - Wang2024
+repeats: [0]
+folds: [0, 1, 2, 3, 4]
+search_seed_indices: [0]
+budget: 2000
+c0_searchers: []
+control_searchers: []
+controls: {}
+baselines: [enet]

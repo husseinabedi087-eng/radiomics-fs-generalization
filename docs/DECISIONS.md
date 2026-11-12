@@ -142,6 +142,12 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 - 2026-11-12: bench_scaling.py (synthetic data, K = 200, one thread) shows search time flat in n_train from 166 to 775 (slope b = 0.01 for ga C0, -0.03 for ga C2). The confirmation core tier projects at 359-389 CPU h, 60-65 h at 6 workers; planning figure 65 h (development fit). The linear-in-n bound is ruled out. S2 projects at 7-19 CPU h; the benchmark does not cover K > 200. No confirmation dataset was loaded.
 - Records: bench_scaling.py at commit 468d682; its console output, as pasted by the author, in results/compute/bench_scaling_output.txt; projection script src/project_compute.py (commit c38cfb3), which writes results/compute/projection.json.
 
+## 2026-11-12: elastic net max_iter fix (bug fix, section 10)
+
+- Problem: the elastic-net baseline (saga, l1_ratio = 0.5, max_iter = 2000, tol = scikit-learn default 1e-4) produced 1,228 ConvergenceWarnings in the development run, in all 60 enet runs; every other configuration had none. The run files store one warning total per run, so the C values and fits (inner tuning or final) involved cannot be read from them; src/diag_enet_warnings.py refits the saga models on the development folds (warning counts only, no performance value) to attribute them.
+- Fix rule, set before any rerun: max_iter = 10000 for the elastic net only, tol unchanged; adopted whatever the outcome; if warnings remain, max_iter stays 10000, the residual counts are reported, and there is no further iteration. Implemented in src/fsbench/baselines.py (ENET_MAX_ITER). No other selector, searcher or model changes.
+- Rerun: configs/dev_enet_fix.yaml reruns only baseline__enet on the 12 development datasets (repeat 0, folds 0-4) under its own plan path, results/runs/development/dev_enet_fix/; the original enet runs (plan development) are kept unchanged. The stage-2 choices (results/stage2/stage2_choices.json) use only search runs and are not affected.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen; stage 2 not frozen; pilot run on 3 development datasets (timing only); no development run yet.

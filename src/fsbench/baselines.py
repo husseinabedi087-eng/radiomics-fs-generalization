@@ -14,7 +14,8 @@ Selectors
   all_k     all K pool features, no tuning.
   l1        L1 logistic regression (liblinear, l1_ratio = 1), C over 20 log-spaced values from 0.001
             to 100; selected = non-zero coefficients.
-  enet      elastic net logistic regression (saga, l1_ratio = 0.5, max_iter = 2000), same C grid.
+  enet      elastic net logistic regression (saga, l1_ratio = 0.5, max_iter = 10000, tol = 1e-4 default),
+            same C grid. (max_iter was 2000 until the fix of 2026-11-12, docs/DECISIONS.md.)
             liblinear and saga use random_state = 0 (fixed; not a study seed).
             An empty final selection (no non-zero coefficient) is returned as an empty subset,
             scored 0.5 downstream, and flagged.
@@ -33,6 +34,7 @@ from sklearn.linear_model import LogisticRegression
 from .fitness import holdout_auc
 
 C_GRID = np.logspace(-3, 2, 20)
+ENET_MAX_ITER = 10000  # 2000 until the 2026-11-12 fix (docs/DECISIONS.md); tol = scikit-learn default 1e-4
 K_GRID = (5, 10, 20, 50, 100, 200)
 SELECTORS = ("all_k", "l1", "enet", "ftest", "mrmr", "rf")
 NEEDS_MODEL_SEED = ("rf",)
@@ -86,7 +88,7 @@ def rf_ranking(X, y, model_seed):
 def _penalized(C, kind):
     if kind == "l1":
         return LogisticRegression(C=C, l1_ratio=1.0, solver="liblinear", random_state=0)
-    return LogisticRegression(C=C, l1_ratio=0.5, solver="saga", max_iter=2000, random_state=0)
+    return LogisticRegression(C=C, l1_ratio=0.5, solver="saga", max_iter=ENET_MAX_ITER, random_state=0)
 
 
 def _penalized_selection(X, y, C, kind, counter):
