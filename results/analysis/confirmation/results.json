@@ -1,0 +1,2123 @@
+{
+  "code": {
+    "analysis_code_sha256": "b68f3b7181ff89af271022ad67b837be0c112597d547c30f96a7a17d0d396d58",
+    "head_at_run": "33ceef6f0234f65561f04770313341e3dc42c02a"
+  },
+  "config": {
+    "control_values": {
+      "C1": 5,
+      "C2": 1.0,
+      "C3": 8
+    },
+    "plans": [
+      {
+        "file": "configs/confirmation.yaml"
+      }
+    ],
+    "s2_plan": "configs/confirmation_s2.yaml",
+    "sensitivity_list": "configs/sensitivity_s1.txt",
+    "sensitivity_set": [
+      "Arita2018",
+      "Hosny2018A",
+      "Hosny2018B",
+      "Hosny2018C",
+      "Keek2020",
+      "LNDb",
+      "UCSF-PDGM",
+      "Wang2024"
+    ]
+  },
+  "configurations": {
+    "excluded_control_values": [],
+    "expected_full_design": [
+      "random__C0",
+      "hill_climb__C0",
+      "one_plus_one__C0",
+      "ga__C0",
+      "bpso_S__C0",
+      "bpso_V__C0",
+      "de_S__C0",
+      "de_V__C0",
+      "gwo_S__C0",
+      "gwo_V__C0",
+      "woa_S__C0",
+      "woa_V__C0",
+      "ga__C1",
+      "bpso_S__C1",
+      "de_S__C1",
+      "gwo_S__C1",
+      "ga__C2",
+      "bpso_S__C2",
+      "de_S__C2",
+      "gwo_S__C2",
+      "ga__C3",
+      "bpso_S__C3",
+      "de_S__C3",
+      "gwo_S__C3",
+      "random__C4",
+      "hill_climb__C4",
+      "one_plus_one__C4",
+      "ga__C4",
+      "bpso_S__C4",
+      "bpso_V__C4",
+      "de_S__C4",
+      "de_V__C4",
+      "gwo_S__C4",
+      "gwo_V__C4",
+      "woa_S__C4",
+      "woa_V__C4",
+      "baseline__all_k",
+      "baseline__l1",
+      "baseline__enet",
+      "baseline__ftest",
+      "baseline__mrmr",
+      "baseline__rf"
+    ],
+    "missing": [],
+    "note": "every analysis runs on the configurations present and lists the missing ones",
+    "present": [
+      "baseline__all_k",
+      "baseline__enet",
+      "baseline__ftest",
+      "baseline__l1",
+      "baseline__mrmr",
+      "baseline__rf",
+      "bpso_S__C0",
+      "bpso_S__C1",
+      "bpso_S__C2",
+      "bpso_S__C3",
+      "bpso_S__C4",
+      "bpso_V__C0",
+      "bpso_V__C4",
+      "de_S__C0",
+      "de_S__C1",
+      "de_S__C2",
+      "de_S__C3",
+      "de_S__C4",
+      "de_V__C0",
+      "de_V__C4",
+      "ga__C0",
+      "ga__C1",
+      "ga__C2",
+      "ga__C3",
+      "ga__C4",
+      "gwo_S__C0",
+      "gwo_S__C1",
+      "gwo_S__C2",
+      "gwo_S__C3",
+      "gwo_S__C4",
+      "gwo_V__C0",
+      "gwo_V__C4",
+      "hill_climb__C0",
+      "hill_climb__C4",
+      "one_plus_one__C0",
+      "one_plus_one__C4",
+      "random__C0",
+      "random__C4",
+      "woa_S__C0",
+      "woa_S__C4",
+      "woa_V__C0",
+      "woa_V__C4"
+    ]
+  },
+  "confirmatory": {
+    "H1": {
+      "configurations_missing": [],
+      "configurations_used": [
+        "random__C0",
+        "hill_climb__C0",
+        "one_plus_one__C0",
+        "ga__C0",
+        "bpso_S__C0",
+        "bpso_V__C0",
+        "de_S__C0",
+        "de_V__C0",
+        "gwo_S__C0",
+        "gwo_V__C0",
+        "woa_S__C0",
+        "woa_V__C0"
+      ],
+      "d_per_dataset": {
+        "BraTS-2021": 0.10085522536548709,
+        "C4KC-KiTS": 0.1710834972640529,
+        "Dong2022": 0.07823615734934984,
+        "Fusco2022": 0.11980226092494613,
+        "Granata2021": 0.23945210353775162,
+        "Head-Neck-PET-CT": 0.0775175356823641,
+        "Head-Neck-Radiomics-HN1": 0.05607162558755696,
+        "Hosny2018A": 0.10849471833455891,
+        "Hosny2018C": 0.18899238327809756,
+        "Huang2023": 0.055493539252846384,
+        "Hunter2023": 0.04296757499424237,
+        "Keek2020": 0.0868637593701484,
+        "LGG-1p19qDeletion": 0.1437073204858699,
+        "LNDb": 0.05991465626834813,
+        "Lu2019": 0.15713656405323073,
+        "NSCLC-Radiogenomics": 0.11798251028806583,
+        "OcanaTienda2023": 0.30040313296100335,
+        "PI-CAI": 0.02787152079957267,
+        "Petrillo2023": 0.2792869648506903,
+        "Prostate-MRI-US-Biopsy": 0.054342697340907596,
+        "Sasaki2019": 0.3143244035033695,
+        "Song2020": 0.016354906039190438,
+        "UCSF-PDGM": 0.0372297998756332,
+        "UPENN-GBM": 0.2624612098336955,
+        "Veeraraghavan2020": 0.24620826314460567,
+        "WORC-GIST": 0.10188818577311039,
+        "WORC-Lipo": 0.08365707793422443,
+        "WORC-Liver": 0.04439959989003848,
+        "WORC-Melanoma": 0.29319964935349546,
+        "Zhang2024A": 0.08456492872478959,
+        "Zhang2024B": 0.1887694708028628
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          0.10334907953913812,
+          0.1665056650849859
+        ],
+        "mean": 0.13353333041497115,
+        "median": 0.10188818577311039,
+        "n_datasets": 31,
+        "rank_biserial": 1.0
+      },
+      "p_holm": 2.3283064365386963e-09,
+      "p_raw": 4.656612873077393e-10,
+      "reject_holm": true,
+      "test": {
+        "alternative": "greater",
+        "method": "exact",
+        "n": 31,
+        "n_after_zero_removal": 31,
+        "p": 4.656612873077393e-10,
+        "statistic": 496.0
+      },
+      "wording": "optimism gap greater than zero"
+    },
+    "H2": {
+      "d_per_dataset": {
+        "BraTS-2021": -0.0012561874600809375,
+        "C4KC-KiTS": 0.009953703703703742,
+        "Dong2022": -0.004162322655754558,
+        "Fusco2022": 0.003442460317460344,
+        "Granata2021": -0.006829989711934131,
+        "Head-Neck-PET-CT": 0.008511396011395972,
+        "Head-Neck-Radiomics-HN1": 0.0010298700142450656,
+        "Hosny2018A": -0.008059729497901569,
+        "Hosny2018C": -0.0016298670465337145,
+        "Huang2023": -0.0005797101449274977,
+        "Hunter2023": 0.00177713579716135,
+        "Keek2020": 0.001883295023635101,
+        "LGG-1p19qDeletion": -0.0033793290043289403,
+        "LNDb": 0.0013092885375493302,
+        "Lu2019": -0.00909090909090915,
+        "NSCLC-Radiogenomics": -0.002708333333333368,
+        "OcanaTienda2023": -0.008701814058956939,
+        "PI-CAI": 0.00012924949730139246,
+        "Petrillo2023": -0.00888310185185183,
+        "Prostate-MRI-US-Biopsy": 0.0018206782713085234,
+        "Sasaki2019": 0.004163396127681809,
+        "Song2020": -0.0005707502374169005,
+        "UCSF-PDGM": 0.0024886553219886642,
+        "UPENN-GBM": 0.00010845057720065832,
+        "Veeraraghavan2020": -0.0046432980599647455,
+        "WORC-GIST": 0.00016666666666667607,
+        "WORC-Lipo": 0.0006887052341598421,
+        "WORC-Liver": -0.002882938340002028,
+        "WORC-Melanoma": 0.0005555555555555591,
+        "Zhang2024A": 0.00312173458725179,
+        "Zhang2024B": 0.00937728937728935
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.0021018081010948622,
+          0.0012863005278840782
+        ],
+        "mean": -0.00041454031846261736,
+        "median": 0.00012924949730139246,
+        "n_datasets": 31,
+        "rank_biserial": -0.04838709677419355
+      },
+      "p_holm": 0.6913840060943738,
+      "p_raw": 0.5954172192141414,
+      "reject_holm": false,
+      "searchers_missing": [],
+      "searchers_used": [
+        "ga",
+        "bpso_S",
+        "de_S",
+        "gwo_S"
+      ],
+      "test": {
+        "alternative": "greater",
+        "method": "exact",
+        "n": 31,
+        "n_after_zero_removal": 31,
+        "p": 0.5954172192141414,
+        "statistic": 236.0
+      },
+      "wording": "no detectable difference"
+    },
+    "H3": {
+      "d_per_dataset": {
+        "BraTS-2021": 0.004031751945686279,
+        "C4KC-KiTS": 0.06842592592592589,
+        "Dong2022": 0.02049879019296086,
+        "Fusco2022": -0.005317460317460165,
+        "Granata2021": -0.035534979423868296,
+        "Head-Neck-PET-CT": -0.016488603988603967,
+        "Head-Neck-Radiomics-HN1": -0.00859063390313397,
+        "Hosny2018A": 0.025327549168274954,
+        "Hosny2018C": 0.0104083570750238,
+        "Huang2023": -0.021700991609458264,
+        "Hunter2023": -0.026939953496329494,
+        "Keek2020": -0.07245604124461069,
+        "LGG-1p19qDeletion": -0.01475649350649344,
+        "LNDb": -0.028518884497145458,
+        "Lu2019": 0.06212121212121213,
+        "NSCLC-Radiogenomics": 0.050875000000000115,
+        "OcanaTienda2023": 0.0023809523809523725,
+        "PI-CAI": -0.0036106855182154174,
+        "Petrillo2023": -0.03880446623093686,
+        "Prostate-MRI-US-Biopsy": -0.02727264239028948,
+        "Sasaki2019": -0.022566718995290447,
+        "Song2020": 0.0031115494192417437,
+        "UCSF-PDGM": -0.014736069402735974,
+        "UPENN-GBM": 0.0013311688311689052,
+        "Veeraraghavan2020": -0.005902116402116464,
+        "WORC-GIST": -0.03272222222222221,
+        "WORC-Lipo": -0.03606519742883385,
+        "WORC-Liver": 0.017097568482610126,
+        "WORC-Melanoma": 0.012592592592592544,
+        "Zhang2024A": -0.031765935214211116,
+        "Zhang2024B": -0.041311918850380325
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.016978484156945438,
+          0.004338801574374284
+        ],
+        "mean": -0.006672890209893102,
+        "median": -0.00859063390313397,
+        "n_datasets": 31,
+        "rank_biserial": -0.3387096774193548
+      },
+      "p_holm": 0.043389825616031885,
+      "p_raw": 0.014463275205343962,
+      "reject_holm": true,
+      "tost": {
+        "lower": {
+          "alternative": "greater",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 0.014463275205343962,
+          "statistic": 359.0
+        },
+        "margin": 0.02,
+        "p_tost": 0.014463275205343962,
+        "upper": {
+          "alternative": "less",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 4.328414797782898e-05,
+          "statistic": 60.0
+        }
+      },
+      "two_sided": {
+        "alternative": "two-sided",
+        "method": "exact",
+        "n": 31,
+        "n_after_zero_removal": 31,
+        "p": 0.10233690217137337,
+        "statistic": 164.0
+      },
+      "wording": "equivalent (margin 0.02)"
+    },
+    "H4": {
+      "controls": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "optimism_gap_descriptive": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": -0.062375688442638376,
+          "C(control)[T.C2]": -0.043049934528294274,
+          "C(control)[T.C3]": -0.03336073890809336,
+          "C(control)[T.C4]": -0.01642145842835564,
+          "C(searcher)[T.de_S]": 0.0008623801078742077,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0038992341439069373,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0016009889696441482,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.00642611465116676,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.0008284813960595153,
+          "C(searcher)[T.ga]": 0.03291158999255264,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.029868198335199676,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.01423787620761986,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.029684184328268984,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.0027366444420916063,
+          "C(searcher)[T.gwo_S]": -0.01035137093239819,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.008416620801820913,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0038540379660801094,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.002841907818478614,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.001984616519696087,
+          "Intercept": -0.021345740097979574,
+          "log_budget": 0.013188539996486202,
+          "log_pn": 0.036068021583179635
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 118109.2156094833,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 117456.82723515219,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0038992341439069373,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0016009889696441482,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.00642611465116676,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.0008284813960595153,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.029868198335199676,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.01423787620761986,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.029684184328268984,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.0027366444420916063,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.008416620801820913,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0038540379660801094,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.002841907818478614,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.001984616519696087
+        },
+        "llf_full": 118109.2156094833,
+        "llf_reduced": 117456.82723515219,
+        "lr_statistic": 1304.7767486622324,
+        "n_datasets": 31,
+        "n_partitions": 310,
+        "n_rows": 74400,
+        "p": 4.656021127489165e-272,
+        "response": "gap"
+      },
+      "outer_auc": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": -0.003618063660824349,
+          "C(control)[T.C2]": -0.003750944386464144,
+          "C(control)[T.C3]": -0.0005610141695546409,
+          "C(control)[T.C4]": -0.0016308954916573798,
+          "C(searcher)[T.de_S]": -0.002262492497974078,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": 0.0013832266389727696,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0014636752534335916,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": 0.0003840579417962693,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 0.0006666139777269349,
+          "C(searcher)[T.ga]": -0.000177728100332441,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.0004254578110554498,
+          "C(searcher)[T.ga]:C(control)[T.C2]": 0.0014525683703156189,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.0003333260627062795,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.0020650866020684466,
+          "C(searcher)[T.gwo_S]": -0.0012170505022752126,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0010478951055991241,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0012299466410809565,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0009514508899875277,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.000932799350269161,
+          "Intercept": 0.7062555683180979,
+          "log_budget": 0.00025061363562576953,
+          "log_pn": -0.028576951110114098
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 129996.18569841381,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 129989.52194298769,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": 0.0013832266389727696,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0014636752534335916,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": 0.0003840579417962693,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": 0.0006666139777269349,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -0.0004254578110554498,
+          "C(searcher)[T.ga]:C(control)[T.C2]": 0.0014525683703156189,
+          "C(searcher)[T.ga]:C(control)[T.C3]": -0.0003333260627062795,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.0020650866020684466,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0010478951055991241,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.0012299466410809565,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0009514508899875277,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.000932799350269161
+        },
+        "llf_full": 129996.18569841381,
+        "llf_reduced": 129989.52194298769,
+        "lr_statistic": 13.32751085225027,
+        "n_datasets": 31,
+        "n_partitions": 310,
+        "n_rows": 74400,
+        "p": 0.3456920030471869,
+        "response": "auc"
+      },
+      "p_holm": 0.6913840060943738,
+      "p_raw": 0.3456920030471869,
+      "reject_holm": false,
+      "searchers": [
+        "bpso_S",
+        "de_S",
+        "ga",
+        "gwo_S"
+      ],
+      "wording": "no detectable interaction"
+    },
+    "H5": {
+      "classical_used": [
+        "ga__C0",
+        "bpso_S__C0",
+        "bpso_V__C0",
+        "de_S__C0",
+        "de_V__C0"
+      ],
+      "configurations_missing": [],
+      "d_per_dataset": {
+        "BraTS-2021": 5.4287458898127916e-05,
+        "C4KC-KiTS": -0.015074074074074018,
+        "Dong2022": -0.006049059630237719,
+        "Fusco2022": -0.0017500000000000293,
+        "Granata2021": -0.011978395061728375,
+        "Head-Neck-PET-CT": 0.012548076923077023,
+        "Head-Neck-Radiomics-HN1": -0.0029571759259259256,
+        "Hosny2018A": -0.0004052960244156356,
+        "Hosny2018C": 0.008933523266856536,
+        "Huang2023": 0.006756864988558209,
+        "Hunter2023": 0.003936696517446103,
+        "Keek2020": 0.012725530491922488,
+        "LGG-1p19qDeletion": -0.0020672799422799537,
+        "LNDb": 0.0009985726833554587,
+        "Lu2019": 0.0005303030303031031,
+        "NSCLC-Radiogenomics": -0.028980555555555565,
+        "OcanaTienda2023": 0.0018820861678005008,
+        "PI-CAI": 0.00025145487109012876,
+        "Petrillo2023": -0.006924223856209222,
+        "Prostate-MRI-US-Biopsy": 0.002721495264772611,
+        "Sasaki2019": 0.029364861329147007,
+        "Song2020": 0.0012195558477610113,
+        "UCSF-PDGM": -0.00396780113446793,
+        "UPENN-GBM": 0.005903544372294456,
+        "Veeraraghavan2020": -0.012626366843033476,
+        "WORC-GIST": 0.0018583333333332952,
+        "WORC-Lipo": 0.002586088154269861,
+        "WORC-Liver": -0.004679901508156226,
+        "WORC-Melanoma": 0.0004444444444444695,
+        "Zhang2024A": 0.010637408568442974,
+        "Zhang2024B": 0.019807269653423276
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.0027871572488394995,
+          0.004541359444125012
+        ],
+        "mean": 0.0008290408971326634,
+        "median": 0.0005303030303031031,
+        "n_datasets": 31,
+        "rank_biserial": 0.125
+      },
+      "metaphor_used": [
+        "gwo_S__C0",
+        "gwo_V__C0",
+        "woa_S__C0",
+        "woa_V__C0"
+      ],
+      "p_holm": 7.140077650547028e-05,
+      "p_raw": 1.785019412636757e-05,
+      "reject_holm": true,
+      "test": {
+        "alternative": "less",
+        "method": "exact",
+        "n": 31,
+        "n_after_zero_removal": 31,
+        "p": 1.785019412636757e-05,
+        "statistic": 52.0
+      },
+      "tost_full": {
+        "lower": {
+          "alternative": "greater",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 1.7317943274974823e-06,
+          "statistic": 462.0
+        },
+        "margin": 0.01,
+        "p_tost": 1.785019412636757e-05,
+        "upper": {
+          "alternative": "less",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 1.785019412636757e-05,
+          "statistic": 52.0
+        }
+      },
+      "two_sided": {
+        "alternative": "two-sided",
+        "method": "exact",
+        "n": 31,
+        "n_after_zero_removal": 31,
+        "p": 0.5551384268328547,
+        "statistic": 217.0
+      },
+      "wording": "equivalent (margin 0.01)"
+    },
+    "holm": {
+      "alpha": 0.05,
+      "family": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5"
+      ],
+      "note": "H3 enters with p_TOST; H4 with the likelihood-ratio p; missing p-values are left out",
+      "p_adjusted": [
+        2.3283064365386963e-09,
+        0.6913840060943738,
+        0.043389825616031885,
+        0.6913840060943738,
+        7.140077650547028e-05
+      ],
+      "p_raw": [
+        4.656612873077393e-10,
+        0.5954172192141414,
+        0.014463275205343962,
+        0.3456920030471869,
+        1.785019412636757e-05
+      ],
+      "reject": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ]
+    }
+  },
+  "definitions": {
+    "bootstrap": "95% percentile CI of the mean over datasets, 10,000 resamples, numpy default_rng(20261113)",
+    "holm": "statsmodels multipletests(method='holm'), alpha 0.05, over H1, H2, H3 (p_TOST), H4 (LRT), H5",
+    "optimism_gap": "standard inner AUC (unpenalized mean over the fixed 3-fold inner split) minus outer AUC",
+    "per_dataset_score": "mean over runs (outer folds x search seeds; rf: outer folds x model seeds)",
+    "primary_checkpoint": 2000,
+    "run_level_outer_auc": "outer AUC of the subset returned at the checkpoint; C4: knee record; baseline: returned subset at 2000",
+    "wilcoxon": "scipy.stats.wilcoxon(zero_method='wilcox', method='auto'); method actually used recorded"
+  },
+  "exploratory": false,
+  "group": "confirmation",
+  "header": "CONFIRMATORY (confirmation data)",
+  "inputs": {
+    "datasets": [
+      "BraTS-2021",
+      "C4KC-KiTS",
+      "Dong2022",
+      "Fusco2022",
+      "Granata2021",
+      "Head-Neck-PET-CT",
+      "Head-Neck-Radiomics-HN1",
+      "Hosny2018A",
+      "Hosny2018C",
+      "Huang2023",
+      "Hunter2023",
+      "Keek2020",
+      "LGG-1p19qDeletion",
+      "LNDb",
+      "Lu2019",
+      "NSCLC-Radiogenomics",
+      "OcanaTienda2023",
+      "PI-CAI",
+      "Petrillo2023",
+      "Prostate-MRI-US-Biopsy",
+      "Sasaki2019",
+      "Song2020",
+      "UCSF-PDGM",
+      "UPENN-GBM",
+      "Veeraraghavan2020",
+      "WORC-GIST",
+      "WORC-Lipo",
+      "WORC-Liver",
+      "WORC-Melanoma",
+      "Zhang2024A",
+      "Zhang2024B"
+    ],
+    "n_records": 35960,
+    "n_run_files": 25480,
+    "sha256_of_sorted_path_hash_list": "3fe7269799b7acc0f3a3b9a82cf1a687b56bdeb17d93d429bbaa966c4fcaf8e5"
+  },
+  "label": "confirmation",
+  "secondary": {
+    "anytime": "tables/anytime.csv",
+    "brier": {
+      "H1": {
+        "not_applicable": "no inner Brier score exists"
+      },
+      "H2": {
+        "d_per_dataset": {
+          "BraTS-2021": -0.000779949295531851,
+          "C4KC-KiTS": -0.005132306429780631,
+          "Dong2022": 0.0017360173986408697,
+          "Fusco2022": -0.0037986413123659094,
+          "Granata2021": -0.00011204846476597918,
+          "Head-Neck-PET-CT": -0.004600458575068751,
+          "Head-Neck-Radiomics-HN1": -0.001070770366152149,
+          "Hosny2018A": 0.0010652289690814276,
+          "Hosny2018C": -0.0011344343710078114,
+          "Huang2023": 0.0007277654399529265,
+          "Hunter2023": -0.0015974717873340621,
+          "Keek2020": -0.0024731648629667258,
+          "LGG-1p19qDeletion": 0.0021502204587974458,
+          "LNDb": -0.0014197687494464234,
+          "Lu2019": 0.0046311548188558704,
+          "NSCLC-Radiogenomics": -0.0006241390415976933,
+          "OcanaTienda2023": -0.0035446944228838123,
+          "PI-CAI": -0.00031542159335928854,
+          "Petrillo2023": -0.0007186845340371173,
+          "Prostate-MRI-US-Biopsy": -0.0013157236480012824,
+          "Sasaki2019": -0.003774550253928685,
+          "Song2020": -0.0018644685153682249,
+          "UCSF-PDGM": -0.0004980498983198044,
+          "UPENN-GBM": -0.0008640439770110642,
+          "Veeraraghavan2020": -0.0011938440579091214,
+          "WORC-GIST": -0.0016427925696684137,
+          "WORC-Lipo": -0.00011090999908038718,
+          "WORC-Liver": 0.001638940752922563,
+          "WORC-Melanoma": -0.0017964074635806043,
+          "Zhang2024A": -0.0015625479985175161,
+          "Zhang2024B": -0.005676865317556665
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            -0.0018930575120229428,
+            -0.0003757394732415332
+          ],
+          "mean": -0.0011507364408706088,
+          "median": -0.0011344343710078114,
+          "n_datasets": 31,
+          "rank_biserial": -0.5685483870967742
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 0.004751680418848991,
+          "statistic": 107.0
+        }
+      },
+      "H3": {
+        "d_per_dataset": {
+          "BraTS-2021": 0.006270488400145546,
+          "C4KC-KiTS": -0.022182104072727915,
+          "Dong2022": -0.008890910232041888,
+          "Fusco2022": 0.008020526403010653,
+          "Granata2021": 0.012336217526771609,
+          "Head-Neck-PET-CT": 0.03527536456341182,
+          "Head-Neck-Radiomics-HN1": 0.006217696303716075,
+          "Hosny2018A": -0.0034147578927435362,
+          "Hosny2018C": 0.011321671229212626,
+          "Huang2023": 0.029210234431887486,
+          "Hunter2023": 0.016057096478532956,
+          "Keek2020": 0.039916848898570195,
+          "LGG-1p19qDeletion": -2.0513905726077253e-05,
+          "LNDb": 0.018836566970840407,
+          "Lu2019": -0.036105237081943464,
+          "NSCLC-Radiogenomics": 0.006705701226980415,
+          "OcanaTienda2023": 0.0028133482682234923,
+          "PI-CAI": 0.0017503281360378709,
+          "Petrillo2023": 0.020524378979913716,
+          "Prostate-MRI-US-Biopsy": 0.0122328455259402,
+          "Sasaki2019": 0.027361432477441383,
+          "Song2020": -0.0008743905187834911,
+          "UCSF-PDGM": 0.004711473290105128,
+          "UPENN-GBM": 0.0012225902161109303,
+          "Veeraraghavan2020": 0.0422174005104069,
+          "WORC-GIST": 0.02071675990999694,
+          "WORC-Lipo": 0.02239357660582922,
+          "WORC-Liver": -0.007708689182690576,
+          "WORC-Melanoma": -0.00048274652807123175,
+          "Zhang2024A": 0.013310175224697157,
+          "Zhang2024B": 0.03441474597725769
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            0.004079670822319446,
+            0.01593890982450519
+          ],
+          "mean": 0.01013413284323588,
+          "median": 0.008020526403010653,
+          "n_datasets": 31,
+          "rank_biserial": 0.6330645161290323
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 0.0014681089669466019,
+          "statistic": 91.0
+        }
+      },
+      "H4": {
+        "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+        "covariates_dropped_as_constant": [],
+        "df": 12,
+        "estimable": true,
+        "fe_params_full": {
+          "C(control)[T.C1]": 0.0010439846291408496,
+          "C(control)[T.C2]": 0.0015942178846308642,
+          "C(control)[T.C3]": 0.0004565964312862594,
+          "C(control)[T.C4]": -0.001160484239525475,
+          "C(searcher)[T.de_S]": 0.0021318878455664166,
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0020317756828775835,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0013443275625200366,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.0021702901625121024,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.000778736856217057,
+          "C(searcher)[T.ga]": 0.0002796617102203201,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -7.772430531192536e-05,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.0006051592779476119,
+          "C(searcher)[T.ga]:C(control)[T.C3]": 6.185234744802829e-05,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.00028205614494941167,
+          "C(searcher)[T.gwo_S]": 0.0006602674006583265,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0005003667189136432,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": -0.0007518795014354642,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.0012199230221365228,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.0004145242511764252,
+          "Intercept": 0.19872439303367512,
+          "log_budget": 0.00018480151773968783,
+          "log_pn": 0.026133239003708196
+        },
+        "fit_full": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 178794.46834237533,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "fit_reduced": [
+          {
+            "converged": true,
+            "convergence_warnings": 1,
+            "error": null,
+            "llf": 178784.26145415741,
+            "method": "lbfgs",
+            "warnings": [
+              {
+                "category": "ConvergenceWarning",
+                "message": "The MLE may be on the boundary of the parameter space."
+              }
+            ]
+          }
+        ],
+        "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+        "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+        "interaction_coefficients": {
+          "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0020317756828775835,
+          "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0013443275625200366,
+          "C(searcher)[T.de_S]:C(control)[T.C3]": -0.0021702901625121024,
+          "C(searcher)[T.de_S]:C(control)[T.C4]": -0.000778736856217057,
+          "C(searcher)[T.ga]:C(control)[T.C1]": -7.772430531192536e-05,
+          "C(searcher)[T.ga]:C(control)[T.C2]": -0.0006051592779476119,
+          "C(searcher)[T.ga]:C(control)[T.C3]": 6.185234744802829e-05,
+          "C(searcher)[T.ga]:C(control)[T.C4]": 0.00028205614494941167,
+          "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0005003667189136432,
+          "C(searcher)[T.gwo_S]:C(control)[T.C2]": -0.0007518795014354642,
+          "C(searcher)[T.gwo_S]:C(control)[T.C3]": -0.0012199230221365228,
+          "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.0004145242511764252
+        },
+        "llf_full": 178794.46834237533,
+        "llf_reduced": 178784.26145415741,
+        "lr_statistic": 20.413776435831096,
+        "n_datasets": 31,
+        "n_partitions": 310,
+        "n_rows": 74400,
+        "p": 0.05965249708257814,
+        "response": "brier"
+      },
+      "H5": {
+        "d_per_dataset": {
+          "BraTS-2021": -0.003576647745144268,
+          "C4KC-KiTS": -3.928791412588506e-06,
+          "Dong2022": 0.002570841064078261,
+          "Fusco2022": 0.006778337339236468,
+          "Granata2021": 0.004488642571797263,
+          "Head-Neck-PET-CT": -0.010116164457534632,
+          "Head-Neck-Radiomics-HN1": 0.0018607200284438963,
+          "Hosny2018A": -0.001643814528068166,
+          "Hosny2018C": -0.011788033797103525,
+          "Huang2023": -0.0070164718401413,
+          "Hunter2023": -0.0025563505084346405,
+          "Keek2020": -0.0089134071433008,
+          "LGG-1p19qDeletion": -0.0007736485531919801,
+          "LNDb": -0.0018794941578178792,
+          "Lu2019": -0.007627251935018259,
+          "NSCLC-Radiogenomics": -0.000670134421902252,
+          "OcanaTienda2023": -0.019832801612103823,
+          "PI-CAI": -0.00014741405786758421,
+          "Petrillo2023": -0.0031136167780902446,
+          "Prostate-MRI-US-Biopsy": -0.0024604895185264264,
+          "Sasaki2019": -0.03566731024229047,
+          "Song2020": -0.0014658021358564255,
+          "UCSF-PDGM": -0.0012873276097831732,
+          "UPENN-GBM": -0.005637673957004152,
+          "Veeraraghavan2020": -0.013793834166302033,
+          "WORC-GIST": -0.002988092937581288,
+          "WORC-Lipo": -0.0006117513204256519,
+          "WORC-Liver": 0.0005988540023574018,
+          "WORC-Melanoma": -0.011550536972480763,
+          "Zhang2024A": -0.006067070831218824,
+          "Zhang2024B": -0.017012716657702154
+        },
+        "effect": {
+          "bootstrap": {
+            "resamples": 10000,
+            "seed": 20261113
+          },
+          "ci95_mean": [
+            -0.008288821636004676,
+            -0.002603334191752377
+          ],
+          "mean": -0.0052227223119480646,
+          "median": -0.0025563505084346405,
+          "n_datasets": 31,
+          "rank_biserial": -0.7338709677419355
+        },
+        "two_sided": {
+          "alternative": "two-sided",
+          "method": "exact",
+          "n": 31,
+          "n_after_zero_removal": 31,
+          "p": 0.00016037467867136002,
+          "statistic": 66.0
+        }
+      }
+    },
+    "friedman": {
+      "context_only": true,
+      "n_datasets": 31,
+      "n_pairs": 861,
+      "n_pairs_rejected_holm": 0,
+      "p": 0.0011776983253218825,
+      "selectors": [
+        "baseline__all_k",
+        "baseline__enet",
+        "baseline__ftest",
+        "baseline__l1",
+        "baseline__mrmr",
+        "baseline__rf",
+        "bpso_S__C0",
+        "bpso_S__C1",
+        "bpso_S__C2",
+        "bpso_S__C3",
+        "bpso_S__C4",
+        "bpso_V__C0",
+        "bpso_V__C4",
+        "de_S__C0",
+        "de_S__C1",
+        "de_S__C2",
+        "de_S__C3",
+        "de_S__C4",
+        "de_V__C0",
+        "de_V__C4",
+        "ga__C0",
+        "ga__C1",
+        "ga__C2",
+        "ga__C3",
+        "ga__C4",
+        "gwo_S__C0",
+        "gwo_S__C1",
+        "gwo_S__C2",
+        "gwo_S__C3",
+        "gwo_S__C4",
+        "gwo_V__C0",
+        "gwo_V__C4",
+        "hill_climb__C0",
+        "hill_climb__C4",
+        "one_plus_one__C0",
+        "one_plus_one__C4",
+        "random__C0",
+        "random__C4",
+        "woa_S__C0",
+        "woa_S__C4",
+        "woa_V__C0",
+        "woa_V__C4"
+      ],
+      "statistic": 74.09143856475495
+    },
+    "label": "secondary analyses; not in the Holm family",
+    "random_vs_guided": {
+      "comparisons": [
+        {
+          "guided": "hill_climb__C0",
+          "mean_d": 0.0011842185652019912,
+          "median_d": -0.0004952151362409563,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.9153939224779606,
+          "p_holm": 1.0,
+          "rank_biserial": -0.024193548387096774,
+          "reject_holm": false
+        },
+        {
+          "guided": "one_plus_one__C0",
+          "mean_d": 0.001969242814663217,
+          "median_d": 0.0016666666666667052,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.7352173123508692,
+          "p_holm": 1.0,
+          "rank_biserial": 0.07258064516129033,
+          "reject_holm": false
+        },
+        {
+          "guided": "ga__C0",
+          "mean_d": 0.0028697491339158645,
+          "median_d": 0.0008322740886842483,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.7206862810999155,
+          "p_holm": 1.0,
+          "rank_biserial": 0.07661290322580645,
+          "reject_holm": false
+        },
+        {
+          "guided": "bpso_S__C0",
+          "mean_d": 0.0017870221235083256,
+          "median_d": 0.0007498721601284508,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.6495812004432082,
+          "p_holm": 1.0,
+          "rank_biserial": 0.0967741935483871,
+          "reject_holm": false
+        },
+        {
+          "guided": "bpso_V__C0",
+          "mean_d": 0.0035011936278019477,
+          "median_d": 0.0009722316819029686,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.7942198486998677,
+          "p_holm": 1.0,
+          "rank_biserial": 0.056451612903225805,
+          "reject_holm": false
+        },
+        {
+          "guided": "de_S__C0",
+          "mean_d": 0.0021654044717199406,
+          "median_d": 0.001584731980223797,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.7793471785262227,
+          "p_holm": 1.0,
+          "rank_biserial": 0.06048387096774194,
+          "reject_holm": false
+        },
+        {
+          "guided": "de_V__C0",
+          "mean_d": 0.001851902095002191,
+          "median_d": -0.0011666666666666492,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.8848088048398495,
+          "p_holm": 1.0,
+          "rank_biserial": 0.03225806451612903,
+          "reject_holm": false
+        },
+        {
+          "guided": "gwo_S__C0",
+          "mean_d": 0.001848867023458242,
+          "median_d": 0.0026704486315142217,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.8241792023181915,
+          "p_holm": 1.0,
+          "rank_biserial": 0.04838709677419355,
+          "reject_holm": false
+        },
+        {
+          "guided": "gwo_V__C0",
+          "mean_d": 0.0026416241865192427,
+          "median_d": 0.0016026006282415795,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.7645525922998786,
+          "p_holm": 1.0,
+          "rank_biserial": 0.06451612903225806,
+          "reject_holm": false
+        },
+        {
+          "guided": "woa_S__C0",
+          "mean_d": 0.006705847208909611,
+          "median_d": 0.00342722009320362,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.16334008984267712,
+          "p_holm": 1.0,
+          "rank_biserial": 0.2903225806451613,
+          "reject_holm": false
+        },
+        {
+          "guided": "woa_V__C0",
+          "mean_d": 0.0018600423312022081,
+          "median_d": 0.0004908688668622263,
+          "method": "exact",
+          "n_datasets": 31,
+          "p": 0.8392556216567755,
+          "p_holm": 1.0,
+          "rank_biserial": 0.04435483870967742,
+          "reject_holm": false
+        }
+      ],
+      "configurations_missing": [],
+      "holm_family": "random vs each guided C0"
+    },
+    "size_stability": {
+      "method": "Nogueira et al. (2018) across outer folds per dataset x configuration x seed index, averaged over seed indices; features identified by original column name (stored in the run files); d = n_features after the data-handling rules",
+      "summary": [
+        {
+          "config": "baseline__all_k",
+          "mean_size": 190.5483870967742,
+          "mean_stability": 0.5825947090639827,
+          "n_datasets": 31,
+          "n_undefined_stability": 5
+        },
+        {
+          "config": "baseline__enet",
+          "mean_size": 46.44193548387097,
+          "mean_stability": 0.30061496482916017,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__ftest",
+          "mean_size": 94.34516129032258,
+          "mean_stability": 0.3478715208616326,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__l1",
+          "mean_size": 25.822580645161292,
+          "mean_stability": 0.29434297557325345,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__mrmr",
+          "mean_size": 66.63870967741936,
+          "mean_stability": 0.26161023280982815,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "baseline__rf",
+          "mean_size": 67.33655913978495,
+          "mean_stability": 0.256203661816635,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C0",
+          "mean_size": 88.57096774193548,
+          "mean_stability": 0.2110835464616578,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C1",
+          "mean_size": 90.947311827957,
+          "mean_stability": 0.20966271215621618,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C2",
+          "mean_size": 87.24086021505376,
+          "mean_stability": 0.21705466273645205,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C3",
+          "mean_size": 91.01827956989247,
+          "mean_stability": 0.2133876151364238,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_S__C4",
+          "mean_size": 76.7258064516129,
+          "mean_stability": 0.18255569244761286,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_V__C0",
+          "mean_size": 86.65376344086022,
+          "mean_stability": 0.21320637335958387,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "bpso_V__C4",
+          "mean_size": 77.4978494623656,
+          "mean_stability": 0.188262645392723,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C0",
+          "mean_size": 87.4268817204301,
+          "mean_stability": 0.21504700518015601,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C1",
+          "mean_size": 91.99462365591398,
+          "mean_stability": 0.21300073529002705,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C2",
+          "mean_size": 85.90430107526882,
+          "mean_stability": 0.2176659004046917,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C3",
+          "mean_size": 92.48064516129033,
+          "mean_stability": 0.2143571758479822,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_S__C4",
+          "mean_size": 78.69247311827957,
+          "mean_stability": 0.1891304866558537,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_V__C0",
+          "mean_size": 92.33870967741936,
+          "mean_stability": 0.21211439360068757,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "de_V__C4",
+          "mean_size": 79.03763440860214,
+          "mean_stability": 0.17390129913356508,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C0",
+          "mean_size": 75.58709677419354,
+          "mean_stability": 0.20313098507189292,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C1",
+          "mean_size": 88.8247311827957,
+          "mean_stability": 0.20669049557215788,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C2",
+          "mean_size": 69.82903225806452,
+          "mean_stability": 0.21294826608460196,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C3",
+          "mean_size": 90.6,
+          "mean_stability": 0.21683760184931594,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "ga__C4",
+          "mean_size": 71.38279569892474,
+          "mean_stability": 0.19365247312226092,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C0",
+          "mean_size": 90.24623655913977,
+          "mean_stability": 0.21217567739258197,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C1",
+          "mean_size": 92.11612903225806,
+          "mean_stability": 0.21121646918751327,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C2",
+          "mean_size": 89.53763440860214,
+          "mean_stability": 0.2153700034019465,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C3",
+          "mean_size": 92.90967741935484,
+          "mean_stability": 0.21571931478678638,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_S__C4",
+          "mean_size": 80.59569892473118,
+          "mean_stability": 0.18656719340966074,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_V__C0",
+          "mean_size": 92.36129032258064,
+          "mean_stability": 0.21371615874343075,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "gwo_V__C4",
+          "mean_size": 79.65591397849462,
+          "mean_stability": 0.17844142199252008,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "hill_climb__C0",
+          "mean_size": 71.73333333333333,
+          "mean_stability": 0.18863993549179375,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "hill_climb__C4",
+          "mean_size": 67.48602150537634,
+          "mean_stability": 0.1813992960264237,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "one_plus_one__C0",
+          "mean_size": 73.54408602150538,
+          "mean_stability": 0.1918409554662022,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "one_plus_one__C4",
+          "mean_size": 69.41935483870968,
+          "mean_stability": 0.1848118309522366,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "random__C0",
+          "mean_size": 34.10860215053763,
+          "mean_stability": 0.08138490151356216,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "random__C4",
+          "mean_size": 7.184946236559139,
+          "mean_stability": 0.029683200919268196,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "woa_S__C0",
+          "mean_size": 30.736559139784948,
+          "mean_stability": 0.07765489045212559,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "woa_S__C4",
+          "mean_size": 5.529032258064516,
+          "mean_stability": 0.04036795955117523,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "woa_V__C0",
+          "mean_size": 91.56774193548387,
+          "mean_stability": 0.21276136999054102,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        },
+        {
+          "config": "woa_V__C4",
+          "mean_size": 79.7268817204301,
+          "mean_stability": 0.1795124346169629,
+          "n_datasets": 31,
+          "n_undefined_stability": 0
+        }
+      ]
+    }
+  },
+  "sensitivity": {
+    "S1": {
+      "datasets_remaining": [
+        "BraTS-2021",
+        "C4KC-KiTS",
+        "Dong2022",
+        "Fusco2022",
+        "Granata2021",
+        "Head-Neck-PET-CT",
+        "Head-Neck-Radiomics-HN1",
+        "Huang2023",
+        "Hunter2023",
+        "LGG-1p19qDeletion",
+        "Lu2019",
+        "NSCLC-Radiogenomics",
+        "OcanaTienda2023",
+        "PI-CAI",
+        "Petrillo2023",
+        "Prostate-MRI-US-Biopsy",
+        "Sasaki2019",
+        "Song2020",
+        "UPENN-GBM",
+        "Veeraraghavan2020",
+        "WORC-GIST",
+        "WORC-Lipo",
+        "WORC-Liver",
+        "WORC-Melanoma",
+        "Zhang2024A",
+        "Zhang2024B"
+      ],
+      "excluded_datasets": [
+        "Arita2018",
+        "Hosny2018A",
+        "Hosny2018B",
+        "Hosny2018C",
+        "Keek2020",
+        "LNDb",
+        "UCSF-PDGM",
+        "Wang2024"
+      ],
+      "label": "sensitivity analysis; not in the Holm family",
+      "results": {
+        "H1": {
+          "configurations_missing": [],
+          "configurations_used": [
+            "random__C0",
+            "hill_climb__C0",
+            "one_plus_one__C0",
+            "ga__C0",
+            "bpso_S__C0",
+            "bpso_V__C0",
+            "de_S__C0",
+            "de_V__C0",
+            "gwo_S__C0",
+            "gwo_V__C0",
+            "woa_S__C0",
+            "woa_V__C0"
+          ],
+          "d_per_dataset": {
+            "BraTS-2021": 0.10085522536548709,
+            "C4KC-KiTS": 0.1710834972640529,
+            "Dong2022": 0.07823615734934984,
+            "Fusco2022": 0.11980226092494613,
+            "Granata2021": 0.23945210353775162,
+            "Head-Neck-PET-CT": 0.0775175356823641,
+            "Head-Neck-Radiomics-HN1": 0.05607162558755696,
+            "Huang2023": 0.055493539252846384,
+            "Hunter2023": 0.04296757499424237,
+            "LGG-1p19qDeletion": 0.1437073204858699,
+            "Lu2019": 0.15713656405323073,
+            "NSCLC-Radiogenomics": 0.11798251028806583,
+            "OcanaTienda2023": 0.30040313296100335,
+            "PI-CAI": 0.02787152079957267,
+            "Petrillo2023": 0.2792869648506903,
+            "Prostate-MRI-US-Biopsy": 0.054342697340907596,
+            "Sasaki2019": 0.3143244035033695,
+            "Song2020": 0.016354906039190438,
+            "UPENN-GBM": 0.2624612098336955,
+            "Veeraraghavan2020": 0.24620826314460567,
+            "WORC-GIST": 0.10188818577311039,
+            "WORC-Lipo": 0.08365707793422443,
+            "WORC-Liver": 0.04439959989003848,
+            "WORC-Melanoma": 0.29319964935349546,
+            "Zhang2024A": 0.08456492872478959,
+            "Zhang2024B": 0.1887694708028628
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              0.1052508526703703,
+              0.1770665995540566
+            ],
+            "mean": 0.1406937663745123,
+            "median": 0.1099353480305881,
+            "n_datasets": 26,
+            "rank_biserial": 1.0
+          },
+          "p_holm": 7.450580596923828e-08,
+          "p_raw": 1.4901161193847656e-08,
+          "reject_holm": true,
+          "test": {
+            "alternative": "greater",
+            "method": "exact",
+            "n": 26,
+            "n_after_zero_removal": 26,
+            "p": 1.4901161193847656e-08,
+            "statistic": 351.0
+          },
+          "wording": "optimism gap greater than zero"
+        },
+        "H2": {
+          "d_per_dataset": {
+            "BraTS-2021": -0.0012561874600809375,
+            "C4KC-KiTS": 0.009953703703703742,
+            "Dong2022": -0.004162322655754558,
+            "Fusco2022": 0.003442460317460344,
+            "Granata2021": -0.006829989711934131,
+            "Head-Neck-PET-CT": 0.008511396011395972,
+            "Head-Neck-Radiomics-HN1": 0.0010298700142450656,
+            "Huang2023": -0.0005797101449274977,
+            "Hunter2023": 0.00177713579716135,
+            "LGG-1p19qDeletion": -0.0033793290043289403,
+            "Lu2019": -0.00909090909090915,
+            "NSCLC-Radiogenomics": -0.002708333333333368,
+            "OcanaTienda2023": -0.008701814058956939,
+            "PI-CAI": 0.00012924949730139246,
+            "Petrillo2023": -0.00888310185185183,
+            "Prostate-MRI-US-Biopsy": 0.0018206782713085234,
+            "Sasaki2019": 0.004163396127681809,
+            "Song2020": -0.0005707502374169005,
+            "UPENN-GBM": 0.00010845057720065832,
+            "Veeraraghavan2020": -0.0046432980599647455,
+            "WORC-GIST": 0.00016666666666667607,
+            "WORC-Lipo": 0.0006887052341598421,
+            "WORC-Liver": -0.002882938340002028,
+            "WORC-Melanoma": 0.0005555555555555591,
+            "Zhang2024A": 0.00312173458725179,
+            "Zhang2024B": 0.00937728937728935
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.0022736301549535925,
+              0.001569674918072662
+            ],
+            "mean": -0.00034009200811842115,
+            "median": 0.00011885003725102539,
+            "n_datasets": 26,
+            "rank_biserial": -0.05413105413105413
+          },
+          "p_holm": 1.0,
+          "p_raw": 0.5985996276140213,
+          "reject_holm": false,
+          "searchers_missing": [],
+          "searchers_used": [
+            "ga",
+            "bpso_S",
+            "de_S",
+            "gwo_S"
+          ],
+          "test": {
+            "alternative": "greater",
+            "method": "exact",
+            "n": 26,
+            "n_after_zero_removal": 26,
+            "p": 0.5985996276140213,
+            "statistic": 166.0
+          },
+          "wording": "no detectable difference"
+        },
+        "H3": {
+          "d_per_dataset": {
+            "BraTS-2021": 0.004031751945686279,
+            "C4KC-KiTS": 0.06842592592592589,
+            "Dong2022": 0.02049879019296086,
+            "Fusco2022": -0.005317460317460165,
+            "Granata2021": -0.035534979423868296,
+            "Head-Neck-PET-CT": -0.016488603988603967,
+            "Head-Neck-Radiomics-HN1": -0.00859063390313397,
+            "Huang2023": -0.021700991609458264,
+            "Hunter2023": -0.026939953496329494,
+            "LGG-1p19qDeletion": -0.01475649350649344,
+            "Lu2019": 0.06212121212121213,
+            "NSCLC-Radiogenomics": 0.050875000000000115,
+            "OcanaTienda2023": 0.0023809523809523725,
+            "PI-CAI": -0.0036106855182154174,
+            "Petrillo2023": -0.03880446623093686,
+            "Prostate-MRI-US-Biopsy": -0.02727264239028948,
+            "Sasaki2019": -0.022566718995290447,
+            "Song2020": 0.0031115494192417437,
+            "UPENN-GBM": 0.0013311688311689052,
+            "Veeraraghavan2020": -0.005902116402116464,
+            "WORC-GIST": -0.03272222222222221,
+            "WORC-Lipo": -0.03606519742883385,
+            "WORC-Liver": 0.017097568482610126,
+            "WORC-Melanoma": 0.012592592592592544,
+            "Zhang2024A": -0.031765935214211116,
+            "Zhang2024B": -0.041311918850380325
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.015745082023686,
+              0.006877436230073081
+            ],
+            "mean": -0.004880173369442031,
+            "median": -0.007246375152625217,
+            "n_datasets": 26,
+            "rank_biserial": -0.3162393162393162
+          },
+          "p_holm": 0.035416379570961,
+          "p_raw": 0.011805459856987,
+          "reject_holm": true,
+          "tost": {
+            "lower": {
+              "alternative": "greater",
+              "method": "exact",
+              "n": 26,
+              "n_after_zero_removal": 26,
+              "p": 0.011805459856987,
+              "statistic": 264.0
+            },
+            "margin": 0.02,
+            "p_tost": 0.011805459856987,
+            "upper": {
+              "alternative": "less",
+              "method": "exact",
+              "n": 26,
+              "n_after_zero_removal": 26,
+              "p": 0.0003727227449417114,
+              "statistic": 49.0
+            }
+          },
+          "two_sided": {
+            "alternative": "two-sided",
+            "method": "exact",
+            "n": 26,
+            "n_after_zero_removal": 26,
+            "p": 0.16508886218070984,
+            "statistic": 120.0
+          },
+          "wording": "equivalent (margin 0.02)"
+        },
+        "H4": {
+          "controls": [
+            "C0",
+            "C1",
+            "C2",
+            "C3",
+            "C4"
+          ],
+          "optimism_gap_descriptive": {
+            "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+            "covariates_dropped_as_constant": [],
+            "df": 12,
+            "estimable": true,
+            "fe_params_full": {
+              "C(control)[T.C1]": -0.06513480631224776,
+              "C(control)[T.C2]": -0.044915310444070516,
+              "C(control)[T.C3]": -0.034582452575015764,
+              "C(control)[T.C4]": -0.017357437199109253,
+              "C(searcher)[T.de_S]": 0.0004955996091587241,
+              "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0033623696811888593,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0004685158971294843,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": -0.006147812244516648,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": -0.000741834098055982,
+              "C(searcher)[T.ga]": 0.03333223181187976,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.028928158684216818,
+              "C(searcher)[T.ga]:C(control)[T.C2]": -0.013878440360236144,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.030583633251765798,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0028459190601690613,
+              "C(searcher)[T.gwo_S]": -0.010664538211266431,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.008212216428644455,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.004769747866632181,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.002992358921425918,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.002009406183124278,
+              "Intercept": -0.029515062049498594,
+              "log_budget": 0.013677862428460084,
+              "log_pn": 0.043338920539118225
+            },
+            "fit_full": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 96402.85247184883,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "fit_reduced": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 95898.86330330596,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+            "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+            "interaction_coefficients": {
+              "C(searcher)[T.de_S]:C(control)[T.C1]": -0.0033623696811888593,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": -0.0004685158971294843,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": -0.006147812244516648,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": -0.000741834098055982,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.028928158684216818,
+              "C(searcher)[T.ga]:C(control)[T.C2]": -0.013878440360236144,
+              "C(searcher)[T.ga]:C(control)[T.C3]": -0.030583633251765798,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0028459190601690613,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": 0.008212216428644455,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.004769747866632181,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.002992358921425918,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": -0.002009406183124278
+            },
+            "llf_full": 96402.85247184883,
+            "llf_reduced": 95898.86330330596,
+            "lr_statistic": 1007.9783370857476,
+            "n_datasets": 26,
+            "n_partitions": 260,
+            "n_rows": 62400,
+            "p": 3.6102005648418853e-208,
+            "response": "gap"
+          },
+          "outer_auc": {
+            "acceptance_rule": "accepted when statsmodels reports converged = True; lbfgs first, powell only if lbfgs does not converge; warnings recorded verbatim and do not reject the fit; if neither converges, H4 is 'not estimable' and enters Holm with p = 1",
+            "covariates_dropped_as_constant": [],
+            "df": 12,
+            "estimable": true,
+            "fe_params_full": {
+              "C(control)[T.C1]": -0.0035915786667286113,
+              "C(control)[T.C2]": -0.0039155185801333136,
+              "C(control)[T.C3]": -0.0007269512640567682,
+              "C(control)[T.C4]": -0.0015992396316785373,
+              "C(searcher)[T.de_S]": -0.002120371749628529,
+              "C(searcher)[T.de_S]:C(control)[T.C1]": 0.000837450451152268,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0007041692106094067,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": 0.0001051004593659033,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": 0.00045508673328128313,
+              "C(searcher)[T.ga]": 3.390707397167887e-05,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.0017362403861376895,
+              "C(searcher)[T.ga]:C(control)[T.C2]": 0.001134882738405409,
+              "C(searcher)[T.ga]:C(control)[T.C3]": 3.19216044016077e-05,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0018687208506216822,
+              "C(searcher)[T.gwo_S]": -0.0014063669175300283,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0007947300612402961,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.00086268159172604,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0010408599761874352,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.0005869241281017623,
+              "Intercept": 0.7202619790644889,
+              "log_budget": 0.00022049593880601827,
+              "log_pn": -0.037583291760419496
+            },
+            "fit_full": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 106002.99742669088,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "fit_reduced": [
+              {
+                "converged": true,
+                "convergence_warnings": 1,
+                "error": null,
+                "llf": 105997.6568712875,
+                "method": "lbfgs",
+                "warnings": [
+                  {
+                    "category": "ConvergenceWarning",
+                    "message": "The MLE may be on the boundary of the parameter space."
+                  }
+                ]
+              }
+            ],
+            "formula_full": "C(searcher) * C(control) + log_budget + log_pn",
+            "formula_reduced": "C(searcher) + C(control) + log_budget + log_pn",
+            "interaction_coefficients": {
+              "C(searcher)[T.de_S]:C(control)[T.C1]": 0.000837450451152268,
+              "C(searcher)[T.de_S]:C(control)[T.C2]": 0.0007041692106094067,
+              "C(searcher)[T.de_S]:C(control)[T.C3]": 0.0001051004593659033,
+              "C(searcher)[T.de_S]:C(control)[T.C4]": 0.00045508673328128313,
+              "C(searcher)[T.ga]:C(control)[T.C1]": -0.0017362403861376895,
+              "C(searcher)[T.ga]:C(control)[T.C2]": 0.001134882738405409,
+              "C(searcher)[T.ga]:C(control)[T.C3]": 3.19216044016077e-05,
+              "C(searcher)[T.ga]:C(control)[T.C4]": 0.0018687208506216822,
+              "C(searcher)[T.gwo_S]:C(control)[T.C1]": -0.0007947300612402961,
+              "C(searcher)[T.gwo_S]:C(control)[T.C2]": 0.00086268159172604,
+              "C(searcher)[T.gwo_S]:C(control)[T.C3]": 0.0010408599761874352,
+              "C(searcher)[T.gwo_S]:C(control)[T.C4]": 0.0005869241281017623
+            },
+            "llf_full": 106002.99742669088,
+            "llf_reduced": 105997.6568712875,
+            "lr_statistic": 10.681110806763172,
+            "n_datasets": 26,
+            "n_partitions": 260,
+            "n_rows": 62400,
+            "p": 0.5564270036897723,
+            "response": "auc"
+          },
+          "p_holm": 1.0,
+          "p_raw": 0.5564270036897723,
+          "reject_holm": false,
+          "searchers": [
+            "bpso_S",
+            "de_S",
+            "ga",
+            "gwo_S"
+          ],
+          "wording": "no detectable interaction"
+        },
+        "H5": {
+          "classical_used": [
+            "ga__C0",
+            "bpso_S__C0",
+            "bpso_V__C0",
+            "de_S__C0",
+            "de_V__C0"
+          ],
+          "configurations_missing": [],
+          "d_per_dataset": {
+            "BraTS-2021": 5.4287458898127916e-05,
+            "C4KC-KiTS": -0.015074074074074018,
+            "Dong2022": -0.006049059630237719,
+            "Fusco2022": -0.0017500000000000293,
+            "Granata2021": -0.011978395061728375,
+            "Head-Neck-PET-CT": 0.012548076923077023,
+            "Head-Neck-Radiomics-HN1": -0.0029571759259259256,
+            "Huang2023": 0.006756864988558209,
+            "Hunter2023": 0.003936696517446103,
+            "LGG-1p19qDeletion": -0.0020672799422799537,
+            "Lu2019": 0.0005303030303031031,
+            "NSCLC-Radiogenomics": -0.028980555555555565,
+            "OcanaTienda2023": 0.0018820861678005008,
+            "PI-CAI": 0.00025145487109012876,
+            "Petrillo2023": -0.006924223856209222,
+            "Prostate-MRI-US-Biopsy": 0.002721495264772611,
+            "Sasaki2019": 0.029364861329147007,
+            "Song2020": 0.0012195558477610113,
+            "UPENN-GBM": 0.005903544372294456,
+            "Veeraraghavan2020": -0.012626366843033476,
+            "WORC-GIST": 0.0018583333333332952,
+            "WORC-Lipo": 0.002586088154269861,
+            "WORC-Liver": -0.004679901508156226,
+            "WORC-Melanoma": 0.0004444444444444695,
+            "Zhang2024A": 0.010637408568442974,
+            "Zhang2024B": 0.019807269653423276
+          },
+          "effect": {
+            "bootstrap": {
+              "resamples": 10000,
+              "seed": 20261113
+            },
+            "ci95_mean": [
+              -0.003960008911357411,
+              0.004522138809814419
+            ],
+            "mean": 0.0002852207126100634,
+            "median": 0.0004873737373737863,
+            "n_datasets": 26,
+            "rank_biserial": 0.05982905982905983
+          },
+          "metaphor_used": [
+            "gwo_S__C0",
+            "gwo_V__C0",
+            "woa_S__C0",
+            "woa_V__C0"
+          ],
+          "p_holm": 0.0004349350929260254,
+          "p_raw": 0.00010873377323150635,
+          "reject_holm": true,
+          "test": {
+            "alternative": "less",
+            "method": "exact",
+            "n": 26,
+            "n_after_zero_removal": 26,
+            "p": 0.00010873377323150635,
+            "statistic": 39.0
+          },
+          "tost_full": {
+            "lower": {
+              "alternative": "greater",
+              "method": "exact",
+              "n": 26,
+              "n_after_zero_removal": 26,
+              "p": 3.0159950256347656e-05,
+              "statistic": 321.0
+            },
+            "margin": 0.01,
+            "p_tost": 0.00010873377323150635,
+            "upper": {
+              "alternative": "less",
+              "method": "exact",
+              "n": 26,
+              "n_after_zero_removal": 26,
+              "p": 0.00010873377323150635,
+              "statistic": 39.0
+            }
+          },
+          "two_sided": {
+            "alternative": "two-sided",
+            "method": "exact",
+            "n": 26,
+            "n_after_zero_removal": 26,
+            "p": 0.8028007447719574,
+            "statistic": 165.0
+          },
+          "wording": "equivalent (margin 0.01)"
+        },
+        "holm": {
+          "alpha": 0.05,
+          "family": [
+            "H1",
+            "H2",
+            "H3",
+            "H4",
+            "H5"
+          ],
+          "note": "H3 enters with p_TOST; H4 with the likelihood-ratio p; missing p-values are left out",
+          "p_adjusted": [
+            7.450580596923828e-08,
+            1.0,
+            0.035416379570961,
+            1.0,
+            0.0004349350929260254
+          ],
+          "p_raw": [
+            1.4901161193847656e-08,
+            0.5985996276140213,
+            0.011805459856987,
+            0.5564270036897723,
+            0.00010873377323150635
+          ],
+          "reject": [
+            true,
+            false,
+            true,
+            false,
+            true
+          ]
+        }
+      }
+    },
+    "S2": {
+      "d_per_dataset": {
+        "C4KC-KiTS": 0.038981481481481506,
+        "Dong2022": -0.020553198929635808,
+        "Fusco2022": -0.005317460317460165,
+        "Granata2021": -0.014300411522633727,
+        "Head-Neck-PET-CT": -0.036645299145299126,
+        "Head-Neck-Radiomics-HN1": -0.00859063390313397,
+        "Hosny2018A": 0.02698822297276593,
+        "Hosny2018C": -0.041149097815764424,
+        "Huang2023": -0.05118993135011429,
+        "LNDb": -0.028518884497145458,
+        "Lu2019": 0.005303030303030365,
+        "NSCLC-Radiogenomics": 0.050875000000000115,
+        "Petrillo2023": -0.009027777777777801,
+        "Sasaki2019": -0.05864730507587651,
+        "Song2020": 0.0004936810577836903,
+        "Veeraraghavan2020": -0.005902116402116464,
+        "Zhang2024B": -0.011502958579881706
+      },
+      "effect": {
+        "bootstrap": {
+          "resamples": 10000,
+          "seed": 20261113
+        },
+        "ci95_mean": [
+          -0.02308960896046323,
+          0.0040601442490807525
+        ],
+        "mean": -0.009923744676575167,
+        "median": -0.009027777777777801,
+        "n_datasets": 17,
+        "rank_biserial": -0.46405228758169936
+      },
+      "plan": "confirmation_s2.yaml",
+      "sensitivity_only": true,
+      "tost": {
+        "lower": {
+          "alternative": "greater",
+          "method": "exact",
+          "n": 17,
+          "n_after_zero_removal": 17,
+          "p": 0.13166046142578125,
+          "statistic": 101.0
+        },
+        "margin": 0.02,
+        "p_tost": 0.13166046142578125,
+        "upper": {
+          "alternative": "less",
+          "method": "exact",
+          "n": 17,
+          "n_after_zero_removal": 17,
+          "p": 0.00067138671875,
+          "statistic": 13.0
+        }
+      },
+      "two_sided": {
+        "alternative": "two-sided",
+        "method": "exact",
+        "n": 17,
+        "n_after_zero_removal": 17,
+        "p": 0.0983734130859375,
+        "statistic": 41.0
+      }
+    }
+  },
+  "validation_report": [
+    "manifest rows: 28900; distinct run files: 28900",
+    "check 1: 28900 files re-hashed; ok 28900, not ok 0",
+    "check 2: plan confirmation: 24800/24800 expected runs present (930 dataset x configuration cells); 24800 files re-hashed; path or payload mismatches 0; commits ['862a7ea']",
+    "check 2: plan confirmation_s2: 680/680 expected runs present (34 dataset x configuration cells); 680 files re-hashed; path or payload mismatches 0; commits ['862a7ea']",
+    "check 2: plans confirmation / confirmation_s2: 0 shared paths",
+    "check 2: manifest entries outside the given plans: 3420",
+    "check 3: 4 distinct commits checked",
+    "check 4: 25480 confirmation runs; stage 2 committed: yes",
+    "",
+    "All checks passed."
+  ],
+  "versions": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "patsy": "1.0.3",
+    "python": "3.12.10",
+    "scipy": "1.18.1",
+    "statsmodels": "0.14.6"
+  }
+}
