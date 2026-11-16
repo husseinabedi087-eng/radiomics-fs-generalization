@@ -71,7 +71,7 @@ LABEL = {"random": "Random search", "hill_climb": "Hill climbing", "one_plus_one
          "bpso_S": "BPSO-S", "bpso_V": "BPSO-V", "de_S": "DE-S", "de_V": "DE-V", "gwo_S": "GWO-S",
          "gwo_V": "GWO-V", "woa_S": "WOA-S", "woa_V": "WOA-V"}
 STYLE = {"random": (OI["black"], "--", None), "hill_climb": (OI["orange"], "-", "o"),
-         "one_plus_one": (OI["yellow"], "-", "s"), "ga": (OI["blue"], "-", "D"),
+         "one_plus_one": ("#555555", "-", "s"), "ga": (OI["blue"], "-", "D"),
          "bpso_S": (OI["sky"], "-", "^"), "bpso_V": (OI["sky"], ":", "v"),
          "de_S": (OI["green"], "-", "^"), "de_V": (OI["green"], ":", "v"),
          "gwo_S": (OI["vermillion"], "-", "^"), "gwo_V": (OI["vermillion"], ":", "v"),
@@ -180,7 +180,7 @@ def fig1(res, n_core):
     n_ds = len(res["inputs"]["datasets"])
     n_s2 = res["inputs"]["n_run_files"] - n_core
     boxes = [
-        "Audit and inclusion\n50 radMLBench datasets\n-> 43 included",
+        "Audit and inclusion\n50 radMLBench datasets,\n43 included",
         "Sealed dataset-level split\n12 development\n31 confirmation",
         "Stage 1 frozen\n(commit 8fa82c7)\n+ amendment 1 (H5)",
         "Code verification\nOneMax, MEALPY checks,\nstructural bias, budget",
@@ -233,16 +233,26 @@ def fig2(any_rows, h1_d, logpn):
     ax_auc.set_xlabel("Evaluations (log scale)")
     ax_gap.set_ylabel("Mean optimism gap (AUC units)")
     ax_auc.set_ylabel("Mean outer AUC")
-    ax_gap.legend(ncol=3, frameon=False, fontsize=6, loc="upper left", handlelength=2.2, columnspacing=0.8)
+    # same y-axis span in both panels (same AUC scale), each centred on its own data
+    gap_vals = [float(by[(f"{s}__C0", c)]["mean_optimism_gap"]) for s in C0 for c in cps]
+    auc_vals = [float(by[(f"{s}__C0", c)]["mean_outer_auc"]) for s in C0 for c in cps]
+    span = 1.1 * max(max(gap_vals) - min(gap_vals), max(auc_vals) - min(auc_vals))
+    for ax, vals in ((ax_gap, gap_vals), (ax_auc, auc_vals)):
+        mid = (max(vals) + min(vals)) / 2
+        ax.set_ylim(mid - span / 2, mid + span / 2)
+    # one legend above panel (a), outside the plotting area
+    ax_gap.legend(ncol=4, frameon=False, fontsize=6, loc="lower left", bbox_to_anchor=(0.0, 1.02, 1.0, 0.0),
+                  mode="expand", handlelength=2.2, borderaxespad=0.0)
     ds = sorted(h1_d)
     ax_b.scatter([logpn[d] for d in ds], [h1_d[d] for d in ds], s=12, color=OI["blue"], edgecolor="none")
     ax_b.axhline(0, color="0.6", linewidth=0.5)
     ax_b.set_xlabel("log(p/n) (natural logarithm)")
     ax_b.set_ylabel("Per-dataset mean optimism gap, 12 C0 configurations (AUC units)")
+    fig.subplots_adjust(left=0.085, right=0.99, top=0.88, bottom=0.08)
+    # panel labels in the top margin, clear of tick labels, axis labels and the legend
     for ax, lab in ((ax_gap, "(a)"), (ax_b, "(b)")):
-        ax.text(-0.15 if ax is ax_gap else -0.17, 1.0, lab, transform=ax.transAxes, fontsize=8, fontweight="bold",
-                va="top")
-    fig.subplots_adjust(left=0.085, right=0.99, top=0.98, bottom=0.08)
+        x0 = ax.get_position().x0
+        fig.text(max(x0 - 0.075, 0.003), 0.985, lab, fontsize=8, fontweight="bold", va="top", ha="left")
     return save(fig, OUT / "figures/fig2")
 
 
@@ -256,15 +266,17 @@ def fig3(h2_d, h3_d, s2_d, logpn):
     a.scatter([h2_d[d] for d in order], y, s=12, color=OI["blue"], edgecolor="none", zorder=3)
     a.set_xlabel("Difference in outer AUC, searcher + C4 minus C0\n(mean of GA, BPSO-S, DE-S, GWO-S)")
     b.axvline(0, color="0.4", linewidth=0.6)
-    for m in (-0.02, 0.02):
-        b.axvline(m, color=OI["vermillion"], linewidth=0.7, linestyle="--")
+    for i, m in enumerate((-0.02, 0.02)):
+        b.axvline(m, color="0.5", linewidth=0.7, linestyle="--",
+                  label="Equivalence margin (+/-0.02)" if i == 0 else None)
     b.scatter([h3_d[d] for d in order], y, s=12, color=OI["blue"], edgecolor="none", zorder=3,
               label="Pre-filtered pool (H3)")
     s2y = [i for i, d in enumerate(order) if d in s2_d]
     b.scatter([s2_d[order[i]] for i in s2y], s2y, s=16, facecolor="none", edgecolor=OI["orange"], linewidth=0.8,
               zorder=4, label="No pre-filter (S2)")
     b.set_xlabel("Difference in outer AUC,\nGA + C4 minus L1 logistic regression")
-    b.legend(frameon=False, loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=2, fontsize=6.5, borderaxespad=0.2)
+    b.legend(frameon=False, loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=2, fontsize=6.5, borderaxespad=0.2,
+             handlelength=2.0)
     for ax in (a, b):
         ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
     a.set_yticks(y)
@@ -274,7 +286,7 @@ def fig3(h2_d, h3_d, s2_d, logpn):
     for ax, lab in ((a, "(a)"), (b, "(b)")):
         ax.text(0.0, 1.01, lab, transform=ax.transAxes, fontsize=8, fontweight="bold", va="bottom")
         ax.grid(axis="y", color="0.92", linewidth=0.4)
-    fig.subplots_adjust(left=0.2, right=0.985, top=0.94, bottom=0.11, wspace=0.08)
+    fig.subplots_adjust(left=0.2, right=0.985, top=0.92, bottom=0.11, wspace=0.08)
     return save(fig, OUT / "figures/fig3")
 
 
