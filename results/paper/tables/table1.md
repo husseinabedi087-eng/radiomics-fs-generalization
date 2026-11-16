@@ -1,0 +1,14 @@
+**Table 1. Searchers and settings.**
+
+| Searcher | Configurations | Transfer functions | Settings |
+|---|---|---|---|
+| Random subset search | Random search | - | 2,000 masks; subset size drawn uniformly from 1 to K, then features drawn uniformly |
+| Bit-flip hill climbing | Hill climbing | - | One random bit flipped per step; move accepted if fitness is greater than or equal |
+| (1+1)-EA | (1+1)-EA | - | Standard bit mutation with rate 1/K; offspring accepted if fitness is greater than or equal |
+| Genetic algorithm | GA | - | Population 20, 100 generations; binary tournament; uniform crossover with probability 0.9; bit-flip mutation 1/K; elitism of 1 |
+| Binary PSO | BPSO-S, BPSO-V | S-shaped (sigmoid) and V-shaped (|tanh|) | 20 particles, 100 iterations; inertia 0.9 to 0.4 linearly; c1 = c2 = 2; velocity clamp 6 |
+| Differential evolution | DE-S, DE-V | S-shaped (sigmoid) and V-shaped (|tanh|) | DE/rand/1/bin; population 20, 100 generations; F = 0.5; CR = 0.9; continuous positions in [-6, 6] |
+| Grey wolf optimizer | GWO-S, GWO-V | S-shaped (sigmoid) and V-shaped (|tanh|) | 20 wolves, 100 iterations; a decreases linearly from 2 to 0 |
+| Whale optimization algorithm | WOA-S, WOA-V | S-shaped (sigmoid) and V-shaped (|tanh|) | 20 whales, 100 iterations; a decreases linearly from 2 to 0; spiral constant b = 1 |
+
+All searchers: binary mask over the pool of K = min(200, p) features; budget 2,000 evaluations; checkpoints 250, 500, 1,000, 2,000; 2 x 5 outer folds; 3 search seeds per outer fold; initial masks drawn bit by bit with probability 0.5 (configs/confirmation.yaml; PREREG_STAGE1 sections 4 and 5).

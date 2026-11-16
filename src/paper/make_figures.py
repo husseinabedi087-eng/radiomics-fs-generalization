@@ -130,7 +130,11 @@ def write_md(path, title, header, rows, notes=()):
 
 
 def p2(p):
-    return "-" if p is None else f"{p:.2g}"
+    """p to 2 significant figures, keeping trailing zeros (0.5954 -> 0.60, 4.66e-10 -> 4.7e-10)."""
+    if p is None:
+        return "-"
+    s = f"{p:#.2g}"  # '#' keeps trailing zeros
+    return s.rstrip(".") if s.endswith(".") else s
 
 
 def f4(x):

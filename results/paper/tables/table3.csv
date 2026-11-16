@@ -1,0 +1,6 @@
+Hypothesis,Test,d,Datasets,Statistic,p raw,p Holm,Mean d,CI low,CI high,Rank-biserial,Wording
+H1,"Wilcoxon signed-rank, one-sided (d > 0)","optimism gap, mean of 12 C0",31,W = 496,4.656612873077393e-10,2.3283064365386963e-09,0.13353333041497115,0.10334907953913812,0.1665056650849859,1.0,optimism gap greater than zero
+H2,"Wilcoxon signed-rank, one-sided (d > 0)",searcher + C4 minus C0 (4 searchers),31,W = 236,0.5954172192141414,0.6913840060943738,-0.00041454031846261736,-0.0021018081010948622,0.0012863005278840782,-0.04838709677419355,no detectable difference
+H3,"TOST, Wilcoxon form, margin 0.02",GA + C4 minus L1,31,"W_low = 359, W_up = 60",0.014463275205343962,0.043389825616031885,-0.006672890209893102,-0.016978484156945438,0.004338801574374284,-0.3387096774193548,equivalent (margin 0.02)
+H4,Likelihood-ratio test of searcher x control (mixed model),-,31,"LR = 13.33, df = 12",0.3456920030471869,0.6913840060943738,,,,,no detectable interaction
+H5,"Wilcoxon signed-rank, one-sided (d - 0.01 < 0)",GWO/WOA minus GA/BPSO/DE (C0),31,W = 52,1.785019412636757e-05,7.140077650547028e-05,0.0008290408971326634,-0.0027871572488394995,0.004541359444125012,0.125,equivalent (margin 0.01)
