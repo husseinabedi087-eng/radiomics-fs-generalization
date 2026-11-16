@@ -1,0 +1,452 @@
+{
+  "name": "confirmation",
+  "plans": [
+    {
+      "c1": {
+        "ended_before_first_checkpoint": 0,
+        "runs": 3720,
+        "stopped_early": 3706
+      },
+      "c1_early": [],
+      "commits": {
+        "862a7ea": 24800
+      },
+      "configurations": 30,
+      "configurations_with_warnings": 1,
+      "empty_subset": [
+        {
+          "configuration": "baseline__enet",
+          "datasets": 4,
+          "per_dataset": {
+            "Hosny2018C": 2,
+            "NSCLC-Radiogenomics": 1,
+            "Petrillo2023": 1,
+            "Veeraraghavan2020": 1
+          },
+          "runs": 5
+        },
+        {
+          "configuration": "baseline__l1",
+          "datasets": 3,
+          "per_dataset": {
+            "NSCLC-Radiogenomics": 2,
+            "Petrillo2023": 2,
+            "Veeraraghavan2020": 1
+          },
+          "runs": 5
+        }
+      ],
+      "empty_subset_runs": 10,
+      "group": "confirmation",
+      "k_below_p_runs": 20800,
+      "k_equal_p_runs": 4000,
+      "missing": 0,
+      "plan": "confirmation",
+      "prefilter": true,
+      "runs_before_stage2": 0,
+      "status": {
+        "ok": 24800
+      },
+      "threads": [
+        {
+          "runs": 24800,
+          "setting": [
+            [
+              "openblas",
+              1
+            ],
+            [
+              "openmp",
+              1
+            ]
+          ]
+        }
+      ],
+      "units": 24800,
+      "wall_s": {
+        "baseline__all_k": {
+          "max": 0.0,
+          "median": 0.0,
+          "min": 0.0
+        },
+        "baseline__enet": {
+          "max": 180.0,
+          "median": 17.4,
+          "min": 3.7
+        },
+        "baseline__ftest": {
+          "max": 0.3,
+          "median": 0.1,
+          "min": 0.1
+        },
+        "baseline__l1": {
+          "max": 96.8,
+          "median": 0.5,
+          "min": 0.2
+        },
+        "baseline__mrmr": {
+          "max": 0.3,
+          "median": 0.1,
+          "min": 0.1
+        },
+        "baseline__rf": {
+          "max": 8.9,
+          "median": 2.9,
+          "min": 2.2
+        },
+        "bpso_S__C0": {
+          "max": 153.3,
+          "median": 50.0,
+          "min": 35.0
+        },
+        "bpso_S__C1_P5": {
+          "max": 70.0,
+          "median": 17.9,
+          "min": 10.1
+        },
+        "bpso_S__C2_lambda1": {
+          "max": 405.0,
+          "median": 149.5,
+          "min": 103.7
+        },
+        "bpso_S__C3_r8": {
+          "max": 139.0,
+          "median": 50.0,
+          "min": 35.2
+        },
+        "bpso_V__C0": {
+          "max": 147.7,
+          "median": 50.0,
+          "min": 35.1
+        },
+        "de_S__C0": {
+          "max": 155.6,
+          "median": 49.9,
+          "min": 34.8
+        },
+        "de_S__C1_P5": {
+          "max": 98.7,
+          "median": 19.3,
+          "min": 10.1
+        },
+        "de_S__C2_lambda1": {
+          "max": 405.1,
+          "median": 148.4,
+          "min": 102.6
+        },
+        "de_S__C3_r8": {
+          "max": 138.3,
+          "median": 50.6,
+          "min": 35.4
+        },
+        "de_V__C0": {
+          "max": 148.7,
+          "median": 50.8,
+          "min": 36.4
+        },
+        "ga__C0": {
+          "max": 132.3,
+          "median": 44.9,
+          "min": 31.3
+        },
+        "ga__C1_P5": {
+          "max": 102.0,
+          "median": 17.4,
+          "min": 9.4
+        },
+        "ga__C2_lambda1": {
+          "max": 347.8,
+          "median": 131.0,
+          "min": 87.7
+        },
+        "ga__C3_r8": {
+          "max": 140.9,
+          "median": 49.5,
+          "min": 34.4
+        },
+        "gwo_S__C0": {
+          "max": 145.3,
+          "median": 49.9,
+          "min": 34.3
+        },
+        "gwo_S__C1_P5": {
+          "max": 85.6,
+          "median": 18.0,
+          "min": 10.1
+        },
+        "gwo_S__C2_lambda1": {
+          "max": 396.3,
+          "median": 149.7,
+          "min": 101.2
+        },
+        "gwo_S__C3_r8": {
+          "max": 134.2,
+          "median": 50.1,
+          "min": 35.4
+        },
+        "gwo_V__C0": {
+          "max": 152.3,
+          "median": 50.7,
+          "min": 35.8
+        },
+        "hill_climb__C0": {
+          "max": 101.7,
+          "median": 42.4,
+          "min": 12.4
+        },
+        "one_plus_one__C0": {
+          "max": 86.3,
+          "median": 29.8,
+          "min": 17.9
+        },
+        "random__C0": {
+          "max": 142.5,
+          "median": 48.8,
+          "min": 35.0
+        },
+        "woa_S__C0": {
+          "max": 159.3,
+          "median": 34.8,
+          "min": 8.1
+        },
+        "woa_V__C0": {
+          "max": 135.8,
+          "median": 47.1,
+          "min": 29.8
+        }
+      },
+      "warnings": {
+        "baseline__all_k": {
+          "runs": 310,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__enet": {
+          "runs": 310,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__ftest": {
+          "runs": 310,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__l1": {
+          "runs": 310,
+          "runs_with_warnings": 29,
+          "total": 101
+        },
+        "baseline__mrmr": {
+          "runs": 310,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__rf": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C1_P5": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C2_lambda1": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C3_r8": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_V__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C1_P5": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C2_lambda1": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C3_r8": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_V__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C1_P5": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C2_lambda1": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C3_r8": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C1_P5": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C2_lambda1": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C3_r8": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_V__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "hill_climb__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "one_plus_one__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "random__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "woa_S__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "woa_V__C0": {
+          "runs": 930,
+          "runs_with_warnings": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "c1_early": [],
+      "commits": {
+        "862a7ea": 680
+      },
+      "configurations": 2,
+      "configurations_with_warnings": 0,
+      "empty_subset": [
+        {
+          "configuration": "baseline__l1",
+          "datasets": 6,
+          "per_dataset": {
+            "C4KC-KiTS": 1,
+            "Hosny2018C": 5,
+            "NSCLC-Radiogenomics": 2,
+            "Petrillo2023": 4,
+            "Sasaki2019": 2,
+            "Veeraraghavan2020": 1
+          },
+          "runs": 15
+        }
+      ],
+      "empty_subset_runs": 15,
+      "group": "confirmation",
+      "k_below_p_runs": 0,
+      "k_equal_p_runs": 680,
+      "missing": 0,
+      "plan": "confirmation_s2",
+      "prefilter": false,
+      "runs_before_stage2": 0,
+      "status": {
+        "ok": 680
+      },
+      "threads": [
+        {
+          "runs": 680,
+          "setting": [
+            [
+              "openblas",
+              1
+            ],
+            [
+              "openmp",
+              1
+            ]
+          ]
+        }
+      ],
+      "units": 680,
+      "wall_s": {
+        "baseline__l1": {
+          "max": 2.1,
+          "median": 0.5,
+          "min": 0.2
+        },
+        "ga__C0": {
+          "max": 147.8,
+          "median": 50.5,
+          "min": 31.0
+        }
+      },
+      "warnings": {
+        "baseline__l1": {
+          "runs": 170,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C0": {
+          "runs": 510,
+          "runs_with_warnings": 0,
+          "total": 0
+        }
+      }
+    }
+  ],
+  "plans_requested": [
+    "configs/confirmation.yaml",
+    "configs/confirmation_s2.yaml"
+  ],
+  "source": "src/run_health.py (unchanged), output parsed by src/save_health.py",
+  "stage2_committed_at": "2026-11-13T02:28:21+03:00"
+}

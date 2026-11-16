@@ -1,0 +1,13 @@
+Searcher,Same seed identical,Different seeds differ
+random,yes,yes
+hill_climb,yes,yes
+one_plus_one,yes,yes
+ga,yes,yes
+bpso_S,yes,yes
+bpso_V,yes,yes
+de_S,yes,yes
+de_V,yes,yes
+gwo_S,yes,yes
+gwo_V,yes,yes
+woa_S,yes,yes
+woa_V,yes,yes

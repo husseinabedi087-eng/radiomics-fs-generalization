@@ -1,0 +1,8 @@
+Dataset,Modality,Reason
+Colorectal-Liver-Metastases,CT,criterion 2: minority class below 20
+Deng2023,MRI,criterion 3: no license file in the GitHub repository; the article (not open access) states data are provided upon journal request only
+Granata2024,MRI,criterion 2: minority class below 20
+HCC-TACE-Seg,CT,criterion 2: minority class below 20
+Li2020,MRI,criterion 2: minority class below 20
+QIN-HEADNECK,PET/CT,criterion 2: minority class below 20
+Zhang2023,CT,criterion 4: lesion-level rows without patient ID

@@ -1,0 +1,7 @@
+Health report,Plan,Configuration,Runs,Datasets,Per dataset
+development,development,baseline__enet,2,1,Ahn2021 (2)
+development,development,baseline__l1,1,1,Ahn2021 (1)
+development,dev_enet_fix,baseline__enet,2,1,Ahn2021 (2)
+confirmation,confirmation,baseline__enet,5,4,"Hosny2018C (2), NSCLC-Radiogenomics (1), Petrillo2023 (1), Veeraraghavan2020 (1)"
+confirmation,confirmation,baseline__l1,5,3,"NSCLC-Radiogenomics (2), Petrillo2023 (2), Veeraraghavan2020 (1)"
+confirmation,confirmation_s2,baseline__l1,15,6,"C4KC-KiTS (1), Hosny2018C (5), NSCLC-Radiogenomics (2), Petrillo2023 (4), Sasaki2019 (2), Veeraraghavan2020 (1)"

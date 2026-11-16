@@ -1,0 +1,9 @@
+Algorithm,Function,MEALPY model,Median ours,Median MEALPY,p,Result
+PSO core (BPSO),sphere,LDW_PSO,1.281e+04,1.297e+04,0.9031,ok
+PSO core (BPSO),rastrigin,LDW_PSO,303.3,309,0.3942,ok
+DE,sphere,OriginalDE,2666,2053,0.2085,ok
+DE,rastrigin,OriginalDE,217.4,225.5,0.9676,ok
+GWO,sphere,OriginalGWO,0.03978,0.04666,0.2733,ok
+GWO,rastrigin,OriginalGWO,58.49,59.23,0.7150,ok
+WOA,sphere,OriginalWOA,7.459e-12,1.263e-11,0.7764,ok
+WOA,rastrigin,OriginalWOA,5.027e-06,131.5,0.2085,ok

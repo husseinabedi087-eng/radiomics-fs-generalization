@@ -1,0 +1,16 @@
+Analysis,Response,Model,Optimizer,Converged,Log-likelihood or LR,Warnings or test
+main,outer AUC (H4),full,lbfgs,True,129996.18569841381,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,outer AUC (H4),reduced,lbfgs,True,129989.52194298769,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,outer AUC (H4),LRT,,,13.32751085225027,"df 12, p 0.3456920030471869, rows 74400, partitions 310"
+main,optimism gap (descriptive),full,lbfgs,True,118109.2156094833,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,optimism gap (descriptive),reduced,lbfgs,True,117456.82723515219,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,optimism gap (descriptive),LRT,,,1304.7767486622324,"df 12, p 4.656021127489165e-272, rows 74400, partitions 310"
+main,Brier score (descriptive),full,lbfgs,True,178794.46834237533,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,Brier score (descriptive),reduced,lbfgs,True,178784.26145415741,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+main,Brier score (descriptive),LRT,,,20.413776435831096,"df 12, p 0.05965249708257814, rows 74400, partitions 310"
+S1,outer AUC,full,lbfgs,True,106002.99742669088,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+S1,outer AUC,reduced,lbfgs,True,105997.6568712875,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+S1,outer AUC,LRT,,,10.681110806763172,"df 12, p 0.5564270036897723, rows 62400, partitions 260"
+S1,optimism gap (descriptive),full,lbfgs,True,96402.85247184883,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+S1,optimism gap (descriptive),reduced,lbfgs,True,95898.86330330596,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+S1,optimism gap (descriptive),LRT,,,1007.9783370857476,"df 12, p 3.6102005648418853e-208, rows 62400, partitions 260"

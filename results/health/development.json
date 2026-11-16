@@ -1,0 +1,592 @@
+{
+  "name": "development",
+  "plans": [
+    {
+      "c1": {
+        "ended_before_first_checkpoint": 0,
+        "runs": 720,
+        "stopped_early": 692
+      },
+      "c1_early": [],
+      "commits": {
+        "3b69ca5": 2880
+      },
+      "configurations": 46,
+      "configurations_with_warnings": 1,
+      "empty_subset": [
+        {
+          "configuration": "baseline__enet",
+          "datasets": 1,
+          "per_dataset": {
+            "Ahn2021": 2
+          },
+          "runs": 2
+        },
+        {
+          "configuration": "baseline__l1",
+          "datasets": 1,
+          "per_dataset": {
+            "Ahn2021": 1
+          },
+          "runs": 1
+        }
+      ],
+      "empty_subset_runs": 3,
+      "group": "development",
+      "k_below_p_runs": 2400,
+      "k_equal_p_runs": 480,
+      "missing": 0,
+      "plan": "development",
+      "prefilter": true,
+      "runs_before_stage2": 0,
+      "status": {
+        "ok": 2880
+      },
+      "threads": [
+        {
+          "runs": 2880,
+          "setting": [
+            [
+              "openblas",
+              1
+            ],
+            [
+              "openmp",
+              1
+            ]
+          ]
+        }
+      ],
+      "units": 2880,
+      "wall_s": {
+        "baseline__all_k": {
+          "max": 0.0,
+          "median": 0.0,
+          "min": 0.0
+        },
+        "baseline__enet": {
+          "max": 14.3,
+          "median": 5.9,
+          "min": 3.1
+        },
+        "baseline__ftest": {
+          "max": 0.2,
+          "median": 0.1,
+          "min": 0.1
+        },
+        "baseline__l1": {
+          "max": 1.2,
+          "median": 0.3,
+          "min": 0.2
+        },
+        "baseline__mrmr": {
+          "max": 0.2,
+          "median": 0.1,
+          "min": 0.1
+        },
+        "baseline__rf": {
+          "max": 3.2,
+          "median": 2.6,
+          "min": 2.4
+        },
+        "bpso_S__C0": {
+          "max": 65.1,
+          "median": 44.8,
+          "min": 35.4
+        },
+        "bpso_S__C1_P10": {
+          "max": 47.0,
+          "median": 28.5,
+          "min": 18.8
+        },
+        "bpso_S__C1_P3": {
+          "max": 23.4,
+          "median": 10.2,
+          "min": 6.8
+        },
+        "bpso_S__C1_P5": {
+          "max": 35.0,
+          "median": 16.1,
+          "min": 10.1
+        },
+        "bpso_S__C2_lambda0.5": {
+          "max": 180.5,
+          "median": 133.2,
+          "min": 104.1
+        },
+        "bpso_S__C2_lambda1": {
+          "max": 184.0,
+          "median": 132.0,
+          "min": 104.1
+        },
+        "bpso_S__C2_lambda2": {
+          "max": 180.3,
+          "median": 133.0,
+          "min": 104.5
+        },
+        "bpso_S__C3_r2": {
+          "max": 61.4,
+          "median": 44.3,
+          "min": 34.8
+        },
+        "bpso_S__C3_r4": {
+          "max": 61.5,
+          "median": 44.6,
+          "min": 34.8
+        },
+        "bpso_S__C3_r8": {
+          "max": 61.5,
+          "median": 44.5,
+          "min": 35.3
+        },
+        "de_S__C0": {
+          "max": 66.8,
+          "median": 45.0,
+          "min": 34.3
+        },
+        "de_S__C1_P10": {
+          "max": 62.9,
+          "median": 28.0,
+          "min": 18.1
+        },
+        "de_S__C1_P3": {
+          "max": 24.6,
+          "median": 10.5,
+          "min": 6.9
+        },
+        "de_S__C1_P5": {
+          "max": 40.9,
+          "median": 16.1,
+          "min": 9.9
+        },
+        "de_S__C2_lambda0.5": {
+          "max": 180.2,
+          "median": 130.5,
+          "min": 102.9
+        },
+        "de_S__C2_lambda1": {
+          "max": 178.0,
+          "median": 129.8,
+          "min": 103.8
+        },
+        "de_S__C2_lambda2": {
+          "max": 179.3,
+          "median": 131.0,
+          "min": 102.3
+        },
+        "de_S__C3_r2": {
+          "max": 60.9,
+          "median": 44.8,
+          "min": 34.8
+        },
+        "de_S__C3_r4": {
+          "max": 61.5,
+          "median": 44.7,
+          "min": 35.0
+        },
+        "de_S__C3_r8": {
+          "max": 61.2,
+          "median": 44.6,
+          "min": 35.1
+        },
+        "ga__C0": {
+          "max": 57.2,
+          "median": 39.0,
+          "min": 31.5
+        },
+        "ga__C1_P10": {
+          "max": 44.6,
+          "median": 25.4,
+          "min": 17.9
+        },
+        "ga__C1_P3": {
+          "max": 22.9,
+          "median": 10.7,
+          "min": 6.2
+        },
+        "ga__C1_P5": {
+          "max": 38.3,
+          "median": 15.5,
+          "min": 9.2
+        },
+        "ga__C2_lambda0.5": {
+          "max": 161.2,
+          "median": 116.1,
+          "min": 86.6
+        },
+        "ga__C2_lambda1": {
+          "max": 158.5,
+          "median": 115.9,
+          "min": 89.3
+        },
+        "ga__C2_lambda2": {
+          "max": 164.7,
+          "median": 117.7,
+          "min": 91.6
+        },
+        "ga__C3_r2": {
+          "max": 59.6,
+          "median": 43.4,
+          "min": 33.0
+        },
+        "ga__C3_r4": {
+          "max": 59.9,
+          "median": 43.6,
+          "min": 32.7
+        },
+        "ga__C3_r8": {
+          "max": 59.8,
+          "median": 44.1,
+          "min": 33.9
+        },
+        "gwo_S__C0": {
+          "max": 68.0,
+          "median": 44.9,
+          "min": 34.5
+        },
+        "gwo_S__C1_P10": {
+          "max": 52.9,
+          "median": 27.1,
+          "min": 18.3
+        },
+        "gwo_S__C1_P3": {
+          "max": 21.4,
+          "median": 10.6,
+          "min": 6.8
+        },
+        "gwo_S__C1_P5": {
+          "max": 30.8,
+          "median": 15.4,
+          "min": 10.1
+        },
+        "gwo_S__C2_lambda0.5": {
+          "max": 179.6,
+          "median": 132.3,
+          "min": 105.6
+        },
+        "gwo_S__C2_lambda1": {
+          "max": 180.5,
+          "median": 132.9,
+          "min": 104.5
+        },
+        "gwo_S__C2_lambda2": {
+          "max": 184.3,
+          "median": 133.3,
+          "min": 105.8
+        },
+        "gwo_S__C3_r2": {
+          "max": 62.4,
+          "median": 44.3,
+          "min": 34.3
+        },
+        "gwo_S__C3_r4": {
+          "max": 61.6,
+          "median": 44.8,
+          "min": 35.4
+        },
+        "gwo_S__C3_r8": {
+          "max": 62.2,
+          "median": 44.1,
+          "min": 33.6
+        }
+      },
+      "warnings": {
+        "baseline__all_k": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__enet": {
+          "runs": 60,
+          "runs_with_warnings": 60,
+          "total": 1228
+        },
+        "baseline__ftest": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__l1": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__mrmr": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "baseline__rf": {
+          "runs": 180,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C0": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C1_P10": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C1_P3": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C1_P5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C2_lambda0.5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C2_lambda1": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C2_lambda2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C3_r2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C3_r4": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "bpso_S__C3_r8": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C0": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C1_P10": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C1_P3": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C1_P5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C2_lambda0.5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C2_lambda1": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C2_lambda2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C3_r2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C3_r4": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "de_S__C3_r8": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C0": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C1_P10": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C1_P3": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C1_P5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C2_lambda0.5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C2_lambda1": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C2_lambda2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C3_r2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C3_r4": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "ga__C3_r8": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C0": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C1_P10": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C1_P3": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C1_P5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C2_lambda0.5": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C2_lambda1": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C2_lambda2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C3_r2": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C3_r4": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        },
+        "gwo_S__C3_r8": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        }
+      }
+    },
+    {
+      "c1_early": [],
+      "commits": {
+        "a1535d6": 60
+      },
+      "configurations": 1,
+      "configurations_with_warnings": 0,
+      "empty_subset": [
+        {
+          "configuration": "baseline__enet",
+          "datasets": 1,
+          "per_dataset": {
+            "Ahn2021": 2
+          },
+          "runs": 2
+        }
+      ],
+      "empty_subset_runs": 2,
+      "group": "development",
+      "k_below_p_runs": 50,
+      "k_equal_p_runs": 10,
+      "missing": 0,
+      "plan": "dev_enet_fix",
+      "prefilter": true,
+      "runs_before_stage2": 0,
+      "status": {
+        "ok": 60
+      },
+      "threads": [
+        {
+          "runs": 60,
+          "setting": [
+            [
+              "openblas",
+              1
+            ],
+            [
+              "openmp",
+              1
+            ]
+          ]
+        }
+      ],
+      "units": 60,
+      "wall_s": {
+        "baseline__enet": {
+          "max": 31.7,
+          "median": 10.9,
+          "min": 4.1
+        }
+      },
+      "warnings": {
+        "baseline__enet": {
+          "runs": 60,
+          "runs_with_warnings": 0,
+          "total": 0
+        }
+      }
+    }
+  ],
+  "plans_requested": [
+    "configs/development.yaml",
+    "configs/dev_enet_fix.yaml"
+  ],
+  "source": "src/run_health.py (unchanged), output parsed by src/save_health.py",
+  "stage2_committed_at": "2026-11-13T02:28:21+03:00"
+}

@@ -1,0 +1,6 @@
+# EXPLORATORY (development data)
+Control,Value,Score (mean outer AUC),Chosen
+C1,5,0.660025587644018,
+C2,1.0,0.6664152089933627,
+C3,8,0.6667789267596883,
+C4,,0.672337541170377,yes
