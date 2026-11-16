@@ -1,0 +1,24 @@
+{
+  "title": "Search less, generalize more: overfitting-aware evolutionary feature selection for radiomics (code and results)",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "description": "Code, pre-registration, run files and results of a pre-registered benchmark of wrapper feature selection for radiomics: 12 searchers and 4 generalization controls on 43 public radMLBench datasets (12 development, 31 confirmation). Code under the MIT licence; run files, analysis outputs, figures and tables under CC BY 4.0. The underlying datasets keep their own licences.",
+  "creators": [
+    {
+      "name": "Abedi, Hussein Fadhil",
+      "affiliation": "",
+      "orcid": ""
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "radiomics",
+    "feature selection",
+    "evolutionary computation",
+    "swarm intelligence",
+    "metaheuristics",
+    "overfitting",
+    "pre-registration",
+    "benchmarking"
+  ]
+}

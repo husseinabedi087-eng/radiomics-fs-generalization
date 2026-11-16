@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite them as below."
+title: "Search less, generalize more: overfitting-aware evolutionary feature selection for radiomics (code and results)"
+type: software
+authors:
+  - family-names: "Abedi"
+    given-names: "Hussein Fadhil"
+    affiliation: ""
+    orcid: ""
+version: "1.0.0"
+license: MIT
+keywords:
+  - radiomics
+  - feature selection
+  - evolutionary computation
+  - swarm intelligence
+  - metaheuristics
+  - overfitting
+  - pre-registration
+  - benchmarking
