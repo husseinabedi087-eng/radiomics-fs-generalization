@@ -91,7 +91,7 @@ All decisions below were made on synthetic problems (OneMax, NK landscapes, pure
 - Mirrored-encoding check (section 9): the earlier symmetric-landscape test had no power (every searcher returned exactly K/2) and was replaced by the structural-bias test of Kononova et al. (2015) adapted to binary masks: pure-noise fitness, deterministic per mask (uniform in [0, 1] from a BLAKE2b hash of the mask bytes and the seed); K = 200; budget 2,000; 30 seeds; original vs inverted encoding compared with a two-sided Mann-Whitney U (must be p > 0.01); mean returned size tested against K/2 with a one-sample Wilcoxon (p reported). It runs in about 70 s and is not marked slow.
 - Knee rule for control C4: both objectives (inner fitness, subset size) are min-max normalized over the non-dominated front before the perpendicular distance is computed; ties go to the smaller subset.
 - Verification results are saved as raw JSON files in results/verification/ by the tests; docs/VERIFICATION.md (supplement) is generated from them by src/make_verification_report.py.
-- The commit "searchers, evaluator and verification tests (not yet run)" (a71df32) was preceded by a local run of the fast synthetic tests by Claude Code during development; the message refers to the author's run.
+- The commit "searchers, evaluator and verification tests (not yet run)" (a71df32) was preceded by a local run of the fast synthetic tests by the AI coding assistant during development; the message refers to the author's run.
 
 ## 2026-11-11: woa_S corner bias under pure noise (finding; no searcher changed)
 
@@ -111,7 +111,7 @@ Approved by the author; made on synthetic data only, before any model was traine
 - C2: the standard deviation of the 9 AUC values uses ddof = 0.
 - C3: the r neighbours flip r distinct bits chosen uniformly, drawn from a random stream that is derived from the search seed but independent of the searcher's own stream (the searcher's random numbers are the same as in C0); the best-so-far is tracked on the smoothed value; the archive stores the raw inner fitness of every scored subset.
 - Evaluator split: fsbench.Evaluator has score() (one counted, archived evaluation) and returned() (the subset the run returns: the best inner fitness for C0, the control's choice for C1 and C3). C0 behaviour is unchanged (all earlier tests pass; determinism masks identical before and after).
-- FSBENCH_RESULTS_DIR: an environment variable that redirects the raw verification results written by tests/conftest.py, so that development runs by Claude Code never overwrite the committed results in results/verification/.
+- FSBENCH_RESULTS_DIR: an environment variable that redirects the raw verification results written by tests/conftest.py, so that development runs by the AI coding assistant never overwrite the committed results in results/verification/.
 - Restored metadata: a development run before that override overwrote the 12 committed results/verification/determinism_*.json files; only their metadata (git commit, dirty flag, UTC time) differed, the results were identical; the committed files were restored from git unchanged.
 - Standard inner AUC: computed, outside the budget, for the returned subset and for every checkpoint subset.
 
@@ -119,7 +119,7 @@ Approved by the author; made on synthetic data only, before any model was traine
 
 - Pilot attempt 1 (configs/pilot.yaml, 480 planned runs, 6 workers, commit 4f10b80) started on 2026-11-11 at 17:48:29 UTC (earliest run start). 390 runs were finished and recorded in results/MANIFEST.csv (last at 18:32:51 UTC); 431 run files had been written in total (41 finished by workers but never recorded by the main process); the last run started at 21:31:23 UTC. No temporary files were left.
 - Reason: the author put the machine into hibernate during the pilot and it did not resume correctly, so the run times are contaminated; the pilot exists to measure run times (section 10).
-- No performance result (AUC, Brier score, subset) was inspected by the author or by Claude Code; only run counts, start and finish times, plan names, status values and commits were read to write this entry.
+- No performance result (AUC, Brier score, subset) was inspected by the author or by the AI coding assistant; only run counts, start and finish times, plan names, status values and commits were read to write this entry.
 - Deleted: results/runs/development/ (431 files), results/MANIFEST.csv and results/progress.csv (pilot rows only), and results/partitions/ (3 files; deleted rather than verified, because verifying them would have required loading the datasets' labels; the runner recreates them deterministically from the dataset names). The pilot is rerun from scratch with the same plan and commit-checked code.
 
 ## 2026-11-12: development protocol, C4 logging and stage-2 selection rules (before any development run)
@@ -162,6 +162,10 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 
 - 2026-11-13: stage 2 pre-registration frozen. Confirmation set unsealed by this commit. No confirmation dataset was loaded before it.
 - docs/PREREG_STAGE2.md, SHA-256 32fc0d8b2cd5260ff53b4343707e61504ab3a6994a76c5436d3ba709bf10f85c (docs/PREREG_STAGE2.sha256), committed together with its hash file; the analysis code it cites is src/analysis/ at 0b3da97 and configs/analysis_confirmation.yaml at 44d6c32.
+
+## 2026-11-16: public-release wording
+
+- 2026-11-16: tool name in three earlier entries replaced by 'the AI coding assistant' for the public release; meaning unchanged; original wording in the history.
 
 ## Pre-registration status
 
