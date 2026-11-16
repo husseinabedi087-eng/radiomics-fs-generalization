@@ -167,6 +167,12 @@ Pilot attempt 2 (configs/pilot.yaml, commit 087d30d) finished 480 runs with 0 er
 
 - 2026-11-16: tool name in three earlier entries replaced by 'the AI coding assistant' for the public release; meaning unchanged; original wording in the history.
 
+## 2026-11-16: licence evidence trimmed for the public release
+
+- The 19 files in data/meta/license_evidence/ held the full API responses and web-page text fetched by src/license_lookup.py on 2026-11-09 (third-party text, not covered by this repository's licences). Each file is reduced to five fields: dataset, source URL (the request that gave the evidence), retrieval time (UTC), the licence name, and a verbatim quotation of at most two sentences, or of the licence field, stating the licence or terms. All other fetched text is dropped.
+- Quotation sources: Mendeley Data API, data_licence.description; Mendeley landing page (Lu2019), its schema.org licence entry; Zenodo, metadata.license.id, and for LNDb the description sentence stating CC BY-NC-ND with the conflicting metadata field noted; GitHub, license.name and spdx_id, or the HTTP 404 response where the repository has no licence file; figshare, license.name. For LNDb the description was converted from HTML to plain text before quoting.
+- No hash, manifest or frozen document covers these files (checked: no SHA-256 of any of them appears in a tracked file; data/meta/license_decisions.csv and this log name them by path only). The licence decisions in data/meta/license_decisions.csv are unchanged. The full responses remain in the history; src/license_lookup.py regenerates them.
+
 ## Pre-registration status
 
 Pre-registration status: stage 1 frozen (8fa82c7, amendment 1 in 485ee76); stage 2 frozen (this commit: "pre-registration stage 2 frozen (unseals confirmation)"); confirmation set unsealed; no confirmation run yet.

@@ -1,17 +1,7 @@
 {
   "dataset": "Keek2020",
-  "source_type": "github",
-  "attempts": [
-    {
-      "request_url": "https://api.github.com/repos/SebastianSanduleanu/Peritumoral-HN-Radiomics/license",
-      "timestamp_utc": "2026-11-09T20:56:19+00:00",
-      "http_status": 404,
-      "content_type": "application/json; charset=utf-8",
-      "response_json": {
-        "message": "Not Found",
-        "documentation_url": "https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository",
-        "status": "404"
-      }
-    }
-  ]
+  "source_url": "https://api.github.com/repos/SebastianSanduleanu/Peritumoral-HN-Radiomics/license",
+  "retrieved_utc": "2026-11-09T20:56:19+00:00",
+  "licence": "no licence file",
+  "quotation": "HTTP 404: \"Not Found\""
 }

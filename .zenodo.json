@@ -6,19 +6,18 @@
   "creators": [
     {
       "name": "Abedi, Hussein Fadhil",
-      "affiliation": "",
-      "orcid": ""
+      "affiliation": "Faculty of Information and Communications Technology, Universiti Teknikal Malaysia Melaka, Malaysia; College of Health and Medical Technology, University of Alkafeel, Iraq",
+      "orcid": "0009-0007-2001-4003"
     }
   ],
   "license": "MIT",
   "keywords": [
-    "radiomics",
-    "feature selection",
-    "evolutionary computation",
-    "swarm intelligence",
-    "metaheuristics",
-    "overfitting",
-    "pre-registration",
-    "benchmarking"
+    "Feature selection",
+    "Radiomics",
+    "Overfitting",
+    "Evolutionary computation",
+    "Swarm intelligence",
+    "Pre-registration",
+    "Equivalence testing"
   ]
 }
