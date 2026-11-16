@@ -1,0 +1,4 @@
+# POST HOC (not pre-registered; confirmation data)
+response,rows,dataset_variance,residual_variance,llf_full,llf_reduced,lr_statistic,df,p,warnings
+outer_auc,620,0.01974453387492941,6.025012493959295e-05,1996.3157536832196,1994.375957180679,3.8795930050810057,12,0.9855123285337957,
+optimism_gap,620,0.004794114371842304,0.000355529685446732,1495.432651899,1412.6859363723377,165.49343105332446,12,3.9796939468237936e-29,ConvergenceWarning: The MLE may be on the boundary of the parameter space.; ConvergenceWarning: The MLE may be on the boundary of the parameter space.
