@@ -187,7 +187,7 @@ def fig1(res, n_core):
         "Pilot and development runs\n480 pilot + 2,880 development\n+ 60 elastic-net rerun",
         "Stage 2 frozen\n(commit 862a7ea)\nconfirmation unsealed",
         f"Confirmation run\n{n_ds} datasets\n{n_core:,} + {n_s2:,} (S2) runs",
-        "Frozen analysis\n(code 0b3da97)\nH1-H5, S1, S2",
+        "Confirmatory analysis\n(code 0b3da97, frozen\nbefore unsealing)\nH1-H5, S1, S2",
     ]
     w, h = 0.86, 0.66
     centres = [(0.5 + i, 1.5) for i in range(4)] + [(0.5 + i, 0.5) for i in range(4)]

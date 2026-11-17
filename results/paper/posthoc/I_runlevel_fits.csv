@@ -1,0 +1,8 @@
+# POST HOC (not pre-registered; confirmation data)
+response,model,optimizer,converged,log_likelihood_or_LR,warnings_or_test
+outer AUC,full,lbfgs,True,129996.18569841381,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+outer AUC,reduced,lbfgs,True,129989.52194298769,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+outer AUC,LRT,,,13.32751085225027,"df 12, p 0.3456920030471869"
+optimism gap,full,lbfgs,True,118109.2156094833,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+optimism gap,reduced,lbfgs,True,117456.82723515219,ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+optimism gap,LRT,,,1304.7767486622324,"df 12, p 4.656021127489165e-272"
