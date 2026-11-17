@@ -1,4 +1,4 @@
-# Search less, generalize more: overfitting-aware evolutionary feature selection for radiomics
+# More search, same model: a pre-registered study of optimism in evolutionary and swarm feature selection for radiomics
 
 Code, pre-registration, run files and results of a pre-registered benchmark of wrapper feature
 selection for radiomics. Author: Hussein Fadhil Abedi.
@@ -144,6 +144,15 @@ The outputs are deterministic: rerunning a step reproduces the files listed in i
 `results/paper/supplementary/supplementary_manifest.csv`) byte for byte on the same environment.
 
 The commands are the same in PowerShell and bash; on Windows, backslashes in paths also work.
+
+## Post hoc analyses
+
+`results/paper/posthoc/` holds post hoc analyses on the confirmation data that were not pre-registered (commits `d5d4a68` and `f28c3ef`). Every file in that folder is listed with its SHA-256 in `results/paper/posthoc/posthoc_manifest.csv`. To reproduce them, run `src/paper/posthoc.py` before `src/paper/posthoc_runlevel.py`, because `posthoc.py` clears the folder:
+
+```
+python src/paper/posthoc.py
+python src/paper/posthoc_runlevel.py
+```
 
 ## Data
 
